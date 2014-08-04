@@ -1,8 +1,8 @@
 {
-    "color_scheme": "Packages/User/base16-ocean.dark (SL).tmTheme",
+    "color_scheme": "Packages/User/Solarized (dark) (SL).tmTheme",
     "always_show_minimap_viewport": true,
     "auto_find_in_selection": true,
-    "bold_folder_labels": false,
+    "bold_folder_labels": true,
     "caret_style": "wide",
     "close_windows_when_empty": false,
     "copy_with_empty_selection": false,
@@ -56,7 +56,7 @@
     "show_encoding": true,
     "show_line_endings": true,
     "tab_size": 4,
-    "theme": "Spacegray.sublime-theme",
+    "theme": "Sodarized Dark 3.sublime-theme",
     "translate_tabs_to_spaces": true,
     "trim_trailing_white_space_on_save": true,
     "word_wrap": true
