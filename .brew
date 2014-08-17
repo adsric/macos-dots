@@ -31,6 +31,7 @@ brew install git
 brew install ffmpeg
 brew install imagemagick --with-webp
 brew install jpeg
+brew install ngrep
 brew install rename
 brew install optipng
 brew install tree
