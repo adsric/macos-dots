@@ -23,8 +23,9 @@ colorscheme solarized
 
 
 " Set relevant filetypes
-" au BufRead,BufNewFile *.scss set filetype=css
+au BufRead,BufNewFile *.scss set filetype=css
 au BufRead,BufNewFile *.md set filetype=markdown
+au BufRead,BufNewFile *.json set filetype=json syntax=javascript
 
 
 
@@ -76,6 +77,7 @@ set title
 if exists("&relativenumber")
 	set relativenumber
 	au BufReadPost * set relativenumber
+	set number
 endif
 " Limit line-length to 80 columns by highlighting col 81 onward
 if exists("+colorcolumn")
