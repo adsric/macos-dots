@@ -63,6 +63,15 @@ set iskeyword-=_
 
 " Show status line
 set laststatus=2
+" Broken down into easily includeable segments
+" Filename
+set statusline=%<%f\
+" Options
+set statusline+=%w%h%m%r
+" Current dir
+set statusline+=\ [%{getcwd()}]
+" Right aligned file nav info
+set statusline+=%=%-14.(%l,%c%V%)\ %p%%
 " Show what mode you’re currently in
 set showmode
 " Show what commands you’re typing
@@ -102,6 +111,8 @@ set smartcase
 set clipboard=unnamed
 " Enhance command-line completion
 set wildmenu
+" Tab autocomplete longest possible part of a string, then list
+set wildmode=longest,list
 " Allow cursor keys in insert mode
 set esckeys
 " Allow backspace in insert mode
