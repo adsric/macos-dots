@@ -23,7 +23,7 @@ colorscheme solarized
 
 
 " Set relevant filetypes
-au BufRead,BufNewFile *.scss set filetype=css
+" au BufRead,BufNewFile *.scss set filetype=css
 au BufRead,BufNewFile *.md set filetype=markdown
 au BufRead,BufNewFile *.json set filetype=json syntax=javascript
 
