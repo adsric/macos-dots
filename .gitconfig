@@ -19,7 +19,11 @@
 	c = clone --recursive
 
 	# Commit all changes
+	# ca = !git add -A && git commit
 	ca = !git add -A && git commit -av
+	
+	# undo commit
+	uc = reset --soft HEAD~1
 
 	# Switch to a branch, creating it if necessary
 	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
