@@ -17,6 +17,9 @@ source sync.sh
 # install some common Homebrew formulae
 source ./.brew
 
+# install some node packages
+source ./.node
+
 # install some osx applications
 source ./.brew-cask
 
