@@ -1,7 +1,6 @@
 # Homebrew Casks
 # https://github.com/caskroom/homebrew-cask
 
-brew cask install atom
 brew cask install dropbox
 brew cask install firefox
 brew cask install google-chrome
