@@ -13,12 +13,17 @@ echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH.
 brew install findutils
 # Install Bash 4
 brew install bash
-# Install Bash 4
-install bash
-install bash-completion
+brew install bash-completion
+# Add the new shell to the list of legit shells
+sudo bash -c "echo /usr/local/bin/bash >> /private/etc/shells" 
+# Change the shell for the user
+chsh -s /usr/local/bin/bash
+
+# Install node
+brew install node
 
 # Install more recent versions of some OS X tools
-install vim --override-system-vi
+brew install vim --override-system-vi
 brew tap homebrew/dupes
 brew install homebrew/dupes/grep
 
