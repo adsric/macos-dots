@@ -66,6 +66,7 @@ Homebrew formulae:
 * [ack](http://betterthangrep.com/)
 * bash (latest version)
 * [bash-completion](http://bash-completion.alioth.debian.org/)
+* [homebrew-cask](http://caskroom.io)
 * [ffmpeg](http://ffmpeg.org/)
 * [imagemagick](http://www.imagemagick.org/)
 * [jpeg](https://en.wikipedia.org/wiki/Libjpeg)
