@@ -10,7 +10,7 @@ Tools](https://developer.apple.com/downloads) and may overwrite existing
 dotfiles in your HOME and `.vim` directories.
 
 ```bash
-$ bash -c "$(curl -fsSL raw.github.com/necolas/dotfiles/master/bin/dotfiles)"
+$ bash -c "$(curl -fsSL raw.github.com/adsric/dotfiles/master/bin/dotfiles)"
 ```
 
 N.B. If you wish to fork this project and maintain your own dotfiles, you must
@@ -61,16 +61,19 @@ Options:
 Homebrew formulae:
 
 * GNU core utilities
+* GNU find utilities
 * [git](http://git-scm.com/)
 * [ack](http://betterthangrep.com/)
 * bash (latest version)
 * [bash-completion](http://bash-completion.alioth.debian.org/)
 * [ffmpeg](http://ffmpeg.org/)
-* [graphicsmagick](http://www.graphicsmagick.org/)
+* [imagemagick](http://www.imagemagick.org/)
 * [jpeg](https://en.wikipedia.org/wiki/Libjpeg)
 * [node](http://nodejs.org/)
 * [optipng](http://optipng.sourceforge.net/)
+* [Rename](http://plasmasturm.org/code/rename/)
 * [tree](http://mama.indstate.edu/users/ice/tree/)
+* vim (latest version)
 * [wget](http://www.gnu.org/software/wget/)
 
 Node packages:
@@ -93,8 +96,8 @@ $ osx
 
 I use a custom bash prompt based on the Solarized color palette and influenced
 by @mathias custom prompts. For best results, you should install
-iTerm2 and import [Solarized
-Dark.itermcolors](https://github.com/altercation/solarized/tree/master/iterm2-colors-solarized).
+iTerm2 and import `Solarized
+Dark.itermcolors` in lib.
 
 When your current working directory is a Git repository, the prompt will
 display the checked-out branch's name (and failing that, the commit SHA that
