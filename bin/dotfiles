@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOTFILES_DIRECTORY="${HOME}/.dotfiles"
+DOTFILES_DIRECTORY="${HOME}/Projects/dotfiles"
 DOTFILES_TARBALL_PATH="https://github.com/adsric/dotfiles/tarball/master"
 DOTFILES_GIT_REMOTE="git@github.com:adsric/dotfiles.git"
 
@@ -19,7 +19,6 @@ fi
 cd ${DOTFILES_DIRECTORY}
 
 source ./lib/help
-source ./lib/list
 source ./lib/utils
 source ./lib/brew
 source ./lib/npm
@@ -125,6 +124,7 @@ mirrorfiles() {
     link "shell/bashrc"       ".bashrc"
     link "shell/bash_profile" ".bash_profile"
     link "shell/curlrc"       ".curlrc"
+	link "shell/hushlogin"    ".hushlogin"
     link "shell/inputrc"      ".inputrc"
     link "git/gitattributes"  ".gitattributes"
     link "git/gitignore"      ".gitignore"
@@ -150,9 +150,8 @@ fi
 seek_confirmation "Warning: This step may modify your OS X system defaults."
 
 if is_confirmed; then
-    bash ./bin/osxdefaults
+    bash ./bin/osx
     e_success "OS X settings updated! You may need to restart."
 else
     printf "Skipped OS X settings update.\n"
 fi
-
