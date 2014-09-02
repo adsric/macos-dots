@@ -32,4 +32,4 @@ load_dotfiles() {
 }
 
 load_dotfiles
-unset load_dotfiles Add `~/bin` to the `$PATH`
+unset load_dotfiles
