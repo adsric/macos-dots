@@ -21,7 +21,7 @@ found at the top of the `bin/dotfiles` script.
 
 You should run the update when:
 
-* You make a change to `~/.dotfiles/git/gitconfig` (the only file that is
+* You make a change to `~/dotfiles/git/gitconfig` (the only file that is
   copied rather than symlinked).
 * You want to pull changes from the remote repository.
 * You want to update Homebrew formulae and Node packages.
