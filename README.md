@@ -147,7 +147,7 @@ Here is an example `~/.bash_profile.local`:
 # Git credentials
 # Not under version control to prevent people from
 # accidentally committing with your details
-GIT_AUTHOR_NAME="Adam Richardson"
+GIT_AUTHOR_NAME="adsric"
 GIT_AUTHOR_EMAIL="adam@example.com"
 GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
 GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
