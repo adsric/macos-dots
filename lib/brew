@@ -19,20 +19,20 @@ run_brew() {
         local -a missing_formulae
         local -a desired_formulae=(
             'coreutils' # GNU core utilities (those that come with OS X are outdated)
-			'findutils' # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
+            'findutils' # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
             'git'
             'ack'
             'bash' # Install Bash 4
             'bash-completion'
-			'caskroom/cask/brew-cask' # Install OS X applications and large binaries like a tool
+            'caskroom/cask/brew-cask' # Install OS X applications and large binaries like a tool
             'ffmpeg'
-			'imagemagick --with-webp'
+            'imagemagick --with-webp'
             'jpeg'
             'node'
             'optipng'
             'rename'
             'tree'
-			'vim --override-system-vi'
+            'vim --override-system-vi'
             'wget'
         )
 
