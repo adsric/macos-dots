@@ -73,16 +73,22 @@ run_brew() {
         exit
     fi
 
-    # Check for Homebrew Cask
-    if type_exists 'brew cask'; then
+    # Ask before installing Homebrew-Cask applications.
+    seek_confirmation "Warning: This will install native apps with brew cask."
+
+    if is_confirmed; then
         e_header "Updating Homebrew-cask..."
         # Use the latest version of Homebrew-cask
         brew upgrade brew-cask
         brew cask cleanup
         [[ $? ]] && e_success "Done"
 
-        e_header "Checking status of desired Homebrew Cask"
         # Install applications from Caskfile
         brew bundle Caskfile
+        e_success "Native apps installed!"
+    else
+        printf "Aborting...\n"
+        exit 1
     fi
+
 }
