@@ -130,6 +130,9 @@ set smartcase
 
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 set clipboard=unnamed
+if has("unnamedplus")
+    set clipboard+=unnamedplus
+endif
 " Enhance command-line completion
 set wildmenu
 " Tab autocomplete longest possible part of a string, then list
