@@ -87,8 +87,7 @@ run_brew() {
         brew bundle Caskfile
         e_success "Native apps installed!"
     else
-        printf "Aborting...\n"
-        exit 1
+        printf "Skipped installing native apps...\n"
     fi
 
 }
