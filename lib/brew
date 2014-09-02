@@ -1,46 +1,88 @@
 #!/bin/bash
 
-# Make sure we’re using the latest Homebrew
-brew update
+run_brew() {
 
-# Upgrade any already-installed formulae
-brew upgrade
+    # Check for Homebrew
+    if type_exists 'brew'; then
+        e_header "Updating Homebrew..."
+        # Use the latest version of Homebrew
+        brew update
+        [[ $? ]] && e_success "Done"
 
-# Install GNU core utilities (those that come with OS X are outdated)
-brew install coreutils
-echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
-# Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
-brew install findutils
-# Install Bash 4
-brew install bash
-brew install bash-completion
-# Add the new shell to the list of legit shells
-sudo bash -c "echo /usr/local/bin/bash >> /private/etc/shells"
-# Change the shell for the user
-chsh -s /usr/local/bin/bash
+        e_header "Updating any existing Homebrew formulae..."
+        # Upgrade any already-installed formulae
+        brew upgrade
+        [[ $? ]] && e_success "Done"
 
-# Install node
-brew install node
+        e_header "Checking status of desired Homebrew formulae..."
+        local list_formulae
+        local -a missing_formulae
+        local -a desired_formulae=(
+            'coreutils' # GNU core utilities (those that come with OS X are outdated)
+			'findutils' # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
+            'git'
+            'ack'
+            'bash' # Install Bash 4
+            'bash-completion'
+			'caskroom/cask/brew-cask' # Install OS X applications and large binaries like a tool
+            'ffmpeg'
+			'imagemagick --with-webp'
+            'jpeg'
+            'node'
+            'optipng'
+            'rename'
+            'tree'
+			'vim --override-system-vi'
+            'wget'
+        )
 
-# Install more recent versions of some OS X tools
-brew install vim --override-system-vi
-brew tap homebrew/dupes
-brew install homebrew/dupes/grep
+        for index in ${!desired_formulae[*]}
+        do
+            if ! formula_exists ${desired_formulae[$index]}; then
+                # Store the name (and options) of every missing formula
+                missing_formulae=("${missing_formulae[@]}" "${desired_formulae[$index]}")
+            fi
+        done
 
-# Install OS X applications and large binaries like a tool
-brew install caskroom/cask/brew-cask
+        if [[ "$missing_formulae" ]]; then
+            # Convert the array of missing formula into a list of space-separate strings
+            list_formulae=$( printf "%s " "${missing_formulae[@]}" )
 
-# Install everything else
-brew install ack
-brew install git
-brew install ffmpeg
-brew install imagemagick --with-webp
-brew install jpeg
-brew install ngrep
-brew install rename
-brew install optipng
-brew install tree
-brew install wget
+            e_header "Installing missing Homebrew formulae..."
+            # Install all missing formulae
+            brew install $list_formulae
 
-# Remove outdated versions from the cellar
-brew cleanup
+            [[ $? ]] && e_success "Done"
+        fi
+
+        # Add the new shell to the list of legit shells
+        sudo bash -c "echo /usr/local/bin/bash >> /private/etc/shells"
+        # Change the shell for the user
+        chsh -s /usr/local/bin/bash
+
+        # use latest rsync rather than out-dated OS X rsync
+        # install separately from the main formulae list to fix gh-19
+        brew install https://raw.github.com/Homebrew/homebrew-dupes/master/rsync.rb
+
+        # Remove outdated versions from the Cellar
+        brew cleanup
+    else
+        printf "\n"
+        e_error "Error: Homebrew not found."
+        printf "Aborting...\n"
+        exit
+    fi
+
+    # Check for Homebrew Cask
+    if type_exists 'brew cask'; then
+        e_header "Updating Homebrew-cask..."
+        # Use the latest version of Homebrew-cask
+        brew upgrade brew-cask
+        brew cask cleanup
+        [[ $? ]] && e_success "Done"
+
+        e_header "Checking status of desired Homebrew Cask"
+        # Install applications from Caskfile
+        brew bundle Caskfile
+    fi
+}
