@@ -2,36 +2,54 @@
 
 
 
-" No compatibility
+" !silent is used to suppress error messages if the config line
+" references plugins/colorschemes that might be missing
+
+
+
+" Point to location of pathogen submodule (since it's not in .vim/autoload)
+silent! runtime bundle/vim-pathogen/autoload/pathogen.vim
+" Call pathogen plugin management
+silent! call pathogen#infect()
+
+
+
+" Disable Vi compatibility
 set nocompatible
-set encoding=utf-8
+" Use UTF-8 without BOM
+set encoding=utf-8 nobomb
+
+
+
+if has("autocmd")
+    " Load files for specific filetypes
+    filetype on
+    filetype indent on
+    filetype plugin on
+
+    " Treat .json files as .js
+    autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
+    " Treat .md files as Markdown
+    autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
+endif
 
 
 
 " Syntax highlighting
 
-" Detect filetype
-filetype plugin on
-" Enable syntax highighting
+" Enable syntax highlighting
 syntax enable
-" 256 colours, please
+" Set 256 color terminal support
 set t_Co=256
-" Use the Solarized Dark theme
+" Set dark background
 set background=dark
+" Set colorscheme
 colorscheme solarized
-
-
-
-" Set relevant filetypes
-" au BufRead,BufNewFile *.scss set filetype=css
-au BufRead,BufNewFile *.md set filetype=markdown
-au BufRead,BufNewFile *.json set filetype=json syntax=javascript
 
 
 
 " Tabs, indentation and lines
 
-filetype plugin indent on
 " 4 spaces please
 set expandtab
 set shiftwidth=4
@@ -56,6 +74,9 @@ set backspace=indent,eol,start
 set whichwrap=h,l,b,<,>,~,[,]
 " Underscores denote words
 set iskeyword-=_
+" When making a change, don't redisplay the line, and instead, put a `$` sign
+" at the end of the changed text
+set cpoptions+=$
 
 
 
@@ -84,9 +105,9 @@ set ruler
 set title
 " Use relative line numbers
 if exists("&relativenumber")
-	set relativenumber
-	au BufReadPost * set relativenumber
-	set number
+    set relativenumber
+    au BufReadPost * set relativenumber
+    set number
 endif
 " Limit line-length to 80 columns by highlighting col 81 onward
 if exists("+colorcolumn")
@@ -94,8 +115,8 @@ if exists("+colorcolumn")
 endif
 " Highlight current line
 set cursorline
-" Don’t keep results highlighted after searching...
-set nohlsearch
+" Enable search highlighting
+set hlsearch
 " ...just highlight as we type
 set incsearch
 " Ignore case when searching...
@@ -113,14 +134,18 @@ set clipboard=unnamed
 set wildmenu
 " Tab autocomplete longest possible part of a string, then list
 set wildmode=longest,list
+if has ("wildignore")
+    set wildignore+=*.a,*.pyc,*.o,*.orig
+    set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png
+    set wildignore+=.DS_Store,.git,.hg,.svn
+    set wildignore+=*~,*.sw?,*.tmp
+endif
 " Allow cursor keys in insert mode
 set esckeys
 " Optimize for fast terminal connections
 set ttyfast
 " Add the g flag to search/replace by default
 set gdefault
-" Change mapleader
-let mapleader=","
 " Don’t add empty newlines at the end of files
 set binary
 set noeol
@@ -128,7 +153,7 @@ set noeol
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
 if exists("&undodir")
-	set undodir=~/.vim/undo
+    set undodir=~/.vim/undo
 endif
 " Don’t create backups when editing files in certain directories
 set backupskip=/tmp/*,/private/tmp/*
@@ -140,6 +165,8 @@ set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
 " Enable mouse in all modes
 set mouse=a
+" Hide mouse pointer while typing
+set mousehide
 " Disable error bells
 set noerrorbells
 " Don’t reset cursor to start of line when moving around.
@@ -150,15 +177,36 @@ set shortmess=atI
 set showmode
 " Show the (partial) command as it’s being typed
 set showcmd
+
+
+
+" Key Mappings
+
+" Change mapleader
+let mapleader=","
+
+" [,* ] Search and replace the word under the cursor
+nnoremap <leader>* :%s/\<<C-r><C-w>\>//<Left>
+
+" Make `Y` work from the cursor to the end of line (which is more logical)
+nnoremap Y y$
+
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
-	let save_cursor = getpos(".")
-	let old_query = getreg('/')
-	:%s/\s\+$//e
-	call setpos('.', save_cursor)
-	call setreg('/', old_query)
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    :%s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
 endfunction
 noremap <leader>ss :call StripWhitespace()<CR>
 
 " Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
+
+
+
+" Load local machine settings if they exist
+if filereadable(glob("~/.vimrc.local"))
+    source ~/.vimrc.local
+endif
