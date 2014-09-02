@@ -120,11 +120,11 @@ mirrorfiles() {
 
     # Create the necessary symbolic links between the `.dotfiles` and `HOME`
     # directory. The `bash_profile` sources other files directly from the
-    # `.dotfiles` repository.
+    # `dotfiles` repository.
     link "shell/bashrc"       ".bashrc"
     link "shell/bash_profile" ".bash_profile"
     link "shell/curlrc"       ".curlrc"
-	link "shell/hushlogin"    ".hushlogin"
+    link "shell/hushlogin"    ".hushlogin"
     link "shell/inputrc"      ".inputrc"
     link "git/gitattributes"  ".gitattributes"
     link "git/gitignore"      ".gitignore"
