@@ -128,7 +128,7 @@ mirrorfiles() {
     link "shell/inputrc"      ".inputrc"
     link "git/gitattributes"  ".gitattributes"
     link "git/gitignore"      ".gitignore"
-    link "vim"                ".vim"
+    link "vim/vim"            ".vim"
     link "vim/gvimrc"         ".gvimrc"
     link "vim/vimrc"          ".vimrc"
 
