@@ -55,11 +55,6 @@ run_brew() {
             [[ $? ]] && e_success "Done"
         fi
 
-        # Add the new shell to the list of legit shells
-        sudo bash -c "echo /usr/local/bin/bash >> /private/etc/shells"
-        # Change the shell for the user
-        chsh -s /usr/local/bin/bash
-
         # use latest rsync rather than out-dated OS X rsync
         # install separately from the main formulae list to fix gh-19
         brew install https://raw.github.com/Homebrew/homebrew-dupes/master/rsync.rb
@@ -74,7 +69,7 @@ run_brew() {
     fi
 
     # Ask before installing Homebrew-Cask applications.
-    seek_confirmation "Warning: This will install native apps with brew cask."
+    seek_confirmation "Warning: This will install OSX Apps"
 
     if is_confirmed; then
         e_header "Updating Homebrew-cask..."
@@ -87,7 +82,7 @@ run_brew() {
         brew bundle Caskfile
         e_success "Native apps installed!"
     else
-        printf "Skipped installing native apps...\n"
+        printf "Skipped installing OSX Apps...\n"
     fi
 
 }

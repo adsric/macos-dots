@@ -102,6 +102,18 @@ else
     run_npm
 fi
 
+# Ask before changing shells
+seek_confirmation "Warning: This will change Shells"
+
+if is_confirmed; then
+    # Add the new shell to the list of legit shells
+    sudo bash -c "echo /usr/local/bin/bash >> /private/etc/shells"
+    # Change the shell for the user
+    chsh -s /usr/local/bin/bash
+else
+    printf "Skipped changing Shells...\n"
+fi
+
 link() {
     # Force create/replace the symlink.
     ln -fs "${DOTFILES_DIRECTORY}/${1}" "${HOME}/${2}"
@@ -155,3 +167,39 @@ if is_confirmed; then
 else
     printf "Skipped OS X settings update.\n"
 fi
+
+check_github_ssh_key() {
+
+    local github_ssh_url="https://github.com/settings/ssh"
+    local ssh_key_file="id_rsa.pub"
+
+    if [ "$(ssh -T git@github.com &> /dev/null; printf $?)" -ne 1 ]; then
+
+        cd "$HOME/.ssh"
+
+        # Setup GitHub SSH Key
+        # https://help.github.com/articles/generating-ssh-keys
+
+        print_info "Set up the SSH key"
+
+        if [ ! -r "$ssh_key_file" ]; then
+            rm -rf "$ssh_key_file"
+            ask "Please provide an email address (email): " && printf "\n"
+            ssh-keygen -t rsa -C "$(get_answer)"
+        fi
+
+        # Copy SSH key to clipboard
+        cat "$ssh_key_file" | pbcopy
+        print_result $? "Copy SSH key to clipboard"
+
+        # Open the GitHub web page where the SSH key can be added
+        open "$github_ssh_url"
+
+        # Before proceeding, wait for everything to be ok
+        while [ "$(ssh -T git@github.com &> /dev/null; printf $?)" -ne 1 ]; do
+            sleep 5;
+        done
+
+        print_success "Set up the SSH key"
+    fi
+}
