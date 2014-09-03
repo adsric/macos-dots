@@ -113,7 +113,7 @@ function tre() {
 }
 
 # copy sshkey to clipboard
-function copySSHKey() {
+function sshkey() {
   cd ~/.ssh
   ls
   pbcopy < ~/.ssh/id_rsa.pub

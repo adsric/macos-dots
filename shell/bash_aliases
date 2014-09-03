@@ -20,6 +20,11 @@ alias dt="cd ~/Desktop"
 alias p="cd ~/Projects"
 alias g="git"
 
+# Shorter commands
+alias c="clear"
+alias q="exit"
+alias rm="rm -rf"
+
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"
