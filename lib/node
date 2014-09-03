@@ -9,10 +9,13 @@ run_npm() {
         e_header "Installing Node.js packages..."
 
         # List of npm packages
-        local packages="bower gulp vtop"
+        local packages="bower gulp"
 
         # Install packages globally and quietly
         npm install $packages --global --quiet
+
+        # vtop requires sudo install
+        sudo npm install -g vtop --quiet
 
         [[ $? ]] && e_success "Done"
     else
