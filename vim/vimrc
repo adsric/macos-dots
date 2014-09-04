@@ -4,9 +4,6 @@
 
 " !silent is used to suppress error messages if the config line
 " references plugins/colorschemes that might be missing
-
-
-
 " Point to location of pathogen submodule (since it's not in .vim/autoload)
 silent! runtime bundle/vim-pathogen/autoload/pathogen.vim
 " Call pathogen plugin management
