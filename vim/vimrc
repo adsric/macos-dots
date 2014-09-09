@@ -13,8 +13,8 @@ silent! call pathogen#infect()
 
 " Disable Vi compatibility
 set nocompatible
-" Use UTF-8 without BOM
-set encoding=utf-8 nobomb
+" Use UTF-8
+set encoding=utf-8
 
 
 
@@ -48,6 +48,7 @@ colorscheme solarized
 " Tabs, indentation and lines
 
 " 4 spaces please
+set smartindent
 set expandtab
 set shiftwidth=4
 set tabstop=4
