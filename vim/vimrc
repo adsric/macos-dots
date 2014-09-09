@@ -13,21 +13,14 @@ silent! call pathogen#infect()
 
 " Disable Vi compatibility
 set nocompatible
-" Use UTF-8
-set encoding=utf-8
+" Use UTF-8 without BOM
+set encoding=utf-8 nobomb
 
 
 
 if has("autocmd")
     " Load files for specific filetypes
-    filetype on
-    filetype indent on
-    filetype plugin on
-
-    " Treat .json files as .js
-    autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
-    " Treat .md files as Markdown
-    autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
+    filetype plugin indent on
 endif
 
 
@@ -48,13 +41,11 @@ colorscheme solarized
 " Tabs, indentation and lines
 
 " 4 spaces please
-set smartindent
-set expandtab
-set shiftwidth=4
+set autoindent
 set tabstop=4
 set softtabstop=4
-" Round indent to nearest multiple of 4
-set shiftround
+set shiftwidth=4
+set expandtab
 " No line-wrapping
 set nowrap
 
@@ -108,9 +99,7 @@ if exists("&relativenumber")
     set number
 endif
 " Limit line-length to 80 columns by highlighting col 81 onward
-if exists("+colorcolumn")
-    set colorcolumn=81
-endif
+set colorcolumn=81
 " Highlight current line
 set cursorline
 " Enable search highlighting
@@ -132,12 +121,6 @@ set clipboard=unnamed
 set wildmenu
 " Tab autocomplete longest possible part of a string, then list
 set wildmode=longest,list
-if has ("wildignore")
-    set wildignore+=*.a,*.pyc,*.o,*.orig
-    set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png
-    set wildignore+=.DS_Store,.git,.hg,.svn
-    set wildignore+=*~,*.sw?,*.tmp
-endif
 " Allow cursor keys in insert mode
 set esckeys
 " Optimize for fast terminal connections
@@ -165,6 +148,8 @@ set list
 set mouse=a
 " Hide mouse pointer while typing
 set mousehide
+" Allow cursor to be positioned anywhere
+set virtualedit=all
 " Disable error bells
 set noerrorbells
 " Don’t reset cursor to start of line when moving around.
@@ -175,6 +160,17 @@ set shortmess=atI
 set showmode
 " Show the (partial) command as it’s being typed
 set showcmd
+
+
+" Automatic Commands
+
+if has("autocmd")
+
+    " Treat .json files as .js
+    autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
+    " Treat .md files as Markdown
+    autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
+endif
 
 
 
