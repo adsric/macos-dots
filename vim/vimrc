@@ -165,7 +165,8 @@ set showcmd
 " Automatic Commands
 
 if has("autocmd")
-
+    " Languages with specific tabs/space requirements
+    autocmd FileType make setlocal ts=4 sts=4 sw=4 expandtab
     " Treat .json files as .js
     autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
     " Treat .md files as Markdown
