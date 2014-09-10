@@ -145,8 +145,6 @@ set list
 set mouse=a
 " Hide mouse pointer while typing
 set mousehide
-" Allow cursor to be positioned anywhere
-set virtualedit=all
 " Disable error bells
 set noerrorbells
 " Don’t reset cursor to start of line when moving around.
