@@ -58,7 +58,7 @@ Options:
 
 ### Automatic software installation
 
-Homebrew formulae:
+Homebrew formula:
 
 * GNU core utilities
 * GNU find utilities
