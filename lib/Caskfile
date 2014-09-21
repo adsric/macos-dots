@@ -6,7 +6,7 @@ cask install firefox
 cask install google-chrome
 cask install google-chrome-canary
 cask install imageoptim
-cask install iterm-2
+cask install iterm2
 cask install paparazzi
 cask install the-unarchiver
 cask install transmission
