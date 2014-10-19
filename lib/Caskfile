@@ -1,14 +1,20 @@
 # Homebrew Casks
 # https://github.com/caskroom/homebrew-cask
 
-cask install dropbox
-cask install firefox
-cask install google-chrome
-cask install google-chrome-canary
-cask install imageoptim
-cask install iterm2
-cask install paparazzi
-cask install the-unarchiver
-cask install transmission
-cask install virtualbox
-cask install vlc
+tap caskroom/versions
+
+cask install dropbox                    2> /dev/null
+cask install google-chrome              2> /dev/null
+cask install paparazzi                  2> /dev/null
+cask install transmission               2> /dev/null
+cask install vlc                        2> /dev/null
+
+# dev
+cask install iterm2                     2> /dev/null
+cask install virtualbox                 2> /dev/null
+cask install imagealpha                 2> /dev/null
+cask install imageoptim                 2> /dev/null
+
+# browsers
+cask install google-chrome-canary       2> /dev/null
+cask install firefox-nightly            2> /dev/null
