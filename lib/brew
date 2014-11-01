@@ -78,8 +78,8 @@ run_brew() {
         brew cask cleanup
         [[ $? ]] && e_success "Done"
 
-        # Install applications from Caskfile
-        brew bundle Caskfile
+        # Install applications
+        bash ./cask
         e_success "Native apps installed!"
     else
         printf "Skipped installing OSX Apps...\n"
