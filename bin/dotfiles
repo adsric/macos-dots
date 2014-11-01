@@ -45,6 +45,43 @@ do
     esac
 done
 
+# Check for a SSH key
+check_github_ssh_key() {
+
+    local github_ssh_url="https://github.com/settings/ssh"
+    local ssh_key_file="id_rsa.pub"
+
+    if [ "$(ssh -T git@github.com &> /dev/null; printf $?)" -ne 1 ]; then
+
+        cd "$HOME/.ssh"
+
+        # Setup GitHub SSH Key
+        # https://help.github.com/articles/generating-ssh-keys
+
+        print_info "Set up the SSH key"
+
+        if [ ! -r "$ssh_key_file" ]; then
+            rm -rf "$ssh_key_file"
+            ask "Please provide an email address (email): " && printf "\n"
+            ssh-keygen -t rsa -C "$(get_answer)"
+        fi
+
+        # Copy SSH key to clipboard
+        cat "$ssh_key_file" | pbcopy
+        print_result $? "Copy SSH key to clipboard"
+
+        # Open the GitHub web page where the SSH key can be added
+        open "$github_ssh_url"
+
+        # Before proceeding, wait for everything to be ok
+        while [ "$(ssh -T git@github.com &> /dev/null; printf $?)" -ne 1 ]; do
+            sleep 5;
+        done
+
+        print_success "Set up the SSH key"
+    fi
+}
+
 # Before relying on Homebrew, check that packages can be compiled
 if ! type_exists 'gcc'; then
     e_error "The XCode Command Line Tools must be installed first."
@@ -69,6 +106,7 @@ fi
 
 # Initialize the git repository if it's missing
 if ! is_git_repo; then
+    check_github_ssh_key
     e_header "Initializing git repository..."
     git init
     git remote add origin ${DOTFILES_GIT_REMOTE}
@@ -168,38 +206,3 @@ else
     printf "Skipped OS X settings update.\n"
 fi
 
-check_github_ssh_key() {
-
-    local github_ssh_url="https://github.com/settings/ssh"
-    local ssh_key_file="id_rsa.pub"
-
-    if [ "$(ssh -T git@github.com &> /dev/null; printf $?)" -ne 1 ]; then
-
-        cd "$HOME/.ssh"
-
-        # Setup GitHub SSH Key
-        # https://help.github.com/articles/generating-ssh-keys
-
-        print_info "Set up the SSH key"
-
-        if [ ! -r "$ssh_key_file" ]; then
-            rm -rf "$ssh_key_file"
-            ask "Please provide an email address (email): " && printf "\n"
-            ssh-keygen -t rsa -C "$(get_answer)"
-        fi
-
-        # Copy SSH key to clipboard
-        cat "$ssh_key_file" | pbcopy
-        print_result $? "Copy SSH key to clipboard"
-
-        # Open the GitHub web page where the SSH key can be added
-        open "$github_ssh_url"
-
-        # Before proceeding, wait for everything to be ok
-        while [ "$(ssh -T git@github.com &> /dev/null; printf $?)" -ne 1 ]; do
-            sleep 5;
-        done
-
-        print_success "Set up the SSH key"
-    fi
-}
