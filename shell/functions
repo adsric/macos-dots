@@ -167,3 +167,8 @@ gifify() {
         echo "proper usage: gifify <input_movie.mov>. You DO need to include extension."
     fi
 }
+
+# turn that video into webm.
+webmify(){
+    ffmpeg -i $1 -vcodec libvpx -acodec libvorbis -isync -copyts -aq 80 -threads 3 -qmax 30 -y $2 $1.webm
+}
