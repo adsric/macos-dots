@@ -48,9 +48,6 @@
     # Find branches containing commit
     fb = "!f() { git branch -a --contains $1; }; f"
 
-    # Find tags containing commit
-    ft = "!f() { git describe --always --contains $1; }; f"
-
     # Find commits by source code
     fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
 
@@ -67,15 +64,23 @@
     # View the current working tree status using the short format
     s = status -s
 
-    # Find out who is currently active on the repository
-    # Displays committers in descending order of number of commits
-    who = shortlog --numbered --summary --email --no-merges --since="3 months"
-
     # Credit an author on the latest commit
     credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
 
     # List contributors with number of commits
     contributors = shortlog --summary --numbered
+
+    # Merge GitHub pull request on top of the `master` branch
+    mpr = "!f() { \
+        if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
+            git fetch origin refs/pull/$1/head:pr/$1 && \
+            git rebase master pr/$1 && \
+            git checkout master && \
+            git merge pr/$1 && \
+            git branch -D pr/$1 && \
+            git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
+        fi \
+    }; f"
 
 [apply]
 
@@ -98,6 +103,7 @@
     trustctime = false
 
 [credential]
+
     helper = osxkeychain
 
 [color]
@@ -148,7 +154,6 @@
     default = matching
 
 # URL shorthands
-
 [url "git@github.com:"]
 
     insteadOf = "gh:"
