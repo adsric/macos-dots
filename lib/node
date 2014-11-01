@@ -9,7 +9,7 @@ run_npm() {
         e_header "Installing Node.js packages..."
 
         # List of npm packages
-        local packages="bower gulp"
+        local packages="gulp bower pageres"
 
         # Install packages globally and quietly
         npm install $packages --global --quiet
