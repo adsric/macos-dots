@@ -79,7 +79,7 @@ run_brew() {
         [[ $? ]] && e_success "Done"
 
         # Install applications
-        bash ./cask
+        bash ./lib/cask
         e_success "Native apps installed!"
     else
         printf "Skipped installing OSX Apps...\n"
