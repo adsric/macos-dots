@@ -29,12 +29,6 @@ if [[ "$1" == "-h" || "$1" == "--help" ]]; then
     exit
 fi
 
-# List additional software to install
-if [[ "$1" == "-l" || "$1" == "--list" ]]; then
-    run_list
-    exit
-fi
-
 # Test for known flags
 for opt in $@
 do

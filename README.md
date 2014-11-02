@@ -40,10 +40,6 @@ Options:
         <td>Help</td>
     </tr>
     <tr>
-        <td><code>-l</code>, <code>--list</code></td>
-        <td>List of additional applications to install</td>
-    </tr>
-    <tr>
         <td><code>--no-packages</code></td>
         <td>Suppress package updates</td>
     </tr>
@@ -62,12 +58,13 @@ Homebrew formula:
 
 * GNU core utilities
 * GNU find utilities
-* [git](http://git-scm.com/)
 * [ack](http://betterthangrep.com/)
 * bash (latest version)
 * [bash-completion](http://bash-completion.alioth.debian.org/)
 * [homebrew-cask](http://caskroom.io)
 * [ffmpeg](http://ffmpeg.org/)
+* [gifsicle](http://www.lcdf.org/gifsicle/)
+* [git](http://git-scm.com/)
 * [imagemagick](http://www.imagemagick.org/)
 * [jpeg](https://en.wikipedia.org/wiki/Libjpeg)
 * [node](http://nodejs.org/)
@@ -81,6 +78,7 @@ Node packages:
 
 * [bower](http://bower.io/)
 * [gulp](http://gulpjs.com/)
+* [pageres](https://github.com/sindresorhus/pageres)
 * [vtop](https://github.com/MrRio/vtop)
 
 ### Custom OS X defaults
