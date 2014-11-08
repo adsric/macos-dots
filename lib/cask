@@ -4,7 +4,6 @@
 brew tap caskroom/versions
 
 brew cask install dropbox                    2> /dev/null
-brew cask install google-chrome              2> /dev/null
 brew cask install paparazzi                  2> /dev/null
 brew cask install transmission               2> /dev/null
 brew cask install vlc                        2> /dev/null
