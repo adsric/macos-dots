@@ -19,7 +19,8 @@ run_brew() {
         local -a missing_formulae
         local -a desired_formulae=(
             'coreutils' # GNU core utilities (those that come with OS X are outdated).
-            'findutils' # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed.
+            'findutils' # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
+            'gnu-sed --with-default-names' # Install GNU `sed`, overwriting the built in `sed`.
             'ack'
             'bash' # Install Bash 4.
             'bash-completion'
