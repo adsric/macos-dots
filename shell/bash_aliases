@@ -22,6 +22,7 @@ alias g="git"
 
 # Shorter commands
 alias c="clear"
+alias ch="history -c && > ~/.bash_history"
 alias q="exit"
 alias rm="rm -rf"
 
