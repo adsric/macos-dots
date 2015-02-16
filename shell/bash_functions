@@ -12,7 +12,8 @@ datauri() {
 
     if [ -f "$1" ]; then
         mimeType=$(file -b --mime-type "$1")
-        #                └─ do not prepend the filename to the output
+        #                |
+        #                do not prepend the filename to the output
 
         if [[ $mimeType == text/* ]]; then
             mimeType="$mimeType;charset=utf-8"
@@ -60,7 +61,8 @@ gz() {
                         "$( printf "%s %s" "$originalSize $gzippedSize" | \
                             awk '{ printf "%.1f", 100 - $2 * 100 / $1 }' | \
                             sed -e "s/0*$//;s/\.$//" )"
-                            #              └─ remove tailing zeros
+                            #              |
+                            #              remove tailing zeros
 
         else
             printf "'%s' is empty.\n" "$1"
@@ -104,7 +106,8 @@ o() {
 mkd() {
     if [ -n "$*" ]; then
         mkdir -p "$@" && cd "$@"
-        #      └─ make parent directories if needed
+        #      |
+        #      make parent directories if needed
     fi
 }
 
@@ -126,7 +129,8 @@ f() {
 
     local result=""
 
-    #                       ┌─ default (when --mathlib is used) is 20
+    #                         default (when --mathlib is used) is 20
+    #                         |
     result="$( printf "scale=10;%s\n" "$*" | bc --mathlib | tr -d "\\\n" )"
     #                         remove the tailing "\" and "\n" ─┘
     #                         (large numbers are printed on multiple lines)
@@ -260,7 +264,7 @@ httpd.serve_forever()
 # Search history
 
 qh() {
-    #           ┌─ enable colors for pipe
+    #           enable colors for pipe
     #           │  ("--color=auto" enables colors only if
     #           │  the output is in the terminal)
     grep --color=always "$*" "$HISTFILE" |       less -RX
@@ -274,8 +278,8 @@ qh() {
 
 qt() {
     grep -ir --color=always "$*" . | less -RX
-    #     │└─ search all files under each directory, recursively
-    #     └─ ignore case
+    #      -- search all files under each directory, recursively
+    #     --- ignore case
 }
 
 # ------------------------------------------------------------------------------
@@ -310,6 +314,6 @@ hrfs() {
             }
         }' |
     sed -e ":l; s/\([0-9]\)\([0-9]\{3\}\)/\1,\2/; t l"
-    #                          └─ add commas to the numbers
+    #                          -- add commas to the numbers
     #                             (changes "1023.2 KB" to "1,023.2 KB")
 }
