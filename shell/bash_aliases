@@ -78,7 +78,6 @@ fi
 alias :q="exit"
 alias c="clear"
 alias ch="history -c && > ~/.bash_history"
-alias v="vim"
 alias g="git"
 alias q="exit"
 alias rm="rm -rf"
