@@ -38,11 +38,11 @@ set_ls_colors() {
 
         LSCOLORS=""
 
-        LSCOLORS+="gx" # Directory
+        LSCOLORS+="Ex" # Directory
         LSCOLORS+="fx" # Symbolic link
         LSCOLORS+="cx" # Socket
         LSCOLORS+="dx" # Pipe
-        LSCOLORS+="cx" # Executable
+        LSCOLORS+="bx" # Executable
         LSCOLORS+="eg" # Block special
         LSCOLORS+="ed" # Character special
         LSCOLORS+="ab" # Executable with setuid bit set
