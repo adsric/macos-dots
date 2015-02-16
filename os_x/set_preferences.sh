@@ -2,9 +2,9 @@
 
 cd "$(dirname "${BASH_SOURCE}")" && source "utils.sh"
 
-# ----------------------------------------------------------------------
-# | Chrome & Chrome Canary                                             |
-# ----------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# | Chrome & Chrome Canary                                                     |
+# ------------------------------------------------------------------------------
 
 set_chrome_and_chrome_canary_preferences() {
 
@@ -18,20 +18,9 @@ set_chrome_and_chrome_canary_preferences() {
 
 }
 
-# ----------------------------------------------------------------------
-# | Dashboard                                                          |
-# ----------------------------------------------------------------------
-
-set_dashboard_preferences() {
-
-    # Disable Dashboard
-    defaults write com.apple.dashboard mcx-disabled -bool true
-
-}
-
-# ----------------------------------------------------------------------
-# | Dock                                                               |
-# ----------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# | Dock                                                                       |
+# ------------------------------------------------------------------------------
 
 set_dock_preferences() {
 
@@ -57,7 +46,7 @@ set_dock_preferences() {
     defaults write com.apple.dock mru-spaces -bool false
 
     # Wipe all app icons from the Dock
-    defaults write com.apple.dock persistent-apps -array
+    #defaults write com.apple.dock persistent-apps -array
 
     # Show indicator lights for open applications
     defaults write com.apple.dock show-process-indicators -bool true
@@ -181,43 +170,6 @@ set_keyboard_preferences() {
 }
 
 # ----------------------------------------------------------------------
-# | Language & Region                                                  |
-# ----------------------------------------------------------------------
-
-set_language_and_region_preferences() {
-
-    # Set language and text formats
-    defaults write NSGlobalDomain AppleLanguages -array "en" "ro"
-    defaults write NSGlobalDomain AppleLocale -string "en_RO@currency=EUR"
-    defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
-    defaults write NSGlobalDomain AppleMetricUnits -bool true
-
-    # Disable auto-correct
-    #defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
-    #defaults write NSGlobalDomain WebAutomaticSpellingCorrectionEnabled -bool false
-
-    # Set the timezone
-    # (see `systemsetup -listtimezones` for other values)
-    sudo systemsetup -settimezone "Europe/Bucharest" &> /dev/null
-
-}
-
-# ----------------------------------------------------------------------
-# | Maps                                                               |
-# ----------------------------------------------------------------------
-
-set_maps_preferences() {
-
-    # Set view options
-    defaults write com.apple.Maps LastClosedWindowViewOptions "{
-        localizeLabels = 1;   // show labels in English
-        mapType = 11;         // show hybrid map
-        trafficEnabled = 0;   // do not show traffic
-    }"
-
-}
-
-# ----------------------------------------------------------------------
 # | Safari                                                             |
 # ----------------------------------------------------------------------
 
@@ -239,9 +191,6 @@ set_safari_preferences() {
 
     # Set home page to `about:blank`
     defaults write com.apple.Safari HomePage -string "about:blank"
-
-    # Enable `Debug` menu
-    defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 
     # Hide bookmarks bar by default
     defaults write com.apple.Safari ShowFavoritesBar -bool false
@@ -371,7 +320,7 @@ set_transmission_preferences() {
 
     # Use `~/Downloads/torrents` to store incomplete downloads
     defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
-    defaults write org.m0k.transmission IncompleteDownloadFolder -string "$HOME/Downloads/torrents"
+    defaults write org.m0k.transmission IncompleteDownloadFolder -string "$HOME/Downloads"
 
     # Hide the donate message
     defaults write org.m0k.transmission WarningDonate -bool false
@@ -439,16 +388,16 @@ set_ui_and_ux_preferences() {
     defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 
     # Set computer name
-    sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "Laptop"
-    sudo scutil --set ComputerName "Laptop"
-    sudo scutil --set HostName "Laptop"
-    sudo scutil --set LocalHostName "Laptop"
+    sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "MBP"
+    sudo scutil --set ComputerName "MBP"
+    sudo scutil --set HostName "MBP"
+    sudo scutil --set LocalHostName "MBP"
 
     # Restart automatically if the computer freezes
     sudo systemsetup -setrestartfreeze on
 
-    # Turn Bluetooth off
-    sudo defaults write /Library/Preferences/com.apple.Bluetooth.plist ControllerPowerState 0
+    # Turn Bluetooth on
+    sudo defaults write /Library/Preferences/com.apple.Bluetooth.plist ControllerPowerState 1
     sudo launchctl unload /System/Library/LaunchDaemons/com.apple.blued.plist
     sudo launchctl load /System/Library/LaunchDaemons/com.apple.blued.plist
 
@@ -467,17 +416,14 @@ set_ui_and_ux_preferences() {
 
 }
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# ------------------------------------------------------------------------------
 
 main() {
 
     execute "set_chrome_and_chrome_canary_preferences" "Chrome & Chrome Canary"
-    execute "set_dashboard_preferences" "Dashboard"
     execute "set_dock_preferences" "Dock"
     execute "set_finder_preferences" "Finder"
     execute "set_keyboard_preferences" "Keyboard"
-    execute "set_language_and_region_preferences" "Language & Region"
-    execute "set_maps_preferences" "Maps"
     execute "set_safari_preferences" "Safari"
     execute "set_terminal_preferences" "Terminal"
     execute "set_textedit_preferences" "TextEdit"
