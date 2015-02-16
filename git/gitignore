@@ -1,20 +1,26 @@
-# Compiled Python files
-*.pyc
-
-# Folder view configuration files
-.DS_Store
-Desktop.ini
-
-# Thumbnail cache files
+# Mac OS X
 ._*
-Thumbs.db
-
-# Files that might appear on external disks
+.AppleDouble
+.DS_Store
+.localized
+.LSOverride
 .Spotlight-V100
 .Trashes
+Icon
 
-# Node Modules
-node_modules
+# Vim
+%*
+*.sw[a-z]
+*.un~
+.netrwhist
+Session.vim
 
-# Sass caches
-.sass-cache
+# Windows
+Desktop.ini
+ehthumbs.db
+Thumbs.db
+
+# Always-ignore extensions
+*.log
+*.pyc
+*.sass-cache
