@@ -2,7 +2,7 @@
 
 cd "$(dirname "${BASH_SOURCE}")" && source "utils.sh"
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# ------------------------------------------------------------------------------
 
 main() {
 
@@ -11,7 +11,7 @@ main() {
     if [ -n "$GIT_ORIGIN" ] && ! is_git_repository; then
 
         # Run the following Git commands in the root of
-        # the dotfiles directory, not in the `os/` directory
+        # the dotfiles directory, not in the `os_x/` directory
         cd ..
 
         git init &> /dev/null \
