@@ -97,8 +97,9 @@ set laststatus=2                " Always show the status line
 
 set listchars=tab:▸\            " \
 set listchars+=trail:·          " | Use custom symbols to
-set listchars+=eol:↴            " | represent invisible characters
-set listchars+=nbsp:_           " /
+"set listchars+=eol:↴           " | represent invisible characters
+set listchars+=nbsp:_           " |
+set list                        " /
 
 set magic                       " Enable extended regexp
 set mouse=a                     " Enable mouse in all modes
