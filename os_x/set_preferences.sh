@@ -265,6 +265,11 @@ set_terminal_preferences() {
     end tell
 
 EOD
+    # Install the Solarized Dark theme for iTerm
+    open "$dotfilesDirectory/os_x/Solarized Dark.itermcolors"
+
+    # Don’t display the annoying prompt when quitting iTerm
+    defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
 }
 
