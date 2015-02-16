@@ -1,35 +1,84 @@
 #!/bin/bash
 
-# bash_profile
+# ----------------------------------------------------------------------
+# | Helper Functions                                                   |
+# ----------------------------------------------------------------------
 
-# set 256 color profile where possible
-if [[ $COLORTERM == gnome-* && $TERM == xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
-    export TERM=gnome-256color
-elif infocmp xterm-256color >/dev/null 2>&1; then
-    export TERM=xterm-256color
-fi
+enable_programmable_completion() {
 
-load_dotfiles() {
-    declare -a files=(
-        $HOME/.rvm/scripts/rvm # Load RVM into a shell session *as a function*
-        $HOME/Projects/dotfiles/shell/bash_options # Options
-        $HOME/Projects/dotfiles/shell/bash_exports # Exports
-        $HOME/Projects/dotfiles/shell/bash_aliases # Aliases
-        $HOME/Projects/dotfiles/shell/functions # Functions
-        $HOME/Projects/dotfiles/shell/bash_prompt # Custom bash prompt
-        $HOME/Projects/dotfiles/shell/bash_paths # Path modifications
-        $(brew --prefix)/etc/bash_completion # Bash completion (installed via Homebrew)
-        $HOME/.bash_profile.local # Local and private settings not under version control (e.g. git credentials)
-    )
+    # Enable programmable completion features
+    # http://tldp.org/LDP/abs/html/tabexpansion.html
 
-    # if these files are readable, source them
-    for index in ${!files[*]}
-    do
-        if [[ -r ${files[$index]} ]]; then
-            source ${files[$index]}
-        fi
-    done
+    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+
+        source $(brew --prefix)/etc/bash_completion
+
+        # Make bash complete the `g` alias, just like it does `git`
+        complete -o default -o nospace -F _git g
+    fi
+
 }
 
-load_dotfiles
-unset load_dotfiles
+get_os() {
+
+    declare -r OS_NAME="$(uname -s)"
+    local os=""
+
+    if [ "$OS_NAME" == "Darwin" ]; then
+        os="osx"
+    fi
+
+    printf "%s" "$os"
+}
+
+source_bash_files() {
+
+    local file=""
+    local i=""
+
+    declare -r -a FILES_TO_SOURCE=(
+        "bash_aliases"
+        "bash_exports"
+        "bash_functions"
+        "bash_options"
+        "bash_prompt"
+        "bash.local"  # for local settings that should
+                      # not be under version control
+    )
+
+    for i in ${!FILES_TO_SOURCE[*]}; do
+        file="$HOME/.${FILES_TO_SOURCE[$i]}"
+        [ -r "$file" ] && source "$file"
+    done
+
+}
+
+# ----------------------------------------------------------------------
+# | Main                                                               |
+# ----------------------------------------------------------------------
+
+main() {
+
+    # The presence of the OS variable in this scope is important as
+    # the following functions rely on it (e.g. the sourced files use
+    # it to determine what to execute)
+    declare -r OS="$(get_os)"
+
+    source_bash_files
+    enable_programmable_completion
+
+}
+
+main
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Unset functions in order to not pollute the global space
+unset -f enable_programmable_completion
+unset -f get_os
+unset -f main
+unset -f source_bash_files
+
+# Clear system messages (e.g.: system copyright notice, the
+# date and time of the last login, the message of the day, etc.)
+clear

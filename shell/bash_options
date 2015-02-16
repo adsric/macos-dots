@@ -1,34 +1,40 @@
 #!/bin/bash
 
-# bash_exports
+# Shell Options
+# http://ss64.com/bash/shopt.html
 
-# Case-insensitive globbing (used in pathname expansion)
-shopt -s nocaseglob;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Append to the Bash history file, rather than overwriting it
-shopt -s histappend;
+# Autocorrect typos in path names when using the `cd` command
+shopt -s cdspell
 
-# Autocorrect typos in path names when using `cd`
-shopt -s cdspell;
+# Check the window size after each command and, if necessary, update
+# the values of `LINES` and `COLUMNS`
+shopt -s checkwinsize
+
+# Save all lines of a multiple-line command in the same history entry
+shopt -s cmdhist
+
+# Include filenames beginning with a "." in the filename expansion
+shopt -s dotglob
+
+# Use extended pattern matching features
+shopt -s extglob
+
+# Append to the history file, rather then overwriting it
+shopt -s histappend
+
+# Do not attempt to search the PATH for possible completions when
+# completion is attempted on an empty line
+shopt -s no_empty_cmd_completion
+
+# Match filenames in a case-insensitive# fashion when performing
+# filename expansion
+shopt -s nocaseglob
 
 # Enable some Bash 4 features when possible:
 # * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
 # * Recursive globbing, e.g. `echo **/*.txt`
 for option in autocd globstar; do
-	shopt -s "$option" 2> /dev/null;
+    shopt -s "$option" 2> /dev/null;
 done;
-
-# Enable tab completion for `g` by marking it as an alias for `git`
-if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
-	complete -o default -o nospace -F _git g;
-fi;
-
-# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
-
-# Add tab completion for `defaults read|write NSGlobalDomain`
-# You could just use `-g` instead, but I like being explicit
-complete -W "NSGlobalDomain" defaults;
-
-# Add `killall` tab completion for common apps
-complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal" killall;

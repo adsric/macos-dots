@@ -1,20 +1,30 @@
 #!/bin/bash
 
-# bash_config
+# Shell Variables
+# http://linux.die.net/man/1/bash
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Make vim the default editor
-export EDITOR="vim";
+export EDITOR="vim"
 
-# Larger bash history (allow 32³ entries; default is 500)
-export HISTSIZE=32768;
-export HISTFILESIZE=$HISTSIZE;
-export HISTCONTROL=ignoredups;
-# Make some commands not show up in history
-export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help";
+# Ignore commands that start with spaces and duplicates
+export HISTCONTROL=ignoreboth
 
-# Prefer GB English and use UTF-8
-export LANG="en_GB.UTF-8";
-export LC_ALL="en_GB.UTF-8";
+# Increase the maximum number of lines contained in the
+# history file (default value is 500)
+export HISTFILESIZE=10000
+
+# Don't add certain commands to the history file
+export HISTIGNORE="g:c:cd:cd -:clear:history:exit:q:l:ls -l:pwd:* --help"
+
+# Increase the maximum number of commands recorded in the
+# command history (default value is 500)
+export HISTSIZE=10000
+
+# Prefer GB English and use UTF-8 encoding
+export LANG="en_GB"
+export LC_ALL="en_GB.UTF-8"
 
 # Highlight section titles in manual pages
 export LESS_TERMCAP_md="${yellow}";
@@ -27,3 +37,7 @@ export GREP_OPTIONS="--color=auto";
 
 # Link Homebrew casks in `/Applications` rather than `~/Applications`
 export HOMEBREW_CASK_OPTS="--appdir=/Applications";
+
+# Make new shells get the history lines from all previous
+# shells instead of the default "last window closed" history
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
