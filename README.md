@@ -100,5 +100,5 @@ Inspiration and code was taken from many sources, including:
 
 * [Mathias Bynens'](https://github.com/mathiasbynens)
   [dotfiles](https://github.com/mathiasbynens/dotfiles)
-* [NCătălin Mariș](https://github.com/alrra)
+* [Cătălin Mariș](https://github.com/alrra)
   [dotfiles](https://github.com/alrra/dotfiles)
