@@ -23,7 +23,6 @@ declare -a HOMEBREW_FORMULAE=(
 
 declare -a HOMEBREW_CASKS=(
     "dropbox"
-    "flash"
     "google-chrome"
     "imagealpha"
     "imageoptim"
