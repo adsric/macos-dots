@@ -6,6 +6,7 @@ cd "$(dirname "${BASH_SOURCE}")" && source "utils.sh"
 # https://github.com/Homebrew/homebrew
 
 declare -a HOMEBREW_FORMULAE=(
+    "ack"
     "bash"
     "bash-completion"
     "caskroom/cask/brew-cask"
@@ -23,7 +24,6 @@ declare -a HOMEBREW_FORMULAE=(
 
 declare -a HOMEBREW_CASKS=(
     "dropbox"
-    "google-chrome"
     "imagealpha"
     "imageoptim"
     "iterm2"
