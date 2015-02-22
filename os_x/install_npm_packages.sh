@@ -3,6 +3,7 @@
 cd "$(dirname "${BASH_SOURCE}")" && source "utils.sh"
 
 declare -r -a NPM_PACKAGES=(
+    "bower"
     "gulp"
     "pageres"
     "vtop"
