@@ -75,6 +75,43 @@ gz() {
 
 # ------------------------------------------------------------------------------
 
+# Determine size of a file or total size of a directory
+
+fs() {
+    if du -b /dev/null > /dev/null 2>&1; then
+        local arg=-sbh;
+    else
+        local arg=-sh;
+    fi
+    if [[ -n "$@" ]]; then
+        du $arg -- "$@";
+    else
+        du $arg .[^.]* *;
+    fi;
+}
+
+# ------------------------------------------------------------------------------
+
+# Find within the directory
+
+f() {
+    find . -name "$1"
+}
+
+# ------------------------------------------------------------------------------
+
+# Create new directories and enter the first one
+
+mkd() {
+    if [ -n "$*" ]; then
+        mkdir -p "$@" && cd "$@"
+        #      |
+        #      make parent directories if needed
+    fi
+}
+
+# ------------------------------------------------------------------------------
+
 # `v` with no arguments opens the current directory in Vim, otherwise opens the
 # given location
 
@@ -97,26 +134,6 @@ o() {
     else
         open "$@";
     fi
-}
-
-# ------------------------------------------------------------------------------
-
-# Create new directories and enter the first one
-
-mkd() {
-    if [ -n "$*" ]; then
-        mkdir -p "$@" && cd "$@"
-        #      |
-        #      make parent directories if needed
-    fi
-}
-
-# ------------------------------------------------------------------------------
-
-# Find within the directory
-
-f() {
-    find . -name "$1"
 }
 
 # ------------------------------------------------------------------------------
