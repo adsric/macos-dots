@@ -28,6 +28,7 @@ declare -a HOMEBREW_CASKS=(
     "imageoptim"
     "iterm2"
     "the-unarchiver"
+    "spectacle"
     "transmission"
     "virtualbox"
     "vlc"
