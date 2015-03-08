@@ -12,6 +12,7 @@
     st  = status                                     # Working tree
     rlc = !git reset --hard HEAD~1                   # Remove last commit
     ulc = reset --soft HEAD~1                        # Undo last commit
+    up = push -f origin HEAD^:master                 # Undo a `git push`
 
     # Add untracked, remove deleted, and show status
     adda = !git add -A && git status
