@@ -1,13 +1,13 @@
-#!/bin/bash
+ #!/bin/bash
 
 # DESCRIPTION:
 #
-#   Provides the content encoding the specified
-#   resources are served with.
+#   Provides the content encoding the
+#   specified resources are served with.
 #
 # USAGE:
 #
-#   httpcompression URL ...
+#   get-content-encoding URL ...
 #
 # USEFUL LINKS:
 #
@@ -17,7 +17,7 @@
 #   * SDCH Specification:
 #     https://lists.w3.org/Archives/Public/ietf-http-wg/2008JulSep/att-0441/Shared_Dictionary_Compression_over_HTTP.pdf
 
-# ------------------------------------------------------------------------------
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 declare -r -a CURL_DEFAULT_OPTIONS=(
     --connect-timeout 30
@@ -36,7 +36,7 @@ declare -r -a CURL_DEFAULT_OPTIONS=(
                                        # the Accept-Encoding header
 )
 
-# ------------------------------------------------------------------------------
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 check_for_sdch() {
 
@@ -163,21 +163,23 @@ get_content_encoding() {
     )
 }
 
-# ------------------------------------------------------------------------------
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
 
-    # Check if cURL is installed
-    if [ -x "$(command -v "curl")" ]; then
-        while [ $# -ne 0 ]; do
-            get_content_encoding "$1"
-            shift
-        done
-        printf "\n"
-    else
+    # Check if `cURL` is installed
+    if [ ! -x "$(command -v "curl")" ]; then
         printf "cURL is required, please install it!\n"
+        exit;
     fi
+
+    while [ $# -ne 0 ]; do
+        get_content_encoding "$1"
+        shift
+    done
+
+    printf "\n"
 
 }
 
-main $@
+main "$@"
