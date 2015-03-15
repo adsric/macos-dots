@@ -106,3 +106,8 @@ Inspiration and code was taken from many sources, including:
   [dotfiles](https://github.com/mathiasbynens/dotfiles)
 * [Cătălin Mariș](https://github.com/alrra)
   [dotfiles](https://github.com/alrra/dotfiles)
+
+
+## License
+
+The code is available under the [MIT license](LICENSE.md).
