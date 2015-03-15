@@ -148,7 +148,7 @@ set virtualedit=all             " Allow cursor to be anywhere
 
 set visualbell                  " \
 set noerrorbells                " | Disable beeping and window flashing
-set t_vb=                       " / http://vim.wikia.com/wiki/Disable_beeping
+set t_vb=                       " / https://vim.wikia.com/wiki/Disable_beeping
 
 set wildmenu                    " Enable enhanced command-line
                                 " completion (by hitting <TAB> in
@@ -288,13 +288,13 @@ let g:user_emmet_leader_key='<C-E>'
 
 " ------------------------------------------------------------------------------
 
-" [,* ] Search and replace the word under the cursor
-nmap <leader>* :%s/\<<C-r><C-w>\>//<Left>
+" Make `Y` work from the cursor to end of line
+nmap Y y$
 
 " ------------------------------------------------------------------------------
 
-" Make `Y` work from the cursor to end of line
-nmap Y y$
+" [,* ] Search and replace the word under the cursor
+nmap <leader>* :%s/\<<C-r><C-w>\>//<Left>
 
 " ------------------------------------------------------------------------------
 
