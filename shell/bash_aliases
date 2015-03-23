@@ -10,6 +10,8 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias cd..="cd .."
 
+# ------------------------------------------------------------------------------
+
 # Folders
 
 alias d="cd ~/Dropbox"
@@ -79,6 +81,7 @@ alias :q="exit"
 alias c="clear"
 alias ch="history -c && > ~/.bash_history"
 alias g="git"
+alias map="xargs -n1"
 alias q="exit"
 alias rm="rm -rf"
 
