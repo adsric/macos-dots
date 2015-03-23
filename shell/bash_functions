@@ -274,6 +274,8 @@ httpd.serve_forever()
 
 }
 
+# ------------------------------------------------------------------------------
+
 # whois a domain or a URL
 
 whois() {
@@ -288,6 +290,16 @@ whois() {
     #      |         this is the best whois server
     #      |                      |                  strip extra fluff
     /usr/bin/whois -h whois.internic.net $domain | sed '/NOTICE:/q'
+}
+
+# ------------------------------------------------------------------------------
+
+# copy sshkey to clipboard
+
+copySSHKey() {
+    cd ~/.ssh
+    ls
+    pbcopy < ~/.ssh/id_rsa.pub
 }
 
 # ------------------------------------------------------------------------------
