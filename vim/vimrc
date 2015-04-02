@@ -219,6 +219,7 @@ function! ToggleRelativeLineNumbers()
         set number
         set norelativenumber
     else
+        set number
         set relativenumber
     endif
 endfunction
@@ -253,11 +254,11 @@ if has('autocmd')
     augroup relative_line_numbers
         autocmd!
         " Automatically switch to absolute line numbers when vim loses focus
-        autocmd FocusLost * :set number
+        autocmd FocusLost * :set number norelativenumber
         " Automatically switch to relative line numbers when vim gains focus
         autocmd FocusGained * :set relativenumber
         " Automatically switch to absolute line numbers when vim is in insert mode
-        autocmd InsertEnter * :set number
+        autocmd InsertEnter * :set number norelativenumber
         " Automatically switch to relative line numbers when vim is in normal mode
         autocmd InsertLeave * :set relativenumber
     augroup END
