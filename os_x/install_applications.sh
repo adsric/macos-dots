@@ -12,7 +12,9 @@ declare -a HOMEBREW_FORMULAE=(
     "caskroom/cask/brew-cask"
     "coreutils"
     "findutils"
+    "ffmpeg"
     "git"
+    "gifsicle"
     "imagemagick --with-webp"
     "node"
     "vim --override-system-vi"
@@ -24,6 +26,7 @@ declare -a HOMEBREW_FORMULAE=(
 
 declare -a HOMEBREW_CASKS=(
     "dropbox"
+    "google-chrome"
     "imagealpha"
     "imageoptim"
     "iterm2"
