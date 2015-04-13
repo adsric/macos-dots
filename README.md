@@ -12,7 +12,7 @@ The snippet will:
 * Download the dotfiles on your computer (by default it will suggest
   `~/Projects/dotfiles`)
 * Create some additional [directories](os_x/create_directories.sh)
-* [Copy](os_x/copy_files.sh) / [Symlink](os_x/create_symbolic_links.sh) the
+* [Symlink](os_x/create_symbolic_links.sh) the
   [git](git),
   [shell](shell), and
   [vim](vim) files
@@ -32,7 +32,7 @@ requirements by using the following files:
 
 #### `~/.bash.local`
 
-If the `~/.bash.local` file exist, it will be automatically sourced
+If the `~/.bash.local` file exists, it will be automatically sourced
 after all the other [bash related
 files](https://github.com/adsric/dotfiles/tree/master/shell), thus,
 allowing its content to add to or overwrite the existing aliases,
@@ -43,18 +43,6 @@ Here is a very simple example of a `~/.bash.local` file:
 ```bash
 
 #!/bin/bash
-
-declare -r GIT_USER_EMAIL="adam@example.com"
-declare -r GIT_USER_NAME="Adam Richardson"
-
-# ----------------------------------------------------------------------
-
-# Set local Git credentials
-
-git config --global user.name "$GIT_USER_NAME"
-git config --global user.email "$GIT_USER_EMAIL"
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Set PATH additions
 
@@ -68,9 +56,24 @@ export PATH
 
 ```
 
+#### `~/.gitconfig.local`
+
+If the `~/.gitconfig.local` file exists, it will be automatically
+included after the configurations from `~/.gitconfig`, thus, allowing
+its content to overwrite or add to the existing `git` configurations.
+
+__Note:__ Use `~/.gitconfig.local` to store sensitive information such
+as the `git` user credentials, e.g.:
+
+```bash
+[user]
+    name = Adam Richardson
+    email = adam@example.com
+```
+
 #### `~/.vimrc.local`
 
-If the `~/.vimrc.local` file exist, it will be automatically sourced
+If the `~/.vimrc.local` file exists, it will be automatically sourced
 after `~/.vimrc`, thus, allowing its content to add or overwrite the
 settings from `~/.vimrc`.
 

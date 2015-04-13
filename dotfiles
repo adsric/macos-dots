@@ -206,11 +206,6 @@ main() {
 
     # --------------------------------------------------------------------------
 
-    print_info "Copy files"
-    ./os_x/copy_files.sh
-
-    # --------------------------------------------------------------------------
-
     print_info "Create symbolic links"
     ./os_x/create_symbolic_links.sh
 

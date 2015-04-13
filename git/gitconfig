@@ -137,3 +137,5 @@
     # Automatically correct and execute mistyped commands
     autocorrect = 1
 
+[include]
+    path = ~/.gitconfig.local
