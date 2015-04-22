@@ -90,13 +90,13 @@ alias rm="rm -rf"
 # List files
 
 # List all files in long format
-alias l="ls -lF"
+alias l="ls -lF -G"
 
 # List all files in long format, including dot files
-alias la="ls -laF"
+alias la="ls -laF -G"
 
 # List only directories
-alias lsd="ls -lF | grep --color=never '^d'"
+alias lsd="ls -lF -G | grep --color=never '^d'"
 
 # ------------------------------------------------------------------------------
 
