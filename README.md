@@ -47,7 +47,7 @@ Here is a very simple example of a `~/.bash.local` file:
 # Set PATH additions
 
 PATH="/usr/local/bin:$PATH"
-PATH="$PATH:$HOME/projects/dotfiles/bin"
+PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 export PATH
 
