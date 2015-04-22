@@ -34,7 +34,7 @@ set_ls_colors() {
 
     LSCOLORS=""
 
-    LSCOLORS+="Ex" # Directory
+    LSCOLORS+="gx" # Directory
     LSCOLORS+="fx" # Symbolic link
     LSCOLORS+="cx" # Socket
     LSCOLORS+="dx" # Pipe
