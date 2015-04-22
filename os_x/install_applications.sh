@@ -79,7 +79,7 @@ brew_tap() {
 
 }
 
-# ------------------------------------------------------------------------------
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
 
@@ -93,30 +93,39 @@ main() {
             sleep 5
         done
     fi
+
     print_success "XCode Command Line Tools\n"
+
     # Homebrew
     if [ $(cmd_exists "brew") -eq 1 ]; then
         printf "\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         #  └─ simulate the ENTER keypress
         print_result $? "brew"
     fi
+
     if [ $(cmd_exists "brew") -eq 0 ]; then
         execute "brew update" "brew (update)"
         execute "brew upgrade" "brew (upgrade)"
         execute "brew cleanup" "brew (cleanup)"
         printf "\n"
+
         brew_install "HOMEBREW_FORMULAE[@]"
         printf "\n"
+
         brew_tap "homebrew/versions" \
             && brew_install "HOMEBREW_VERSIONS_FORMULAE[@]"
         printf "\n"
+
         brew_tap "caskroom/cask" \
             && brew_install "HOMEBREW_CASKS[@]" "cask"
         printf "\n"
+
         brew_tap "caskroom/versions" \
             && brew_install "HOMEBREW_ALTERNATE_CASKS[@]" "cask"
         printf "\n"
+
     fi
+
 }
 
 main
