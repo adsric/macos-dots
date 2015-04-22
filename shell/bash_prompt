@@ -13,9 +13,7 @@ enable_color_support() {
         export TERM="xterm-256color"
     fi
 
-    if [ "$OS" == "osx" ]; then
-        alias ls="ls -G" # or CLICOLOR=1
-    fi
+    alias ls="ls -G" # or CLICOLOR=1
 
 }
 
@@ -34,25 +32,22 @@ set_ls_colors() {
     #    environment variable (built-in defaults are used if this
     #    variable is not set)
 
-    if [ "$OS" == "osx" ]; then
+    LSCOLORS=""
 
-        LSCOLORS=""
+    LSCOLORS+="Ex" # Directory
+    LSCOLORS+="fx" # Symbolic link
+    LSCOLORS+="cx" # Socket
+    LSCOLORS+="dx" # Pipe
+    LSCOLORS+="bx" # Executable
+    LSCOLORS+="eg" # Block special
+    LSCOLORS+="ed" # Character special
+    LSCOLORS+="ab" # Executable with setuid bit set
+    LSCOLORS+="ag" # Executable with setgid bit set
+    LSCOLORS+="cc" # Directory writable to others, with sticky bit
+    LSCOLORS+="bd" # Directory writable to others, without sticky bit
 
-        LSCOLORS+="Ex" # Directory
-        LSCOLORS+="fx" # Symbolic link
-        LSCOLORS+="cx" # Socket
-        LSCOLORS+="dx" # Pipe
-        LSCOLORS+="bx" # Executable
-        LSCOLORS+="eg" # Block special
-        LSCOLORS+="ed" # Character special
-        LSCOLORS+="ab" # Executable with setuid bit set
-        LSCOLORS+="ag" # Executable with setgid bit set
-        LSCOLORS+="cc" # Directory writable to others, with sticky bit
-        LSCOLORS+="bd" # Directory writable to others, without sticky bit
+    export LSCOLORS
 
-        export LSCOLORS
-
-    fi
 }
 
 # ------------------------------------------------------------------------------
