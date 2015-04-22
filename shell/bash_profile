@@ -53,7 +53,7 @@ source_bash_files() {
 
 }
 
-source_bin_files() {
+source_bin_folder() {
 
     # Adding dotfiles `bin` to `$PATH`
     export PATH="$PATH:$HOME/projects/dotfiles/bin";
@@ -72,7 +72,7 @@ main() {
     declare -r OS="$(get_os)"
 
     source_bash_files
-    source_bin_files
+    source_bin_folder
     enable_programmable_completion
 
 }
@@ -86,10 +86,8 @@ unset -f enable_programmable_completion
 unset -f get_os
 unset -f main
 unset -f source_bash_files
-unset -f source_bin_files
+unset -f source_bin_folder
 
 # Clear system messages (e.g.: system copyright notice, the
 # date and time of the last login, the message of the day, etc.)
 clear
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
