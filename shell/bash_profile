@@ -9,13 +9,15 @@ enable_programmable_completion() {
     # Enable programmable completion features
     # http://tldp.org/LDP/abs/html/tabexpansion.html
 
-    if [ -f "$(brew --prefix)/local/share/bash-completion/bash_completion" ]; then
-
-        source "$(brew --prefix)/local/share/bash-completion/bash_completion";
-
-        # Make bash complete the `g` alias, just like it does `git`
-        complete -o default -o nospace -F _git g
+    if [ -f $(brew --prefix)/local/share/bash-completion/bash_completion ]; then
+        source $(brew --prefix)/local/share/bash-completion/bash_completion;
     fi
+
+    # Enable tab completion for `g` by marking it as an alias for `git`
+
+    if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
+        complete -o default -o nospace -F _git g;
+    fi;
 
 }
 
