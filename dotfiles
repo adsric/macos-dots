@@ -55,6 +55,7 @@ compare_versions() {
     done
 
     printf "="
+
 }
 
 download() {
