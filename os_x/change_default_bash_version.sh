@@ -24,7 +24,7 @@ main() {
 
     # Make OS X use the bash version installed through homebrew
     [ -z "$(cat /etc/shells | grep "$HOMEBREW_PREFIX")" ] \
-        && sudo sh -c 'printf "$HOMEBREW_PREFIX/bin/bash" >> /etc/shells'
+        && sudo bash -c 'echo "'$HOMEBREW_PREFIX'/bin/bash" >> /etc/shells'
 
     chsh -s "$HOMEBREW_PREFIX/bin/bash" &> /dev/null
     print_result $? "Use latest version of Bash"
