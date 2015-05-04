@@ -207,7 +207,7 @@ extract() {
 
 # ------------------------------------------------------------------------------
 
-# animated gifs from any video
+# Animated gifs from any video
 # from alex sexton gist.github.com/SlexAxton/4989674
 
 gifify() {
@@ -313,9 +313,9 @@ whois() {
 
 # ------------------------------------------------------------------------------
 
-# copy sshkey to clipboard
+# Copies the SSH key to clipboard
 
-copySSHKey() {
+sshkey() {
     cd ~/.ssh
     ls
     pbcopy < ~/.ssh/id_rsa.pub
