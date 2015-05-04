@@ -38,6 +38,7 @@ declare -r -a HOMEBREW_CASKS=(
     "spectacle"
     "transmission"
     "virtualbox"
+    "vagrant"
     "vlc"
 )
 
