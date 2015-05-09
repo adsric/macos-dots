@@ -48,8 +48,13 @@ syntax on                       " Enable syntax highlighting
 if has('autocmd')
     filetype plugin indent on
     "                       ----- Enable file type detection
-    "                 ----------- Enable loading of indent file
+    "                  ---------- Enable loading of indent file
     "           ----------------- Enable loading of plugin files
+    "
+    " Languages with specific tabs/space requirements
+    autocmd FileType make setlocal ts=4 sts=4 sw=4 noexpandtab
+    " Don't treat json as javascript
+    autocmd BufRead,BufNewFile *.json set filetype=json
 endif
 
 set t_Co=256                    " Enable full-color support
@@ -136,9 +141,9 @@ set synmaxcol=2500              " Limit syntax highlighting (this
                                 " avoids the very slow redrawing
                                 " when files contain long lines)
 
-set tabstop=4                   " \
-set softtabstop=4               " | Set global <TAB> settings
-set shiftwidth=4                " | http://vimcasts.org/e/2
+set tabstop=2                   " \
+set softtabstop=2               " | Set global <TAB> settings
+set shiftwidth=2                " | http://vimcasts.org/e/2
 set expandtab                   " /
 
 set ttyfast                     " Enable fast terminal connection
