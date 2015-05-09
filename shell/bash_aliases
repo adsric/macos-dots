@@ -18,6 +18,7 @@ alias d="cd ~/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/Projects"
+alias ws="cd ~/Workspace"
 
 # ------------------------------------------------------------------------------
 # | Network                                                                    |
@@ -103,6 +104,12 @@ alias lsd="ls -lF | grep --color=never '^d'"
 # Copy to clipboard
 
 alias cc="pbcopy"
+
+# ------------------------------------------------------------------------------
+
+# Copy my public key to the pasteboard
+
+alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | printf '=> Public key copied to pasteboard.\n'"
 
 # ------------------------------------------------------------------------------
 
