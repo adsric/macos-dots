@@ -58,10 +58,27 @@ if has('autocmd')
     autocmd BufRead,BufNewFile *.json set filetype=json
 endif
 
+" ------------------------------------------------------------------------------
+
 set t_Co=256                    " Enable full-color support
 
-colorscheme solarized           " \ Use custom color scheme
-let g:solarized_termtrans=1     " /
+set background=dark             " Use colors that look good
+                                " on a dark background
+
+" Set custom configurations for when the
+" Solarized theme is used from vim's Terminal mode
+" http://ethanschoonover.com/solarized/vim-colors-solarized#advanced-configuration
+
+if !has('gui_running')
+  let g:solarized_contrast = "normal"
+  let g:solarized_termcolors = 16
+  let g:solarized_termtrans = 1
+  let g:solarized_visibility = "high"
+endif
+
+colorscheme solarized           " Use custom color scheme
+
+" ------------------------------------------------------------------------------
 
 set autoindent                  " Copy indent to the new line
 
