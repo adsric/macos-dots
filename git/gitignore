@@ -20,6 +20,9 @@ Desktop.ini
 ehthumbs.db
 Thumbs.db
 
+# Bower
+bower_components
+
 # Node
 node_modules
 
