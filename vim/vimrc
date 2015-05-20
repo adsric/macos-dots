@@ -28,7 +28,7 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'mattn/webapi-vim'
     Plugin 'nathanaelkane/vim-indent-guides'
     Plugin 'othree/html5.vim'
-    Plugin 'pangloss/vim-javascript'
+    Plugin 'jelera/vim-javascript-syntax'
     Plugin 'plasticboy/vim-markdown'
     Plugin 'scrooloose/nerdtree'
     Plugin 'scrooloose/syntastic'
