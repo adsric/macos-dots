@@ -9,6 +9,7 @@ declare -r -a HOMEBREW_FORMULAE=(
     "ack"
     "bash"
     "caskroom/cask/brew-cask"
+    "dark-mode"
     "ffmpeg"
     "git"
     "gifsicle"
