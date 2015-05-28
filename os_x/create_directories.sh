@@ -3,8 +3,6 @@
 cd "$(dirname "${BASH_SOURCE}")" && source "utils.sh"
 
 declare -a DIRECTORIES=(
-    "$HOME/Archive"
-    "$HOME/Projects"
     "$HOME/Workspace"
 )
 
