@@ -97,6 +97,17 @@ f() {
 
 # ------------------------------------------------------------------------------
 
+# `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
+# the `.git` directory, listing directories first. The output gets piped into
+# `less` with options to preserve color and line numbers, unless the output is
+# small enough for one screen.
+
+tre() {
+  tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
+}
+
+# ------------------------------------------------------------------------------
+
 # Create new directories and enter the first one
 
 mkd() {
@@ -139,17 +150,6 @@ o() {
     else
         open "$@";
     fi
-}
-
-# ------------------------------------------------------------------------------
-
-# `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
-# the `.git` directory, listing directories first. The output gets piped into
-# `less` with options to preserve color and line numbers, unless the output is
-# small enough for one screen.
-
-tre() {
-  tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
 
 # ------------------------------------------------------------------------------
@@ -350,15 +350,6 @@ qt() {
     grep -ir --color=always "$*" . | less -RX
     #      -- search all files under each directory, recursively
     #     --- ignore case
-}
-
-# ------------------------------------------------------------------------------
-
-# Search for a pattern within the current directory
-
-qp() {
-    ack -i "$*"
-    #    --- ignore case
 }
 
 # ------------------------------------------------------------------------------
