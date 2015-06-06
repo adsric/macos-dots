@@ -6,7 +6,6 @@ cd "$(dirname "${BASH_SOURCE}")" && source "utils.sh"
 # https://github.com/Homebrew/homebrew
 
 declare -r -a HOMEBREW_FORMULAE=(
-    "ack"
     "bash"
     "caskroom/cask/brew-cask"
     "dark-mode"
@@ -49,6 +48,7 @@ declare -r -a HOMEBREW_CASKS=(
 
 declare -r -a HOMEBREW_ALTERNATE_CASKS=(
     "firefox-nightly"
+    "firefoxdeveloperedition"
     "google-chrome-canary"
     "opera-developer"
     "webkit-nightly"
