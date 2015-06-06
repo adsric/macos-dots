@@ -3,16 +3,19 @@
     a   = commit --amend
     br  = branch
     c   = commit
-    ca  = !git add -A && git commit                  # Commit all changes
+    ca  = !git add -A && git commit                     # Commit all changes
     co  = checkout
-    l   = log --pretty=oneline -n 20 --abbrev-commit # Log latest 20 with
-                                                     # abbreviated SHA
-
-    s   = status -s                                  # Working tree (short)
-    st  = status                                     # Working tree
-    rlc = !git reset --hard HEAD~1                   # Remove last commit
-    ulc = reset --soft HEAD~1                        # Undo last commit
-    up = push -f origin HEAD^:master                 # Undo a `git push`
+    cp  = cherry-pick
+    d   = diff
+    dc  = diff --cached
+    g   = log --graph --pretty=custom                   # Show custom graph
+    l   = log --pretty=custom                           # Show custom log
+    s   = status -s                                     # Working tree (short)
+    st  = status                                        # Working tree
+    lc  = shortlog --summary --numbered                 # List contributors
+    rlc = !git reset --hard HEAD~1                      # Remove last commit
+    ulc = reset --soft HEAD~1                           # Undo last commit
+    up  = push -f origin HEAD^:master                   # Undo a `git push`
 
     # Add untracked, remove deleted, and show status
     adda = !git add -A && git status
@@ -23,9 +26,6 @@
     # `git clean -df`: remove untracked files and directories from the working tree
     # `git stash clear`: remove all stashed states
     cleanup = !git clean -df && git stash clear
-
-    # Show the diff between the latest commit and the current state
-    d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 
     # Remove branches that have already been merged with master
     # a.k.a. ‘delete merged’
@@ -77,69 +77,52 @@
         fi \
     }; f"
 
-[color]
-
-    # Use colors in Git commands that are capable of colored output when
-    # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
-    ui = auto
-
 [color "branch"]
-
     current = yellow reverse
     local = yellow
     remote = green
 
 [color "diff"]
-
     meta = yellow bold
     frag = magenta bold # line info
     old = red # deletions
     new = green # additions
 
 [color "status"]
-
     added = yellow
     changed = green
     untracked = cyan
 
 [core]
-
-    # Use custom `.gitignore` and `.gitattributes`
-    excludesfile = ~/.gitignore
     attributesfile = ~/.gitattributes
-
     autocrlf = input
     editor = vim
-
-    # Treat spaces before tabs and all kinds of trailing whitespace as an error
-    # [default] trailing-space: looks for spaces at the end of a line
-    # [default] space-before-tab: looks for spaces before tabs at the beginning of a line
-    whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+    excludesfile = ~/.gitignore
 
     # Make `git rebase` safer on OS X
     # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
     trustctime = false
 
-[credential]
-
-    helper = osxkeychain
-
 [diff]
-
     # Detect copies as well as renames
     renames = copies
 
-[push]
+[pretty]
+    custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
+    #                     │        │            │            │             └─ author name
+    #                     │        │            │            └─ message
+    #                     │        │            └─ date (relative)
+    #                     │        └─ decorations (branch, heads or tags)
+    #                     └─ hash (abbreviated)
 
-    # Use the Git 1.x.x default to avoid errors on machines with old Git
-    # installations. To use `simple` instead, add this to your `~/.extra` file:
-    # `git config --global push.default simple`. See http://git.io/mMah-w.
-    default = matching
-    # Make `git push` push relevant annotated tags when pushing branches out.
+[push]
+    default = simple
+
+    # Make `git push` push relevant
+    # annotated tags when pushing branches out.
     followTags = true
 
 [help]
-
     # Automatically correct and execute mistyped commands
     autocorrect = 1
 
