@@ -14,6 +14,7 @@ declare -r -a HOMEBREW_FORMULAE=(
     "gifsicle"
     "imagemagick --with-webp"
     "node"
+    "tmux"
     "tree"
     "vim --override-system-vi"
     "zopfli"
