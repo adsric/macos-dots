@@ -141,6 +141,8 @@ main() {
             && brew_install "WEBFONT_TOOLS[@]"
         printf "\n"
 
+        execute "brew cleanup" "brew (cleanup)"
+        printf "\n"
     fi
 
 }
