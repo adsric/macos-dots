@@ -411,8 +411,14 @@ let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.vim/snip
 " https://github.com/nathanaelkane/vim-indent-guides#setting-custom-indent-colors
 
 let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=10  guibg=#d33682
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=0 guibg=#073642
+
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd
+    \ guibg=#00323D
+    \ ctermbg=Magenta
+
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven
+    \ guibg=#073642
+    \ ctermbg=DarkMagenta
 
 " ------------------------------------------------------------------------------
 
