@@ -51,8 +51,8 @@ declare -r -a HOMEBREW_ALTERNATE_CASKS=(
     "firefox-nightly"
     "firefoxdeveloperedition"
     "google-chrome-canary"
+    "opera-beta"
     "opera-developer"
-    "webkit-nightly"
 )
 
 # Webfont tools
