@@ -2,148 +2,144 @@
 
 cd "$(dirname "${BASH_SOURCE}")" && source "utils.sh"
 
-# Homebrew Formulae
-# https://github.com/Homebrew/homebrew
-
-declare -r -a HOMEBREW_FORMULAE=(
-    "bash"
-    "caskroom/cask/brew-cask"
-    "dark-mode"
-    "ffmpeg"
-    "git"
-    "gifsicle"
-    "imagemagick --with-webp"
-    "node"
-    "tmux"
-    "tree"
-    "vim --override-system-vi"
-    "zopfli"
-)
-
-# Homebrew Versions Formulae
-# https://github.com/Homebrew/homebrew-versions
-
-declare -r -a HOMEBREW_VERSIONS_FORMULAE=(
-    "bash-completion2"
-)
-
-# Homebrew Casks
-# https://github.com/caskroom/homebrew-cask
-
-declare -r -a HOMEBREW_CASKS=(
-    "dropbox"
-    "google-chrome"
-    "imagealpha"
-    "imageoptim"
-    "iterm2"
-    "the-unarchiver"
-    "spectacle"
-    "transmission"
-    "virtualbox"
-    "vagrant"
-    "vlc"
-)
-
-# Homebrew Alternate Casks
-# https://github.com/caskroom/homebrew-versions
-
-declare -r -a HOMEBREW_ALTERNATE_CASKS=(
-    "firefox-nightly"
-    "firefoxdeveloperedition"
-    "google-chrome-canary"
-    "opera-beta"
-    "opera-developer"
-)
-
-# Webfont tools
-# https://github.com/bramstein/homebrew-webfonttools
-
-declare -r -a WEBFONT_TOOLS=(
-    "sfnt2woff"
-    "sfnt2woff-zopfli"
-    "woff2"
-)
-
-# ------------------------------------------------------------------------------
-
 brew_install() {
 
-    declare -r -a FORMULAE=("${!1}"); shift;
-    declare -r CMD="$1"
+  declare -r CMD="$3"
+  declare -r FORMULA="$2"
+  declare -r FORMULA_READABLE_NAME="$1"
 
-    for i in ${!FORMULAE[*]}; do
-        tmp="${FORMULAE[$i]}"
-        [ $(brew "$CMD" list "$tmp" &> /dev/null; printf $?) -eq 0 ] \
-            && print_success "$tmp" \
-            || execute "brew $CMD install $tmp" "$tmp"
-    done
+  [ $(brew "$CMD" list "$FORMULA" &> /dev/null; printf $?) -eq 0 ] \
+    && print_success "$FORMULA_READABLE_NAME" \
+    || execute "brew $CMD install $FORMULA" "$FORMULA_READABLE_NAME"
 
 }
 
 brew_tap() {
 
-    declare -r REPOSITORY="$1"
+  declare -r REPOSITORY="$1"
 
-    brew tap "$REPOSITORY" &> /dev/null
+  brew tap "$REPOSITORY" &> /dev/null
 
-    [ "$(brew tap | grep "$REPOSITORY" &> /dev/null; printf $?)" -eq 0 ] \
-        && (print_success "brew tap ($REPOSITORY)"; return 0) \
-        || (print_error "brew tap ($REPOSITORY)"; return 1)
+  [ "$(brew tap | grep "$REPOSITORY" &> /dev/null; printf $?)" -eq 0 ] \
+    && (print_success "brew tap ($REPOSITORY)\n"; return 0) \
+    || (print_error "brew tap ($REPOSITORY)\n"; return 1)
 
 }
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# ------------------------------------------------------------------------------
 
 main() {
 
-    local i="", tmp=""
+  local i="", tmp=""
 
-    # XCode Command Line Tools
-    if [ $(xcode-select -p &> /dev/null; printf $?) -ne 0 ]; then
-        xcode-select --install &> /dev/null
-        # Wait until the XCode Command Line Tools are installed
-        while [ $(xcode-select -p &> /dev/null; printf $?) -ne 0 ]; do
-            sleep 5
-        done
-    fi
+  # XCode Command Line Tools
+  if [ $(xcode-select -p &> /dev/null; printf $?) -ne 0 ]; then
+      xcode-select --install &> /dev/null
+      # Wait until the XCode Command Line Tools are installed
+      while [ $(xcode-select -p &> /dev/null; printf $?) -ne 0 ]; do
+          sleep 5
+      done
+  fi
 
-    print_success "XCode Command Line Tools\n"
+  print_success "XCode Command Line Tools\n"
 
-    # Homebrew
-    if [ $(cmd_exists "brew") -eq 1 ]; then
-        printf "\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-        #  └─ simulate the ENTER keypress
-        print_result $? "brew"
-    fi
+  # Homebrew
+  if [ $(cmd_exists "brew") -eq 1 ]; then
+      printf "\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" &> /dev/null
+      #  └─ simulate the ENTER keypress
+      print_result $? "brew"
+  fi
 
-    if [ $(cmd_exists "brew") -eq 0 ]; then
-        execute "brew update" "brew (update)"
-        execute "brew upgrade --all" "brew (upgrade)"
-        execute "brew cleanup" "brew (cleanup)"
-        printf "\n"
+  if [ $(cmd_exists "brew") -eq 0 ]; then
+      execute "brew update" "brew (update)"
+      execute "brew upgrade --all" "brew (upgrade)"
 
-        brew_install "HOMEBREW_FORMULAE[@]"
-        printf "\n"
+      print_in_green "\n  ---\n\n"
 
-        brew_tap "homebrew/versions" \
-            && brew_install "HOMEBREW_VERSIONS_FORMULAE[@]"
-        printf "\n"
+      # -------------------------------------------------------------
 
-        brew_tap "caskroom/cask" \
-            && brew_install "HOMEBREW_CASKS[@]" "cask"
-        printf "\n"
+      # Homebrew Formulae
+      # https://github.com/Homebrew/homebrew
 
-        brew_tap "caskroom/versions" \
-            && brew_install "HOMEBREW_ALTERNATE_CASKS[@]" "cask"
-        printf "\n"
+      brew_install "Bash 4" "bash"
+      brew_install "Cask" "caskroom/cask/brew-cask"
+      brew_install "FFmpeg" "ffmpeg"
+      brew_install "Git" "git"
+      brew_install "ImageMagick" "imagemagick --with-webp"
+      brew_install "node" "node"
+      brew_install "tmux" "tmux"
+      brew_install "tree" "tree"
+      brew_install "vim" "vim --override-system-vi"
+      brew_install "Zopfli" "zopfli"
 
-        brew_tap "bramstein/webfonttools" \
-            && brew_install "WEBFONT_TOOLS[@]"
-        printf "\n"
+      print_in_green "\n  ---\n\n"
 
-        execute "brew cleanup" "brew (cleanup)"
-        printf "\n"
-    fi
+      # -------------------------------------------------------------
+
+      # Homebrew Versions Formulae
+      # https://github.com/Homebrew/homebrew-versions
+
+      brew_tap "homebrew/versions" \
+        && (
+          brew_install "Bash Completion 2" "bash-completion2"
+        )
+
+      print_in_green "\n  ---\n\n"
+
+      # -------------------------------------------------------------
+
+      # Homebrew Casks
+      # https://github.com/caskroom/homebrew-cask
+
+      brew_tap "caskroom/cask" \
+        && (
+          brew_install "Chrome" "google-chrome" "cask"
+          brew_install "Dropbox" "dropbox" "cask"
+          brew_install "Firefox" "firefox" "cask"
+          brew_install "ImageOptim" "imageoptim" "cask"
+          brew_install "iTerm2" "iterm2" "cask"
+          brew_install "Opera" "opera" "cask"
+          brew_install "Transmission" "transmission" "cask"
+          brew_install "Unarchiver" "the-unarchiver" "cask"
+          brew_install "Vagrant" "vagrant" "cask"
+          brew_install "VirtualBox" "virtualbox" "cask"
+          brew_install "VLC" "vlc" "cask"
+        )
+
+      print_in_green "\n  ---\n\n"
+
+      # -------------------------------------------------------------
+
+      # Homebrew Alternate Casks
+      # https://github.com/caskroom/homebrew-versions
+
+      brew_tap "caskroom/versions" \
+        && (
+          brew_install "Chrome Canary" "google-chrome-canary" "cask"
+          brew_install "Firefox Developer Edition" "firefoxdeveloperedition" "cask"
+          brew_install "Firefox Nightly" "firefox-nightly" "cask"
+          brew_install "Opera Beta" "opera-beta" "cask"
+          brew_install "Opera Developer" "opera-developer" "cask"
+        )
+
+      print_in_green "\n  ---\n\n"
+
+      # -------------------------------------------------------------
+
+      # Webfont tools
+      # https://github.com/bramstein/homebrew-webfonttools
+
+      brew_tap "bramstein/webfonttools" \
+        && (
+          brew_install "TTF/OTF → WOFF (Zopfli)" "sfnt2woff-zopfli"
+          brew_install "TTF/OTF → WOFF" "sfnt2woff"
+          brew_install "WOFF2" "woff2"
+        )
+      print_in_green "\n  ---\n\n"
+      # -------------------------------------------------------------
+
+      execute "brew cleanup" "brew (cleanup)"
+  fi
 
 }
 
