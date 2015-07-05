@@ -81,18 +81,31 @@ mkd() {
 }
 
 print_error() {
-    # Print output in red
-    printf "\e[0;31m  [✖] $1 $2\e[0m\n"
+    print_in_red "  [✖] $1 $2\n"
+}
+
+print_in_green() {
+    printf "\e[0;32m$1\e[0m"
+}
+
+print_in_purple() {
+    printf "\e[0;35m$1\e[0m"
+}
+
+print_in_red() {
+    printf "\e[0;31m$1\e[0m"
+}
+
+print_in_yellow() {
+    printf "\e[0;33m$1\e[0m"
 }
 
 print_info() {
-    # Print output in purple
-    printf "\n\e[0;35m $1\e[0m\n\n"
+    print_in_purple "\n $1\n\n"
 }
 
 print_question() {
-    # Print output in yellow
-    printf "\e[0;33m  [?] $1\e[0m"
+    print_in_yellow "  [?] $1"
 }
 
 print_result() {
@@ -105,6 +118,5 @@ print_result() {
 }
 
 print_success() {
-    # Print output in green
-    printf "\e[0;32m  [✔] $1\e[0m\n"
+    print_in_green "  [✔] $1\n"
 }
