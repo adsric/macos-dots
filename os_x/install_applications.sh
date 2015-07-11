@@ -93,6 +93,7 @@ main() {
 
       brew_tap "caskroom/cask" \
         && (
+          brew_install "Atom" "atom" "cask"
           brew_install "Chrome" "google-chrome" "cask"
           brew_install "Dropbox" "dropbox" "cask"
           brew_install "Firefox" "firefox" "cask"
