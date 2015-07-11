@@ -17,7 +17,6 @@ main() {
     ./preferences/dock.sh
     ./preferences/finder.sh
     ./preferences/keyboard.sh
-    ./preferences/maps.sh
     ./preferences/safari.sh
     ./preferences/terminal.sh
     ./preferences/textedit.sh

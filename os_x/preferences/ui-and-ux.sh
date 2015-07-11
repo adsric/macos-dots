@@ -55,12 +55,6 @@ set_ui_and_ux_preferences() {
     execute 'defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true' \
         'Expand print panel by default'
 
-    execute 'sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "Laptop" &&
-             sudo scutil --set ComputerName "Laptop" &&
-             sudo scutil --set HostName "Laptop" &&
-             sudo scutil --set LocalHostName "Laptop"' \
-        'Set computer name'
-
     execute "sudo systemsetup -setrestartfreeze on" \
         "Restart automatically if the computer freezes"
 
@@ -82,6 +76,9 @@ set_ui_and_ux_preferences() {
                     "/System/Library/CoreServices/Menu Extras/Clock.menu"
             ' \
         'Hide Time Machine and Volume icons from the menu bar'
+
+      execute "sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName" \
+        "Reveal IP address, hostname, OS version from login clock"
 
 }
 
