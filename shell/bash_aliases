@@ -28,7 +28,7 @@ alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 # ------------------------------------------------------------------------------
 
 if [ "$OS" == "osx" ]; then
-    alias localip="ipconfig getifaddr en1"
+    alias localip="ipconfig getifaddr en0"
 fi
 
 # ------------------------------------------------------------------------------
