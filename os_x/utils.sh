@@ -39,7 +39,7 @@ cmd_exists() {
 }
 
 execute() {
-    $1 &> /dev/null
+    eval "$1" &> /dev/null
     print_result $? "${2:-$1}"
 }
 
