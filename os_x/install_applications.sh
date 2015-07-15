@@ -36,7 +36,7 @@ main() {
 
   xcode-select -p &> /dev/null
 
-  if [ $? -eq 0 ]; then
+  if [ $? -ne 0 ]; then
 
       # Prompt user to install the XCode Command Line Tools
       xcode-select --install &> /dev/null
