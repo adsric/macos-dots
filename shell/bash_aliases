@@ -96,10 +96,10 @@ alias map='xargs -n1'
 # List files
 
 # List all files in long format
-alias l="ls -lF"
+alias l='ls -lF'
 
 # List all files in long format, including dot files
-alias la="ls -laF"
+alias la='ls -laF'
 
 # List only directories
 alias lsd="ls -lF | grep --color=never '^d'"

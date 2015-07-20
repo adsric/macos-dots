@@ -6,14 +6,11 @@
 
 enable_color_support() {
 
-    if [[ $COLORTERM == gnome-* && $TERM == xterm ]] && \
-       infocmp gnome-256color &> /dev/null; then
-        export TERM="gnome-256color"
-    elif infocmp xterm-256color &> /dev/null; then
-        export TERM="xterm-256color"
+    if infocmp xterm-256color &> /dev/null; then
+        export TERM='xterm-256color'
     fi
 
-    alias ls="ls -G" # or CLICOLOR=1
+    alias ls='ls -G' # or CLICOLOR=1
 
 }
 
@@ -32,19 +29,19 @@ set_ls_colors() {
     #    environment variable (built-in defaults are used if this
     #    variable is not set)
 
-    LSCOLORS=""
+    LSCOLORS=''
 
-    LSCOLORS+="gx" # Directory
-    LSCOLORS+="fx" # Symbolic link
-    LSCOLORS+="cx" # Socket
-    LSCOLORS+="dx" # Pipe
-    LSCOLORS+="bx" # Executable
-    LSCOLORS+="eg" # Block special
-    LSCOLORS+="ed" # Character special
-    LSCOLORS+="ab" # Executable with setuid bit set
-    LSCOLORS+="ag" # Executable with setgid bit set
-    LSCOLORS+="cc" # Directory writable to others, with sticky bit
-    LSCOLORS+="bd" # Directory writable to others, without sticky bit
+    LSCOLORS+='gx' # Directory
+    LSCOLORS+='fx' # Symbolic link
+    LSCOLORS+='cx' # Socket
+    LSCOLORS+='dx' # Pipe
+    LSCOLORS+='bx' # Executable
+    LSCOLORS+='eg' # Block special
+    LSCOLORS+='ed' # Character special
+    LSCOLORS+='ab' # Executable with setuid bit set
+    LSCOLORS+='ag' # Executable with setgid bit set
+    LSCOLORS+='cc' # Directory writable to others, with sticky bit
+    LSCOLORS+='bd' # Directory writable to others, without sticky bit
 
     export LSCOLORS
 
@@ -61,8 +58,8 @@ set_ls_colors() {
 
 get_git_repository_details() {
 
-    local branchName=""
-    local tmp=""
+    local branchName=''
+    local tmp=''
 
     # --------------------------------------------------------------------------
 
@@ -108,8 +105,8 @@ get_git_repository_details() {
 
 set_prompts() {
 
-    local black="" blue="" bold="" cyan="" green="" orange="" \
-          purple="" red="" reset="" white="" yellow=""
+    local black='' blue='' bold='' cyan='' green='' orange='' \
+          purple='' red='' reset='' white='' yellow=''
 
     # --------------------------------------------------------------------------
 
@@ -135,7 +132,7 @@ set_prompts() {
 
     else
 
-        bold=""
+        bold=''
         reset="\e[0m"
 
         black="\e[1;30m"
@@ -177,7 +174,7 @@ set_prompts() {
     # | PS2 - Continuation interactive prompt                                  |
     # --------------------------------------------------------------------------
 
-    PS2="⚡ "
+    PS2='⚡ '
 
     export PS2
 
@@ -225,9 +222,11 @@ set_prompts() {
 # ------------------------------------------------------------------------------
 
 main() {
+
     enable_color_support
     set_ls_colors
     set_prompts
+
 }
 
 main

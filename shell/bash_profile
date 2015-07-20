@@ -24,10 +24,10 @@ enable_programmable_completion() {
 get_os() {
 
     declare -r OS_NAME="$(uname -s)"
-    local os=""
+    local os=''
 
     if [ "$OS_NAME" == "Darwin" ]; then
-        os="osx"
+        os='osx'
     fi
 
     printf "%s" "$os"
@@ -35,16 +35,16 @@ get_os() {
 
 source_bash_files() {
 
-    local file=""
-    local i=""
+    local file=''
+    local i=''
 
     declare -r -a FILES_TO_SOURCE=(
-        "bash_aliases"
-        "bash_exports"
-        "bash_functions"
-        "bash_options"
-        "bash_prompt"
-        "bash.local"  # for local settings that should
+        'bash_aliases'
+        'bash_exports'
+        'bash_functions'
+        'bash_options'
+        'bash_prompt'
+        'bash.local'  # for local settings that should
                       # not be under version control
     )
 
