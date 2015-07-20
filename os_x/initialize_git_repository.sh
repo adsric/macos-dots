@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" && source "utils.sh"
+cd "$(dirname "${BASH_SOURCE}")" \
+    && source 'utils.sh'
 
 # ------------------------------------------------------------------------------
 
@@ -8,16 +9,25 @@ main() {
 
     declare -r GIT_ORIGIN="$1"
 
-    if [ -n "$GIT_ORIGIN" ] && ! is_git_repository; then
+    # --------------------------------------------------------------------------
+
+    [ -z "$GIT_ORIGIN" ] \
+        && print_error 'Please provide a URL for the Git origin'
+
+    # --------------------------------------------------------------------------
+
+    is_git_repository
+
+    if [ $? -eq 1 ]; then
 
         # Run the following Git commands in the root of
-        # the dotfiles directory, not in the `os_x/` directory
+        # the dotfiles directory, not in the `os/` directory
         cd ..
 
         git init &> /dev/null \
             && git remote add origin "$GIT_ORIGIN" &> /dev/null
 
-        print_result $? "Initialize the Git repository"
+        print_result $? 'Initialize the Git repository'
 
     fi
 

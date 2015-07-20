@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" && source "../utils.sh"
+cd "$(dirname "${BASH_SOURCE}")" \
+    && source '../utils.sh'
 
 # ------------------------------------------------------------------------------
 
@@ -16,10 +17,6 @@ set_transmission_preferences() {
              defaults write org.m0k.transmission DownloadFolder -string "$HOME/Downloads"' \
         'Use "~/Downloads" to store complete downloads'
 
-    execute 'defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true &&
-             defaults write org.m0k.transmission IncompleteDownloadFolder -string "$HOME/Downloads/torrents"' \
-        'Use "~/Downloads/torrents" to store incomplete downloads'
-
     execute 'defaults write org.m0k.transmission WarningDonate -bool false' \
         'Hide the donate message'
 
@@ -32,10 +29,10 @@ set_transmission_preferences() {
 
 main() {
 
-    print_in_purple "\n  Transmission\n\n"
+    print_in_purple '\n  Transmission\n\n'
     set_transmission_preferences
 
-  killall "Transmission" &> /dev/null
+    killall 'Transmission' &> /dev/null
 
 }
 

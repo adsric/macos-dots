@@ -33,9 +33,8 @@ ask_for_sudo() {
 }
 
 cmd_exists() {
-    [ -x "$(command -v "$1")" ] \
-        && printf 0 \
-        || printf 1
+    command -v "$1" &> /dev/null
+    return $?
 }
 
 execute() {
@@ -50,10 +49,10 @@ get_answer() {
 get_os() {
 
     declare -r OS_NAME="$(uname -s)"
-    local os=""
+    local os=''
 
     if [ "$OS_NAME" == "Darwin" ]; then
-        os="osx"
+        os='osx'
     fi
 
     printf "%s" "$os"
@@ -61,9 +60,8 @@ get_os() {
 }
 
 is_git_repository() {
-    [ "$(git rev-parse &>/dev/null; printf $?)" -eq 0 ] \
-        && return 0 \
-        || return 1
+    git rev-parse &> /dev/null
+    return $?
 }
 
 mkd() {

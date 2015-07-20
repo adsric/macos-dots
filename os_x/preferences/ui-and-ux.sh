@@ -1,13 +1,14 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" && source "../utils.sh"
+cd "$(dirname "${BASH_SOURCE}")" \
+    && source '../utils.sh'
 
 # ------------------------------------------------------------------------------
 
 set_ui_and_ux_preferences() {
 
-    execute "defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true" \
-        "Avoid creating '.DS_Store' files on network volumes"
+    execute 'defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true' \
+        'Avoid creating ".DS_Store" files on network volumes'
 
     execute 'defaults write com.apple.menuextra.battery ShowPercent -string "NO"' \
         'Hide battery percentage from the menu bar'
@@ -55,8 +56,8 @@ set_ui_and_ux_preferences() {
     execute 'defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true' \
         'Expand print panel by default'
 
-    execute "sudo systemsetup -setrestartfreeze on" \
-        "Restart automatically if the computer freezes"
+    execute 'sudo systemsetup -setrestartfreeze on' \
+        'Restart automatically if the computer freezes'
 
     execute 'sudo defaults write /Library/Preferences/com.apple.Bluetooth.plist ControllerPowerState 0 &&
              sudo launchctl unload /System/Library/LaunchDaemons/com.apple.blued.plist &&
@@ -77,8 +78,8 @@ set_ui_and_ux_preferences() {
             ' \
         'Hide Time Machine and Volume icons from the menu bar'
 
-      execute "sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName" \
-        "Reveal IP address, hostname, OS version from login clock"
+      execute 'sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName' \
+        'Reveal IP address, hostname, OS version from login clock'
 
 }
 
@@ -86,7 +87,7 @@ set_ui_and_ux_preferences() {
 
 main() {
 
-    print_in_purple "\n  UI & UX\n\n"
+    print_in_purple '\n  UI & UX\n\n'
     set_ui_and_ux_preferences
 
 }

@@ -1,16 +1,17 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" && source "../utils.sh"
+cd "$(dirname "${BASH_SOURCE}")" \
+    && source '../utils.sh'
 
 # ------------------------------------------------------------------------------
 
 set_terminal_preferences() {
 
-    execute "defaults write com.apple.terminal FocusFollowsMouse -string true" \
-        "Make the focus automatically follow the mouse"
+    execute 'defaults write com.apple.terminal FocusFollowsMouse -string true' \
+        'Make the focus automatically follow the mouse'
 
-    execute "defaults write com.apple.terminal StringEncodings -array 4" \
-        "Only use UTF-8"
+    execute 'defaults write com.apple.terminal StringEncodings -array 4' \
+        'Only use UTF-8'
 
     osascript <<EOD
 
@@ -57,13 +58,13 @@ set_terminal_preferences() {
     end tell
 
 EOD
-    print_result $? "Set custom terminal theme"
+    print_result $? 'Set custom terminal theme'
 
     open "${HOME}/Projects/dotfiles/os_x/preferences/Solarized Dark.itermcolors"
-    print_result $? "Set custom iTerm theme"
+    print_result $? 'Set custom iTerm theme'
 
-    execute "defaults write com.googlecode.iterm2 PromptOnQuit -bool false" \
-      "Removing quit prompt from iTerm"
+    execute 'defaults write com.googlecode.iterm2 PromptOnQuit -bool false' \
+      'Removing quit prompt from iTerm'
 
 }
 
@@ -71,7 +72,7 @@ EOD
 
 main() {
 
-    print_in_purple "\n  Terminal\n\n"
+    print_in_purple '\n  Terminal\n\n'
     set_terminal_preferences
 
 }
