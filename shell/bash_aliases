@@ -4,31 +4,31 @@
 # | Navigation                                                                 |
 # ------------------------------------------------------------------------------
 
-alias ~="cd ~"
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias cd..="cd .."
+alias ~='cd ~'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias cd..='cd ..'
 
 # ------------------------------------------------------------------------------
 
 # Folders
 
-alias d="cd ~/Dropbox"
-alias dl="cd ~/Downloads"
-alias dt="cd ~/Desktop"
-alias p="cd ~/Projects"
+alias d='cd ~/Dropbox'
+alias dl='cd ~/Downloads'
+alias dt='cd ~/Desktop'
+alias p='cd ~/Projects'
 
 # ------------------------------------------------------------------------------
 # | Network                                                                    |
 # ------------------------------------------------------------------------------
 
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
 
 # ------------------------------------------------------------------------------
 
 if [ "$OS" == "osx" ]; then
-    alias localip="ipconfig getifaddr en0"
+    alias localip='ipconfig getifaddr en0'
 fi
 
 # ------------------------------------------------------------------------------
@@ -39,10 +39,10 @@ fi
 # https://docs.npmjs.com/
 
 if [ -x "$(command -v npm)" ]; then
-    alias npmi="npm install"
-    alias npmr="npm uninstall"
-    alias npms="npm search"
-    alias npmu="npm update"
+    alias npmi='npm install'
+    alias npmr='npm uninstall'
+    alias npms='npm search'
+    alias npmu='npm update'
 fi
 
 # ------------------------------------------------------------------------------
@@ -53,13 +53,13 @@ fi
 # http://brew.sh/
 
 if [ -x "$(command -v brew)" ]; then
-    alias brewd="brew doctor"
-    alias brewi="brew install"
-    alias brewr="brew uninstall"
-    alias brews="brew search"
-    alias brewu="brew update &&  \
-                 brew upgrade --all && \
-                 brew cleanup"
+    alias brewd='brew doctor'
+    alias brewi='brew install'
+    alias brewr='brew uninstall'
+    alias brews='brew search'
+    alias brewu='brew update \
+                 && brew upgrade --all \
+                 && brew cleanup'
 fi
 
 # ------------------------------------------------------------------------------
@@ -67,27 +67,29 @@ fi
 # Update
 
 if [ "$OS" == "osx" ]; then
-    alias update="sudo softwareupdate --install --all && \
-                  brewu && \
-                  npmi -g npm && \
-                  npmu -g"
+    alias update='sudo softwareupdate --install --all \
+                  && brew update \
+                  && brew upgrade --all \
+                  && brew cleanup \
+                  && npm install -g npm \
+                  && npm update -g'
 fi
 
 # ------------------------------------------------------------------------------
 # | Shorter Commands                                                           |
 # ------------------------------------------------------------------------------
 
-alias :q="exit"
-alias c="clear"
-alias ch="history -c && > ~/.bash_history"
-alias g="git"
-alias q="exit"
-alias rm="rm -rf"
+alias :q='exit'
+alias c='clear'
+alias ch='history -c && > ~/.bash_history'
+alias g='git'
+alias q='exit'
+alias rm='rm -rf'
 
 # Intuitive map function
 # For example, to list all directories that contain a certain file:
 # find . -name .gitattributes | map dirname
-alias map="xargs -n1"
+alias map='xargs -n1'
 
 # ------------------------------------------------------------------------------
 
@@ -106,7 +108,7 @@ alias lsd="ls -lF | grep --color=never '^d'"
 
 # Copy to clipboard
 
-alias cc="pbcopy"
+alias cc='pbcopy'
 
 # ------------------------------------------------------------------------------
 
@@ -129,9 +131,10 @@ if [ "$OS" == "osx" ]; then
     # Empty the trash, the main HDD and on all mounted volumes
     # and clear Apple’s system logs to improve shell startup speed
 
-    alias emptytrash="sudo rm -frv /Volumes/*/.Trashes && \
-                      sudo rm -frv ~/.Trash &&
-                      sudo rm -frv /private/var/log/asl/*.asl"
+    alias empty-trash='sudo rm -frv /Volumes/*/.Trashes \
+                       && sudo rm -frv ~/.Trash
+                       && sudo rm -frv /private/var/log/asl/*.asl'
+
 fi
 
 # ------------------------------------------------------------------------------
@@ -139,19 +142,23 @@ fi
 # Hide/Show files
 
 # Hide/Show desktop icons
-alias hide-desktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-alias show-desktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+alias hide-desktop='defaults write com.apple.finder CreateDesktop -bool false \
+  && killall Finder'
+alias show-desktop='defaults write com.apple.finder CreateDesktop -bool true \
+  && killall Finder'
 
 # Hide/Show hidden files in Finder
-alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
-alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hide='defaults write com.apple.finder AppleShowAllFiles -bool false \
+  && killall Finder'
+alias show='defaults write com.apple.finder AppleShowAllFiles -bool true \
+  && killall Finder'
 
 # ------------------------------------------------------------------------------
 
 # Lock screen
 
 if [ "$OS" == "osx" ]; then
-    alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+    alias afk='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
 fi
 
 # ------------------------------------------------------------------------------
@@ -159,4 +166,4 @@ fi
 # Merge PDF files
 # Usage: `mergepdf -o output.pdf input{1,2,3}.pdf`
 
-alias mergepdf="/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py"
+alias mergepdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
