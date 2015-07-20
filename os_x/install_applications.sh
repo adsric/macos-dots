@@ -7,27 +7,31 @@ cd "$(dirname "${BASH_SOURCE}")" \
 
 brew_install() {
 
-  declare -r CMD="$3"
-  declare -r FORMULA="$2"
-  declare -r FORMULA_READABLE_NAME="$1"
+    declare -r CMD="$3"
+    declare -r FORMULA="$2"
+    declare -r FORMULA_READABLE_NAME="$1"
 
-  brew "$CMD" list "$FORMULA" &> /dev/null \
-
-    && print_success "$FORMULA_READABLE_NAME" \
-    || execute "brew $CMD install $FORMULA" "$FORMULA_READABLE_NAME"
+    if brew "$CMD" list "$FORMULA" &> /dev/null; then
+        print_success "$FORMULA_READABLE_NAME"
+    else
+        execute "brew $CMD install $FORMULA" "$FORMULA_READABLE_NAME"
+    fi
 
 }
 
 brew_tap() {
 
-  declare -r REPOSITORY="$1"
+    declare -r REPOSITORY="$1"
 
-  brew tap "$REPOSITORY" &> /dev/null
+    brew tap "$REPOSITORY" &> /dev/null
 
-  brew tap | grep "$REPOSITORY" &> /dev/null \
-
-    && (print_success "brew tap ($REPOSITORY)\n"; return 0) \
-    || (print_error "brew tap ($REPOSITORY)\n"; return 1)
+    if brew tap | grep "$REPOSITORY" &> /dev/null; then
+        print_success "brew tap ($REPOSITORY)\n"
+        return 0
+    else
+        print_error "brew tap ($REPOSITORY)\n"
+        return 1
+    fi
 
 }
 
@@ -63,19 +67,15 @@ main() {
 
   # Homebrew
 
-  cmd_exists 'brew'
-
-  if [ $? -eq 1 ]; then
+  if ! cmd_exists 'brew'; then
       printf "\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" &> /dev/null
       #  └─ simulate the ENTER keypress
       print_result $? 'brew'
   fi
 
-  cmd_exists 'brew'
-
-  if [ $? -eq 0 ]; then
-      execute 'brew update" "brew (update)'
-      execute 'brew upgrade --all" "brew (upgrade)'
+  if cmd_exists 'brew'; then
+    execute 'brew update' 'brew (update)'
+    execute 'brew upgrade --all' 'brew (upgrade)'
 
       print_in_green '\n  ---\n\n'
 
