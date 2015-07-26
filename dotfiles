@@ -211,8 +211,8 @@ main() {
 
     # Load utils
 
-    [ -x 'os_x/utils.sh' ] \
-        && source 'os_x/utils.sh' \
+    [ -x 'os/utils.sh' ] \
+        && source 'os/utils.sh' \
         || ( download_utils || exit 1 )
 
     # --------------------------------------------------------------------------
@@ -234,7 +234,7 @@ main() {
     # --------------------------------------------------------------------------
 
     print_info 'Create symbolic links'
-    ./os_x/create_symbolic_links.sh
+    ./os/create_symbolic_links.sh
 
     # --------------------------------------------------------------------------
 
@@ -244,13 +244,13 @@ main() {
     printf '\n'
 
     if answer_is_yes; then
-        ./os_x/install_applications.sh
+        ./os/install_applications.sh
         printf '\n'
 
-        ./os_x/change_default_bash_version.sh
+        ./os/change_default_bash_version.sh
         printf '\n'
 
-        ./os_x/install_npm_packages.sh
+        ./os/install_npm_packages.sh
     fi
 
     # --------------------------------------------------------------------------
@@ -261,7 +261,7 @@ main() {
     printf '\n'
 
     if answer_is_yes; then
-        ./os_x/set_preferences.sh
+        ./os/set_preferences.sh
     fi
 
     # --------------------------------------------------------------------------
@@ -281,7 +281,7 @@ main() {
         printf '\n'
 
         if answer_is_yes; then
-            ./os_x/update_content.sh
+            ./os/update_content.sh
         fi
 
     fi
@@ -296,7 +296,7 @@ main() {
         printf '\n'
 
         if answer_is_yes; then
-            ./os_x/install_vim_plugins.sh
+            ./os/install_vim_plugins.sh
         fi
 
     fi
@@ -309,7 +309,7 @@ main() {
     printf '\n'
 
     if answer_is_yes; then
-        ./os_x/restart_computer.sh
+        ./os/restart_computer.sh
     fi
 
 }
