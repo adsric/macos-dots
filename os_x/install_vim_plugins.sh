@@ -8,11 +8,15 @@ cd "$(dirname "${BASH_SOURCE}")" \
 main() {
 
     # Check if `Git` is installed
-    cmd_exists 'git'
-    if [ $? -eq 1 ]; then
+
+    if ! cmd_exists 'git'; then
         print_error 'Git is required, please install it!\n'
         exit 1
     fi
+
+    # --------------------------------------------------------------------------
+
+    # Install / Update vim plugins
 
     rm -rf ~/.vim/plugins/Vundle.vim &> /dev/null \
         && git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/plugins/Vundle.vim &> /dev/null \
@@ -20,7 +24,7 @@ main() {
         #     └─ simulate the ENTER keypress for
         #        the case where there are warnings
 
-    print_result $? 'Install Vim plugins'
+    print_result $? 'Install/Update Vim plugins'
 
 }
 

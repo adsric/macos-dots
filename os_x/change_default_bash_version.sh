@@ -12,24 +12,23 @@ main() {
     # --------------------------------------------------------------------------
 
     # Check if `brew` is installed
-    cmd_exists 'brew'
-    if [ $? -eq 1 ]; then
-        print_error 'Brew is required, please install it!\n'
+    if ! cmd_exists 'brew'; then
+        print_error 'Homebrew is required, please install it!\n'
         exit 1
-    fi
+      fi
 
-    # Check is `bash` is installed
-    brew list bash &> /dev/null
-    if [ $? -ne 0 ]; then
-        print_error 'Bash is required, please install it!\n'
+    # --------------------------------------------------------------------------
+
+    # Check is `Bash 4.x` is installed
+
+    if ! brew list bash &> /dev/null; then
+        print_error 'Bash 4.x is required, please install it!\n'
         exit 1
     fi
 
     # --------------------------------------------------------------------------
 
-    HOMEBREW_PREFIX="$(brew --prefix)"
-
-    # Add the path of the bash version installed through Homebrew
+    # Add the path of the Bash version installed through Homebrew
     # to the list of login shells from the `/etc/shells` file.
     #
     # This needs to be done because applications use this file to
@@ -39,6 +38,8 @@ main() {
     #
     # http://www.linuxfromscratch.org/blfs/view/7.4/postlfs/etcshells.html
 
+    HOMEBREW_PREFIX="$(brew --prefix)"
+
     if [ -z "$(cat /etc/shells | grep "$HOMEBREW_PREFIX")" ]; then
         sudo sh -c "printf \"$HOMEBREW_PREFIX/bin/bash\n\" >> /etc/shells"
         print_result $? "Add \`$HOMEBREW_PREFIX/bin/bash\` in \`/etc/shells\`"
@@ -46,7 +47,7 @@ main() {
 
     # --------------------------------------------------------------------------
 
-    # Make OS X use the bash version installed through Homebrew
+    # Make OS X use the Bash version installed through Homebrew
     #
     # https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/chsh.1.html
 

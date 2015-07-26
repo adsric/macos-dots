@@ -16,14 +16,17 @@ declare -r -a NPM_PACKAGES=(
 main() {
 
     # Check if `npm` is installed
-    cmd_exists 'npm'
-    if [ $? -eq 1 ]; then
+    if ! cmd_exists 'npm'; then
         print_error 'npm is required, please install it!\n'
         exit 1
-    fi
+      fi
+
+    # --------------------------------------------------------------------------
 
     # Make sure the most recent version of `npm` is installed
     execute 'npm install --global npm' 'npm (update)'
+
+    # --------------------------------------------------------------------------
 
     # Install the `npm` packages
     for i in ${NPM_PACKAGES[@]}; do

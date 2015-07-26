@@ -17,6 +17,8 @@
     ulc = reset --soft HEAD~1                           # Undo last commit
     up  = push -f origin HEAD^:master                   # Undo a `git push`
 
+    # --------------------------------------------------------------------------
+
     # Add untracked, remove deleted, and show status
     adda = !git add -A && git status
 
@@ -58,12 +60,16 @@
     branches = branch -a
     remotes = remote -v
 
+    # --------------------------------------------------------------------------
+
     # Credit an author on the latest commit
     credit = "!f() { \
         if [ -n \"$1\" ] && [ -n \"$2\" ]; then \
             git commit --amend --author \"$1 <$2>\" -C HEAD; \
         fi \
     }; f"
+
+    # --------------------------------------------------------------------------
 
     # Merge GitHub pull request on top of the `master` branch
     mpr = "!f() { \
@@ -78,22 +84,26 @@
     }; f"
 
 [color "branch"]
+
     current = yellow reverse
     local = yellow
     remote = green
 
 [color "diff"]
+
     meta = yellow bold
     frag = magenta bold # line info
     old = red # deletions
     new = green # additions
 
 [color "status"]
+
     added = yellow
     changed = green
     untracked = cyan
 
 [core]
+
     attributesfile = ~/.gitattributes
     autocrlf = input
     editor = vim
@@ -104,10 +114,12 @@
     trustctime = false
 
 [diff]
+
     # Detect copies as well as renames
     renames = copies
 
 [pretty]
+
     custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
     #                     │        │            │            │             └─ author name
     #                     │        │            │            └─ message
@@ -116,6 +128,7 @@
     #                     └─ hash (abbreviated)
 
 [push]
+
     default = simple
 
     # Make `git push` push relevant
@@ -123,8 +136,10 @@
     followTags = true
 
 [help]
+
     # Automatically correct and execute mistyped commands
     autocorrect = 1
 
 [include]
+
     path = ~/.gitconfig.local
