@@ -11,15 +11,12 @@ The snippet will:
 
 * Download the dotfiles on your computer (by default it will suggest
   `~/Projects/dotfiles`)
-* Create some additional [directories](os_x/create_directories.sh)
-* [Symlink](os_x/create_symbolic_links.sh) the
+* [Symlink](os/create_symbolic_links.sh) the
   [git](git),
   [shell](shell), and
   [vim](vim) files
-* Install applications / command-line tools for
-  [OS X](os_x/install_applications.sh) /
-* Set custom
-  [OS X](os_x/set_preferences.sh) /
+* Install applications/command-line tools for [OS X](os/install_applications.sh)
+* Set custom [OS X](os/set_preferences.sh) preferences
 * Install [vim plugins](vim/vim/plugins)
 
 
@@ -66,9 +63,11 @@ __Note:__ Use `~/.gitconfig.local` to store sensitive information such
 as the `git` user credentials, e.g.:
 
 ```bash
+
 [user]
     name = Adam Richardson
     email = adam@example.com
+
 ```
 
 #### `~/.vimrc.local`
@@ -93,7 +92,9 @@ username with your own in the [setup snippets](#setup) and in the
 To update the dotfiles, just run the [`dotfiles`](dotfiles) script.
 
 ```bash
+
 $ ./dotfiles
+
 ```
 
 The update process will do basically the same things as setup,
@@ -107,7 +108,7 @@ Inspiration and code was taken from many sources, including:
 
 * [Mathias Bynens'](https://github.com/mathiasbynens)
   [dotfiles](https://github.com/mathiasbynens/dotfiles)
-* [Cătălin Mariș](https://github.com/alrra)
+* [Cătălin Mariș's](https://github.com/alrra)
   [dotfiles](https://github.com/alrra/dotfiles)
 
 
