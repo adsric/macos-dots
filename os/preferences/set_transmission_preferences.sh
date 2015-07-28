@@ -32,7 +32,7 @@ main() {
     print_in_purple '\n  Transmission\n\n'
     set_transmission_preferences
 
-    killall 'Transmission' &> /dev/null
+  killall 'Transmission' &> /dev/null
 
 }
 
