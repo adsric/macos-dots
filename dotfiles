@@ -205,7 +205,7 @@ main() {
     # relative to the dotfiles directory root
     # http://mywiki.wooledge.org/BashFAQ/028
 
-    cd "$(dirname "${BASH_SOURCE}")";
+    cd "$(dirname "$BASH_SOURCE")";
 
     # --------------------------------------------------------------------------
 

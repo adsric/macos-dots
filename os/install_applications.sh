@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE}")" \
+cd "$(dirname "$BASH_SOURCE")" \
     && source 'utils.sh'
 
 # ------------------------------------------------------------------------------
@@ -70,7 +70,7 @@ main() {
   if ! cmd_exists 'brew'; then
       printf "\n" | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" &> /dev/null
       #  └─ simulate the ENTER keypress
-      print_result $? 'brew'
+      print_result $? 'Homebrew'
   fi
 
   if cmd_exists 'brew'; then
@@ -84,15 +84,15 @@ main() {
       # Homebrew Formulae
       # https://github.com/Homebrew/homebrew
 
-      brew_install 'Bash 4' 'bash'
-      brew_install 'Cask' 'caskroom/cask/brew-cask'
+      brew_install 'Bash 4.x' 'bash'
+      brew_install 'Homebrew Cask' 'caskroom/cask/brew-cask'
       brew_install 'FFmpeg' 'ffmpeg'
       brew_install 'Git' 'git'
       brew_install 'ImageMagick' 'imagemagick --with-webp'
       brew_install 'node' 'node'
       brew_install 'tmux' 'tmux'
       brew_install 'tree' 'tree'
-      brew_install 'vim' 'vim --override-system-vi'
+      brew_install 'Vim' 'vim --override-system-vi'
       brew_install 'Zopfli' 'zopfli'
 
       print_in_green '\n  ---\n\n'
@@ -155,8 +155,8 @@ main() {
 
       brew_tap 'bramstein/webfonttools' \
         && (
-          brew_install 'TTF/OTF → WOFF (Zopfli)' 'sfnt2woff-zopfli'
           brew_install 'TTF/OTF → WOFF' 'sfnt2woff'
+          brew_install 'TTF/OTF → WOFF (Zopfli)' 'sfnt2woff-zopfli'
           brew_install 'WOFF2' 'woff2'
         )
       print_in_green '\n  ---\n\n'
