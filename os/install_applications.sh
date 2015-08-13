@@ -115,9 +115,6 @@ main() {
         && (
           brew_install 'Chrome' 'google-chrome' 'cask'
           brew_install 'Dropbox' 'dropbox' 'cask'
-          brew_install 'Firefox' 'firefox' 'cask'
-          brew_install 'iTerm2' 'iterm2' 'cask'
-          brew_install 'Opera' 'opera' 'cask'
           brew_install 'Transmission' 'transmission' 'cask'
           brew_install 'Unarchiver' 'the-unarchiver' 'cask'
           brew_install 'VirtualBox' 'virtualbox' 'cask'

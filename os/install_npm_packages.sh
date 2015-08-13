@@ -8,7 +8,6 @@ cd "$(dirname "$BASH_SOURCE")" \
 declare -r -a NPM_PACKAGES=(
     'gulp'
     'jshint'
-    'jscs'
 )
 
 # ------------------------------------------------------------------------------
