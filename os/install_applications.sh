@@ -113,16 +113,13 @@ main() {
 
       brew_tap 'caskroom/cask' \
         && (
-          brew_install 'Atom' 'atom' 'cask'
           brew_install 'Chrome' 'google-chrome' 'cask'
           brew_install 'Dropbox' 'dropbox' 'cask'
           brew_install 'Firefox' 'firefox' 'cask'
-          brew_install 'ImageOptim' 'imageoptim' 'cask'
           brew_install 'iTerm2' 'iterm2' 'cask'
           brew_install 'Opera' 'opera' 'cask'
           brew_install 'Transmission' 'transmission' 'cask'
           brew_install 'Unarchiver' 'the-unarchiver' 'cask'
-          brew_install 'Vagrant' 'vagrant' 'cask'
           brew_install 'VirtualBox' 'virtualbox' 'cask'
           brew_install 'VLC' 'vlc' 'cask'
         )
@@ -137,9 +134,6 @@ main() {
       brew_tap 'caskroom/versions' \
         && (
           brew_install 'Chrome Canary' 'google-chrome-canary' 'cask'
-          brew_install 'Firefox Developer Edition' 'firefoxdeveloperedition' 'cask'
-          brew_install 'Firefox Nightly' 'firefox-nightly' 'cask'
-          brew_install 'Opera Beta' 'opera-beta' 'cask'
           brew_install 'Opera Developer' 'opera-developer' 'cask'
         )
 
