@@ -245,8 +245,8 @@ let g:neocomplcache_enable_at_startup=1
 " Inform Syntastic which checkers to use based on file types
 " https://github.com/scrooloose/syntastic#3-faq
 
-let g:syntastic_html_checkers = [ 'jshint' ]
-let g:syntastic_javascript_checkers = [ 'jshint' ]
+let g:syntastic_html_checkers = [ 'jshint', 'jscs' ]
+let g:syntastic_javascript_checkers = [ 'jshint', 'jscs' ]
 
 " Disable syntax checking by default
 let g:syntastic_mode_map = {
