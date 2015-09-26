@@ -114,7 +114,7 @@ main() {
       brew_tap 'caskroom/cask' \
         && (
           brew_install 'Chrome' 'google-chrome' 'cask'
-          brew_install 'Dropbox' 'dropbox' 'cask'
+          brew_install 'Google Drive' 'google-drive' 'cask'
           brew_install 'Transmission' 'transmission' 'cask'
           brew_install 'Unarchiver' 'the-unarchiver' 'cask'
           brew_install 'VirtualBox' 'virtualbox' 'cask'
