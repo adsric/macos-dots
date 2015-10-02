@@ -273,7 +273,7 @@ main() {
 
         if [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
             print_info 'Initialize Git repository'
-            ./os/initialize-git-repository.sh "$DOTFILES_ORIGIN"
+            ./os/initialize_git_repository.sh "$DOTFILES_ORIGIN"
         fi
 
         # ----------------------------------------------------------------------
