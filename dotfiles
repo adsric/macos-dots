@@ -203,6 +203,7 @@ main() {
 
     # Ensure that the following actions are made
     # relative to the dotfiles directory root
+    #
     # http://mywiki.wooledge.org/BashFAQ/028
 
     cd "$(dirname "$BASH_SOURCE")";
@@ -211,9 +212,11 @@ main() {
 
     # Load utils
 
-    [ -x 'os/utils.sh' ] \
-        && source 'os/utils.sh' \
-        || ( download_utils || exit 1 )
+    if [ -x 'os/utils.sh' ]; then
+        source 'os/utils.sh' || exit 1
+    else
+        download_utils || exit 1
+    fi
 
     # --------------------------------------------------------------------------
 
