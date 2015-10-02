@@ -9,22 +9,22 @@ main() {
 
   # XCode Command Line Tools
 
-  ./installs/install_xcode.sh
+  ./os_x/installs/install_xcode.sh
   print_in_green '\n  ---\n\n'
 
   # Homebrew
 
-  ./installs/install_homebrew.sh
+  ./os_x/installs/install_homebrew.sh
   print_in_green '\n  ---\n\n'
 
   # Homebrew Formulae
 
-  ./installs/install_homebrew_formulae.sh
+  ./os_x/installs/install_homebrew_formulae.sh
   print_in_green '\n  ---\n\n'
 
   # Homebrew Casks
 
-  ./installs/install_homebrew_casks.sh
+  ./os_x/installs/install_homebrew_casks.sh
   print_in_green '\n  ---\n\n'
 
   # Homebrew Updates
