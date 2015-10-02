@@ -27,6 +27,8 @@ main() {
 
     fi
 
+    print_in_green '\n  ---\n\n'
+
     # Homebrew Alternate Casks
     # https://github.com/caskroom/homebrew-versions
 

@@ -16,7 +16,7 @@ The snippet will:
   [shell](shell), and
   [vim](vim) files
 * Install applications/command-line tools for [OS X](os_x/install_applications.sh)
-* Set custom [OS X](os/set_preferences.sh) preferences
+* Set custom [OS X](os_x/set_preferences.sh) preferences
 * Install [vim plugins](vim/vim/plugins)
 
 

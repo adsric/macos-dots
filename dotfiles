@@ -248,12 +248,6 @@ main() {
 
     if answer_is_yes; then
         ./os_x/install_applications.sh
-        printf '\n'
-
-        ./os_x/change_default_bash_version.sh
-        printf '\n'
-
-        ./os_x/install_npm_packages.sh
     fi
 
     # --------------------------------------------------------------------------

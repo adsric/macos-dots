@@ -24,6 +24,8 @@ main() {
 
     fi
 
+    print_in_green '\n  ---\n\n'
+
     # Homebrew Versions Formulae
     # https://github.com/Homebrew/homebrew-versions
 
@@ -33,6 +35,8 @@ main() {
         brew_install 'Bash Completion 2' 'bash-completion2'
 
     fi
+
+    print_in_green '\n  ---\n\n'
 
     # Webfont tools
     # https://github.com/bramstein/homebrew-webfonttools
