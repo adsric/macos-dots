@@ -32,7 +32,6 @@ ask_for_sudo() {
 
 }
 
-
 brew_install() {
 
     declare -r CMD="$3"

@@ -7,7 +7,7 @@ cd "$(dirname "$BASH_SOURCE")" \
 
 set_github_ssh_key() {
 
-    declare -r GITHUB_SSH_URL='"https://github.com/settings/ssh'
+    declare -r GITHUB_SSH_URL='https://github.com/settings/ssh'
     local sshKeyFile='id_rsa.pub'
     local workingDirectory="$(pwd)"
 
