@@ -15,7 +15,7 @@ The snippet will:
   [git](git),
   [shell](shell), and
   [vim](vim) files
-* Install applications/command-line tools for [OS X](os/install_applications.sh)
+* Install applications/command-line tools for [OS X](os_x/install_applications.sh)
 * Set custom [OS X](os/set_preferences.sh) preferences
 * Install [vim plugins](vim/vim/plugins)
 

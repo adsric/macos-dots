@@ -60,7 +60,7 @@ set_terminal_preferences() {
 EOD
     print_result $? 'Set custom terminal theme'
 
-    open "${HOME}/Projects/dotfiles/os/preferences/Solarized Dark.itermcolors"
+    open "${HOME}/Projects/dotfiles/os_x/preferences/Solarized Dark.itermcolors"
     print_result $? 'Set custom iTerm theme'
 
     execute 'defaults write com.googlecode.iterm2 PromptOnQuit -bool false' \
