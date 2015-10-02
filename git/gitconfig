@@ -10,10 +10,10 @@
     dc  = diff --cached
     g   = log --graph --pretty=custom                   # Show custom graph
     l   = log --pretty=custom                           # Show custom log
-    s   = status -s                                     # Working tree (short)
-    st  = status                                        # Working tree
     lc  = shortlog --summary --numbered                 # List contributors
     rlc = !git reset --hard HEAD~1                      # Remove last commit
+    s   = status -s                                     # Working tree (short)
+    st  = status                                        # Working tree
     ulc = reset --soft HEAD~1                           # Undo last commit
     up  = push -f origin HEAD^:master                   # Undo a `git push`
 
@@ -63,6 +63,7 @@
     # --------------------------------------------------------------------------
 
     # Credit an author on the latest commit
+
     credit = "!f() { \
         if [ -n \"$1\" ] && [ -n \"$2\" ]; then \
             git commit --amend --author \"$1 <$2>\" -C HEAD; \
@@ -71,7 +72,17 @@
 
     # --------------------------------------------------------------------------
 
+    # List remote branches
+
+    lrb = "!f() { \
+        remote="${1:-origin}"; \
+        git ls-remote --heads "$remote"; \
+    }; f"
+
+    # --------------------------------------------------------------------------
+
     # Merge GitHub pull request on top of the `master` branch
+
     mpr = "!f() { \
         if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
             git fetch origin refs/pull/$1/head:pr/$1 && \
@@ -85,22 +96,22 @@
 
 [color "branch"]
 
-    current = yellow reverse
-    local = yellow
-    remote = green
+    current = green bold
+    local = green
+    remote = yellow
 
 [color "diff"]
 
-    meta = yellow bold
-    frag = magenta bold # line info
-    old = red # deletions
-    new = green # additions
+    frag = magenta
+    meta = yellow
+    new = green
+    old = red
 
 [color "status"]
 
-    added = yellow
-    changed = green
-    untracked = cyan
+    added = green reverse
+    changed = yellow reverse
+    untracked = red reverse
 
 [core]
 
@@ -112,11 +123,13 @@
 
     # Make `git rebase` safer on OS X
     # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+
     trustctime = false
 
 [diff]
 
     # Detect copies as well as renames
+
     renames = copies
 
 [pretty]
@@ -134,11 +147,13 @@
 
     # Make `git push` push relevant
     # annotated tags when pushing branches out.
+
     followTags = true
 
 [help]
 
     # Automatically correct and execute mistyped commands
+
     autocorrect = 1
 
 [include]
