@@ -18,7 +18,6 @@ main() {
 
         brew_install 'Atom' 'atom' 'cask'
         brew_install 'Chrome' 'google-chrome' 'cask'
-        brew_install 'Chromium' 'chromium' 'cask'
         brew_install 'Google Drive' 'google-drive' 'cask'
         brew_install 'Firefox' 'firefox' 'cask'
         brew_install 'Opera' 'opera' 'cask'
