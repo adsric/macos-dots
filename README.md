@@ -41,15 +41,13 @@ Here is a very simple example of a `~/.bash.local` file:
 
 #!/bin/bash
 
+# ------------------------------------------------------------------------------
+
 # Set PATH additions
 
 PATH="/usr/local/bin:$PATH"
-PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 export PATH
-
-# Load RVM into shell session
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 ```
 
