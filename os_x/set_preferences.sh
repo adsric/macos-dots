@@ -21,7 +21,6 @@ main() {
     ./preferences/set_terminal_preferences.sh
     ./preferences/set_textedit_preferences.sh
     ./preferences/set_trackpad_preferences.sh
-    ./preferences/set_transmission_preferences.sh
     ./preferences/set_ui_and_ux_preferences.sh
 
     for i in ${PROCESSES_TO_TERMINATE[*]}; do
