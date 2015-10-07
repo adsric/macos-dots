@@ -11,7 +11,6 @@ main() {
         'cfprefsd'
     )
 
-    ./preferences/set_chrome_canary_preferences.sh
     ./preferences/set_chrome_preferences.sh
     ./preferences/set_dashboard_preferences.sh
     ./preferences/set_dock_preferences.sh
