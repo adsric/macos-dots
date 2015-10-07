@@ -5,7 +5,7 @@ cd "$(dirname "$BASH_SOURCE")" \
 
 # ------------------------------------------------------------------------------
 
-set_messages_preferences() {
+set_preferences() {
 
     execute 'defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticEmojiSubstitutionEnablediMessage" -bool false' \
         'Disable automatic emoji substitution (i.e. use plain text smileys)'
@@ -23,7 +23,7 @@ set_messages_preferences() {
 main() {
 
     print_in_purple '\n  Messages\n\n'
-    set_messages_preferences
+    set_preferences
 
 }
 

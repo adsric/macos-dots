@@ -5,7 +5,7 @@ cd "$(dirname "$BASH_SOURCE")" \
 
 # ------------------------------------------------------------------------------
 
-set_mail_preferences() {
+set_preferences() {
 
     execute 'defaults write com.apple.mail DisableReplyAnimations -bool true &&
              defaults write com.apple.mail DisableSendAnimations -bool true' \
@@ -32,7 +32,7 @@ set_mail_preferences() {
 main() {
 
     print_in_purple '\n  Mail\n\n'
-    set_mail_preferences
+    set_preferences
 
 }
 

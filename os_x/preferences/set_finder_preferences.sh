@@ -5,7 +5,7 @@ cd "$(dirname "$BASH_SOURCE")" \
 
 # ------------------------------------------------------------------------------
 
-set_finder_preferences() {
+set_preferences() {
 
     execute 'defaults write com.apple.finder QuitMenuItem -bool true' \
         'Allow quitting via ⌘ + Q; doing so will also hide desktop icons'
@@ -90,7 +90,7 @@ set_finder_preferences() {
 main() {
 
     print_in_purple '\n  Finder\n\n'
-    set_finder_preferences
+    set_preferences
 
   killall 'Finder' &> /dev/null
 
