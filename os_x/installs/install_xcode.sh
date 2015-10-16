@@ -23,14 +23,6 @@ main() {
 
         # ----------------------------------------------------------------------
 
-        # Point the `xcode-select` developer directory to
-        # the appropriate directory from within `Xcode.app`
-
-        sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
-        print_result $? 'Make "xcode-select" developer directory point to Xcode'
-
-        # ----------------------------------------------------------------------
-
         # Prompt user to agree to the terms of the Xcode license
 
         sudo xcodebuild -license
