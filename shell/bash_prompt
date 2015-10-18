@@ -234,6 +234,7 @@ main
 # ------------------------------------------------------------------------------
 
 # Unset functions in order to not pollute the global space
+
 unset -f enable_color_support
 unset -f main
 unset -f set_ls_colors
