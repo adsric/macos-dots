@@ -47,7 +47,8 @@ if command -v 'brew' &> /dev/null; then
     alias brews='brew search'
     alias brewu='brew update \
                  && brew upgrade --all \
-                 && brew cleanup'
+                 && brew cleanup \
+                 && brew cask cleanup'
 fi
 
 # ------------------------------------------------------------------------------
