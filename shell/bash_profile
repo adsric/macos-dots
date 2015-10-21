@@ -21,18 +21,6 @@ enable_programmable_completion() {
 
 }
 
-get_os() {
-
-    declare -r OS_NAME="$(uname -s)"
-    local os=''
-
-    if [ "$OS_NAME" == "Darwin" ]; then
-        os='osx'
-    fi
-
-    printf "%s" "$os"
-}
-
 source_bash_files() {
 
     local file=''
@@ -68,11 +56,6 @@ source_bin_folder() {
 
 main() {
 
-    # The presence of the OS variable in this scope is important as
-    # the following functions rely on it (e.g. the sourced files use
-    # it to determine what to execute)
-    declare -r OS="$(get_os)"
-
     source_bash_files
     source_bin_folder
     enable_programmable_completion
@@ -85,7 +68,6 @@ main
 
 # Unset functions in order to not pollute the global space
 unset -f enable_programmable_completion
-unset -f get_os
 unset -f main
 unset -f source_bash_files
 unset -f source_bin_folder
