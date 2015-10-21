@@ -35,18 +35,6 @@ fi
 # | Package Managers                                                           |
 # ------------------------------------------------------------------------------
 
-# npm
-# https://docs.npmjs.com/
-
-if command -v 'npm' &> /dev/null; then
-    alias npmi='npm install'
-    alias npmr='npm uninstall'
-    alias npms='npm search'
-    alias npmu='npm update'
-fi
-
-# ------------------------------------------------------------------------------
-
 # OS specific package managers
 
 # Homebrew
