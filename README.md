@@ -68,6 +68,27 @@ as the `git` user credentials, e.g.:
 
 ```
 
+#### `~/.ssh/config`
+
+If you're anything like me, you probably log in and out of a half dozen remote
+or local servers on a daily basis. And if you're even more like me, you have
+trouble remembering all of the various usernames and addresses then the ssh_config
+will make life easy.
+
+__Note:__ Because `~/.ssh/config` stores sensitive information it is not
+included in the repository e.g.:
+
+```bash
+
+# contents of ~/.ssh/config
+
+Host example
+    HostName example.com
+    Port 22
+    User exampleuser
+
+```
+
 #### `~/.vimrc.local`
 
 If the `~/.vimrc.local` file exists, it will be automatically sourced
