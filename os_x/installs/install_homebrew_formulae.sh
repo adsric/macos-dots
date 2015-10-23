@@ -17,6 +17,7 @@ main() {
         brew_install 'Git' 'git'
         brew_install 'ImageMagick' 'imagemagick --with-webp'
         brew_install 'node' 'node'
+        brew_install 'ssh copy id' 'ssh-copy-id'
         brew_install 'tmux' 'tmux'
         brew_install 'tree' 'tree'
         brew_install 'Vim' 'vim --override-system-vi'
