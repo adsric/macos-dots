@@ -25,7 +25,7 @@ main() {
     print_in_purple '\n  Chrome\n\n'
     set_preferences
 
-  killall 'Google Chrome' &> /dev/null
+    killall 'Google Chrome' &> /dev/null
 
 }
 

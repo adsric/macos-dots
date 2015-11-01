@@ -43,10 +43,10 @@ set_preferences() {
 
 main() {
 
-    print_in_purple "\n  Dock\n\n"
+    print_in_purple '\n  Dock\n\n'
     set_preferences
 
-  killall "Dock" &> /dev/null
+    killall 'Dock' &> /dev/null
 
 }
 
