@@ -24,7 +24,6 @@ main() {
     # Homebrew Formulae
 
     ./installs/install_homebrew_formulae.sh
-    ./change_default_bash_version.sh
     print_in_green '\n  ---\n\n'
 
     # --------------------------------------------------------------------------

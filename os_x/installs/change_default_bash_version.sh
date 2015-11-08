@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd "$(dirname "$BASH_SOURCE")" \
-    && source 'utils.sh'
+    && source '../utils.sh'
 
 # ------------------------------------------------------------------------------
 
@@ -48,7 +48,6 @@ main() {
     # --------------------------------------------------------------------------
 
     # Make OS X use the Bash version installed through Homebrew
-    #
     # https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/chsh.1.html
 
     chsh -s "$HOMEBREW_PREFIX/bin/bash" &> /dev/null

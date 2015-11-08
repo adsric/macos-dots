@@ -13,6 +13,9 @@ main() {
     if cmd_exists 'brew'; then
 
         brew_install 'Bash 4.x' 'bash'
+        ./change_default_bash_version.sh
+        print_in_green '\n  ---\n\n'
+
         brew_install 'FFmpeg' 'ffmpeg --with-fdk-aac --with-libvpx --with-x265'
         brew_install 'Git' 'git'
         brew_install 'ImageMagick' 'imagemagick --with-webp'
