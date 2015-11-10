@@ -15,7 +15,6 @@ main() {
     ./preferences/set_dashboard_preferences.sh
     ./preferences/set_dock_preferences.sh
     ./preferences/set_finder_preferences.sh
-    ./preferences/set_itunes_preferences.sh
     ./preferences/set_keyboard_preferences.sh
     ./preferences/set_mail_preferences.sh
     ./preferences/set_messages_preferences.sh
