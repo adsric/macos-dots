@@ -1,64 +1,87 @@
 [alias]
 
-    a   = commit --amend
-    br  = branch
-    c   = commit
-    ca  = !git add -A && git commit                     # Commit all changes
-    co  = checkout
-    cp  = cherry-pick
-    d   = diff
-    dc  = diff --cached
-    g   = log --graph --pretty=custom                   # Show custom graph
-    l   = log --pretty=custom                           # Show custom log
-    lc  = shortlog --summary --numbered                 # List contributors
-    rlc = !git reset --hard HEAD~1                      # Remove last commit
-    s   = status -s                                     # Working tree (short)
-    st  = status                                        # Working tree
-    ulc = reset --soft HEAD~1                           # Undo last commit
-    up  = push -f origin HEAD^:master                   # Undo a `git push`
+    a     = commit --amend
+    amend = commit --amend --reuse-message=HEAD     # Amend to latest commit
+    br    = branch
+    c     = commit
+    ca    = !git add -A && git commit               # Commit all changes
+    co    = checkout
+    cp    = cherry-pick
+    d     = diff
+    dc    = diff --cached
+    g     = log --graph --pretty=custom             # Show custom graph
+    l     = log --pretty=custom                     # Show custom log
+    lc    = shortlog --summary --numbered           # List contributors
+    rlc   = !git reset --hard HEAD~1                # Remove last commit
+    s     = status -s                               # Working tree (short)
+    st    = status                                  # Working tree
+    ulc   = reset --soft HEAD~1                     # Undo last commit
+    up    = push -f origin HEAD^:master             # Undo a `git push`
 
     # --------------------------------------------------------------------------
 
     # Add untracked, remove deleted, and show status
+
     adda = !git add -A && git status
 
-    # Amend the currently staged files to the latest commit
-    amend = commit --amend --reuse-message=HEAD
+    # --------------------------------------------------------------------------
 
     # `git clean -df`: remove untracked files and directories from the working tree
     # `git stash clear`: remove all stashed states
+
     cleanup = !git clean -df && git stash clear
+
+    # --------------------------------------------------------------------------
 
     # Remove branches that have already been merged with master
     # a.k.a. ‘delete merged’
+
     dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
-    # Find branches containing commit
-    fb = "!f() { git branch -a --contains $1; }; f"
-
-    # Find commits by source code
-    fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
-
-    # Find commits by commit message
-    fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
-
-    # Switch to a branch, creating it if necessary
-    go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+    # --------------------------------------------------------------------------
 
     # Interactive rebase with the given number of latest commits
+
     reb = "!r() { git rebase -i HEAD~$1; }; r"
 
-    # Remove the old tag with this name and tag the latest commit with it.
-    retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
+    # --------------------------------------------------------------------------
 
     # `git remote prune origin`: remove remote-tracking branches that were deleted from the remote repo
     # `git gc`: cleanup unnecessary files and optimize the local repository
+
     trim = !git remote prune origin && git gc
 
+    # --------------------------------------------------------------------------
+
     # Show verbose output about tags, branches or remotes
+
     tags = tag -l
     branches = branch -a
     remotes = remote -v
+
+    # --------------------------------------------------------------------------
+
+    # Switch to a branch, creating it if necessary
+
+    go = "!f() { \
+        git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; \
+    }; f"
+
+    # --------------------------------------------------------------------------
+
+    # Find commits by source code
+
+    fc = "!f() { \
+        git log --pretty=custom --decorate --date=short -S\"$1\"; \
+    }; f"
+
+    # --------------------------------------------------------------------------
+
+    # Find commits by commit message
+
+    fm = "!f() { \
+        git log --pretty=custom --decorate --date=short --grep=\"$1\"; \
+    }; f"
 
     # --------------------------------------------------------------------------
 
@@ -97,6 +120,17 @@
         git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
       fi \
     }; f"
+
+    # --------------------------------------------------------------------------
+
+    # Remove the tag with the specified tag name if exists,
+    # and tag the latest commit with that name
+
+    retag = "!f() { \
+        git tag -d "$1" &> /dev/null; \
+        git tag $1; \
+    }; f"
+
 
 [color "branch"]
 
