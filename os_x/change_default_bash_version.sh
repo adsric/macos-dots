@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd "$(dirname "$BASH_SOURCE")" \
-    && source '../utils.sh'
+    && source 'utils.sh'
 
 # ------------------------------------------------------------------------------
 
@@ -12,10 +12,11 @@ main() {
     # --------------------------------------------------------------------------
 
     # Check if `brew` is installed
+
     if ! cmd_exists 'brew'; then
         print_error 'Homebrew is required, please install it!\n'
         exit 1
-      fi
+    fi
 
     # --------------------------------------------------------------------------
 
@@ -42,7 +43,7 @@ main() {
 
     if [ -z "$(cat /etc/shells | grep "$HOMEBREW_PREFIX")" ]; then
         sudo sh -c "printf \"$HOMEBREW_PREFIX/bin/bash\n\" >> /etc/shells"
-        print_result $? "Add \`$HOMEBREW_PREFIX/bin/bash\` in \`/etc/shells\`"
+        print_result $? "Bash (add \`$HOMEBREW_PREFIX/bin/bash\` in \`/etc/shells\`)"
     fi
 
     # --------------------------------------------------------------------------
@@ -51,7 +52,7 @@ main() {
     # https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/chsh.1.html
 
     chsh -s "$HOMEBREW_PREFIX/bin/bash" &> /dev/null
-    print_result $? 'Use latest version of Bash'
+    print_result $? 'Bash (use latest version)'
 
 }
 
