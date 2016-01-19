@@ -47,7 +47,7 @@ set ignorecase                  " Ignore case in search patterns
 set incsearch                   " Highlight search pattern as
                                 " it is being typed
 
-set laststatus=2                " Always show the status line    
+set laststatus=2                " Always show the status line
 
 set lazyredraw                  " Do not redraw the screen while
                                 " executing macros, registers
@@ -368,13 +368,16 @@ if has('autocmd')
         "  * Markdown
         "    https://daringfireball.net/projects/markdown/syntax#block
 
-        let excludedFileTypes = [ 'mkd.markdown' ]
+        let excludedFileTypes = [
+            \ 'markdown',
+            \ 'mkd.markdown'
+        \]
 
         " Only strip the trailing whitespaces if the file type is
         " not in the excluded file types list
 
         autocmd!
-        autocmd BufWritePre * if index(excludedFileTypes, &ft) < 0
+        autocmd BufWritePre * if index(excludedFileTypes, &ft) < 0 | :call StripTrailingWhitespaces()
 
     augroup END
 
