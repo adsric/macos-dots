@@ -236,6 +236,17 @@ main() {
 
     # --------------------------------------------------------------------------
 
+    print_info 'Create directories'
+
+    ask_for_confirmation 'Do you want the additional directories to be created?'
+    printf '\n'
+
+    if answer_is_yes; then
+      ./os_x/create_directories.sh
+    fi
+
+    # --------------------------------------------------------------------------
+
     print_info 'Create symbolic links'
     ./os_x/create_symbolic_links.sh
 
