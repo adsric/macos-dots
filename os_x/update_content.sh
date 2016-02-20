@@ -41,9 +41,12 @@ set_github_ssh_key() {
 
     # Before proceeding, wait for everything to be ok
 
-    while [ "$(ssh -T git@github.com &> /dev/null; printf $?)" -ne 1 ]; do
+    while true; do
 
-        sleep 5;
+        ssh -T git@github.com &> /dev/null
+        [ $? -eq 1 ] && break
+
+        sleep 5
 
     done
 
@@ -57,13 +60,10 @@ set_github_ssh_key() {
 
 main() {
 
-    if is_git_repository; then
+   if is_git_repository; then
 
-        if [ "$(ssh -T git@github.com &> /dev/null; printf $?)" -ne 1 ]; then
-
-            set_github_ssh_key
-
-        fi
+        ssh -T git@github.com &> /dev/null
+        [ $? -ne 1 ] && set_github_ssh_key
 
         # Update content and remove untracked files
         git fetch --all &> /dev/null \
