@@ -63,11 +63,7 @@ brew_install() {
 
     # Install the specified formula
 
-    if brew "$CMD" list "$FORMULA" &> /dev/null; then
-        print_success "$FORMULA_READABLE_NAME"
-    else
-        execute "brew $CMD install $FORMULA" "$FORMULA_READABLE_NAME"
-    fi
+    execute "brew $CMD install $FORMULA" "$FORMULA_READABLE_NAME"
 
 }
 
