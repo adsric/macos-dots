@@ -1,8 +1,6 @@
 #!/bin/bash
 
 # ------------------------------------------------------------------------------
-# | Navigation                                                                 |
-# ------------------------------------------------------------------------------
 
 alias ~='cd ~'
 alias ..='cd ..'
@@ -12,29 +10,32 @@ alias cd..='cd ..'
 
 # ------------------------------------------------------------------------------
 
-# Folders
-
-alias d='cd ~/Dropbox'
 alias dl='cd ~/Downloads'
 alias dt='cd ~/Desktop'
-alias p='cd ~/Projects'
 alias wk='cd ~/Work'
+alias p='cd ~/Projects'
 
 # ------------------------------------------------------------------------------
-# | Network                                                                    |
-# ------------------------------------------------------------------------------
 
+alias :q='exit'
+alias c='clear'
+alias cc='pbcopy'
+alias ch='history -c && > ~/.bash_history'
+alias g='git'
+alias hosts='sudo $EDITOR /etc/hosts'
 alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
-
-# ------------------------------------------------------------------------------
-
 alias localip='ipconfig getifaddr en0'
+alias week='date +%V'
+alias l='ls -l'
+alias la='ls -la'
+alias lsd="ls -l | grep --color=never '^d'"
+alias m='man'
+alias map='xargs -n1'
+alias n='npm'
+alias q='exit'
+alias rm='rm -rf'
 
 # ------------------------------------------------------------------------------
-# | Package Managers                                                           |
-# ------------------------------------------------------------------------------
-
-# OS specific package managers
 
 # Homebrew
 # http://brew.sh/
@@ -52,41 +53,22 @@ fi
 
 # ------------------------------------------------------------------------------
 
-# Update
+# Clear DNS cache
 
-alias update='sudo softwareupdate --install --all \
-              && brew update \
-              && brew upgrade --all \
-              && brew cleanup \
-              && npm install -g npm \
-              && npm update -g'
-
-# ------------------------------------------------------------------------------
-# | Shorter Commands                                                           |
-# ------------------------------------------------------------------------------
-
-alias :q='exit'
-alias c='clear'
-alias ch='history -c && > ~/.bash_history'
-alias g='git'
-alias l='ls -l'
-alias la='ls -la'
-alias lsd="ls -l | grep --color=never '^d'"
-alias m='man'
-alias map='xargs -n1' # Intuitive map function
-                      # e.g.: list all directories that contain a certain file
-                      # find . -name .gitattributes | map dirname
-alias n='npm'
-alias q='exit'
-alias rm='rm -rf'
-
-
+alias clear-dns-cache='sudo dscacheutil -flushcache; \
+                       sudo killall -HUP mDNSResponder'
 
 # ------------------------------------------------------------------------------
 
-# Copy to clipboard
+# Empty Trash
 
-alias cc='pbcopy'
+# Empty the trash, the main HDD and on all mounted volumes
+# and clear Apple’s system logs to improve shell startup speed
+
+alias empty-trash='sudo rm -frv /Volumes/*/.Trashes; \
+                   sudo rm -frv ~/.Trash; \
+                   sudo rm -frv /private/var/log/asl/*.asl; \
+                   sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* "delete from LSQuarantineEvent"'
 
 # ------------------------------------------------------------------------------
 
@@ -96,45 +78,45 @@ alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | printf '=> Public key copied to 
 
 # ------------------------------------------------------------------------------
 
-# Edit hosts file
-
-alias hosts='sudo $EDITOR /etc/hosts'
-
-# ------------------------------------------------------------------------------
-
-# Empty Trash
-
-# Empty the trash, the main HDD and on all mounted volumes
-# and clear Apple’s system logs to improve shell startup speed
-
-alias emptytrash='sudo rm -frv /Volumes/*/.Trashes; \
-                   sudo rm -frv ~/.Trash; \
-                   sudo rm -frv /private/var/log/asl/*.asl; \
-                   sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* "delete from LSQuarantineEvent"'
-
-
-# ------------------------------------------------------------------------------
-
-# Clean up LaunchServices to remove duplicates in the “Open With” menu
+# Remove duplicates in the “Open With” menu
 
 alias lscleanup='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user \
   && killall Finder'
 
 # ------------------------------------------------------------------------------
 
-# Hide/Show files
+# Kill all the tabs in Chrome to free up memory
+# [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
+
+alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
+
+# ------------------------------------------------------------------------------
+
+# Stuff I never really use but cannot delete either because of http://xkcd.com/530/
+
+alias stfu="osascript -e 'set volume output muted true'"
+alias pumpitup="osascript -e 'set volume 4'"
+
+# ------------------------------------------------------------------------------
 
 # Hide/Show desktop icons
-alias hidedesktop='defaults write com.apple.finder CreateDesktop -bool false \
-  && killall Finder'
-alias showdesktop='defaults write com.apple.finder CreateDesktop -bool true \
-  && killall Finder'
+
+alias hide-desktop='defaults write com.apple.finder CreateDesktop -bool false && killall Finder'
+alias show-desktop='defaults write com.apple.finder CreateDesktop -bool true && killall Finder'
+
+# ------------------------------------------------------------------------------
 
 # Hide/Show hidden files in Finder
-alias hide='defaults write com.apple.finder AppleShowAllFiles -bool false \
-  && killall Finder'
-alias show='defaults write com.apple.finder AppleShowAllFiles -bool true \
-  && killall Finder'
+
+alias hide='defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder'
+alias show='defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder'
+
+# ------------------------------------------------------------------------------
+
+# Merge PDF files
+# Usage: `mergepdf -o output.pdf input{1,2,3}.pdf`
+
+alias mergepdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
 
 # ------------------------------------------------------------------------------
 
@@ -144,7 +126,11 @@ alias afk='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 # ------------------------------------------------------------------------------
 
-# Merge PDF files
-# Usage: `mergepdf -o output.pdf input{1,2,3}.pdf`
+# Update
 
-alias mergepdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
+alias update='sudo softwareupdate --install --all \
+              && brew update \
+              && brew upgrade --all \
+              && brew cleanup \
+              && npm install -g npm \
+              && npm update -g'
