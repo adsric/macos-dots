@@ -41,8 +41,8 @@ set_preferences() {
     execute 'defaults write NSGlobalDomain AppleFontSmoothing -int 2' \
         'Enable subpixel font rendering on non-Apple LCDs'
 
-    execute 'defaults write NSGlobalDomain AppleShowScrollBars -string "Automatic"' \
-        'Automatic scrollbars'
+    execute 'defaults write NSGlobalDomain AppleShowScrollBars -string "Always"' \
+        'Always show scrollbars'
 
     execute 'defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true' \
         'Disable automatic termination of inactive apps'
