@@ -5,7 +5,7 @@
 To setup the dotfiles, run the following snippet in the terminal:
 
 Snippet:
-`bash -c "$(curl -LsS https://raw.github.com/adsric/dotfiles/master/dotfiles)"`
+`bash -c "$(curl -LsS https://raw.github.com/adsric/dotfiles/master/setup.sh)"`
 
 The snippet will:
 
@@ -102,17 +102,18 @@ Same as `~/.vimrc.local` but for `~/.gvimrc`.
 ### Forks
 
 If you decide to fork this project, don't forget to substitute my
-username with your own in the [setup snippets](#setup) and in the
-`dotfiles` script.
+username with your own in the [setup snippets](#setup) and [in the
+`setup` script](https://github.com/adsric/dotfiles/blob/master/setup.sh#L3).
 
 
 ## Update
 
-To update the dotfiles, just run the [`dotfiles`](dotfiles) script.
+To update the dotfiles you can either run the [`setup`
+script](setup.sh).
 
 ```bash
 
-$ ./dotfiles
+$ ./setup
 
 ```
 
