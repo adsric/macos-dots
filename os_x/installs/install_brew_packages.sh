@@ -6,6 +6,7 @@ cd "$(dirname "$BASH_SOURCE")" \
 
 # Homebrew Packages
 
+brew_install 'ack!' 'ack'
 brew_install 'Dark Mode' 'dark-mode'
 brew_install 'FFmpeg' 'ffmpeg --with-fdk-aac --with-libvpx --with-x265'
 brew_install 'Git' 'git'
@@ -17,6 +18,7 @@ brew_install 'tree' 'tree'
 brew_install 'TTF/OTF → WOFF (Zopfli)' 'sfnt2woff-zopfli' 'bramstein/webfonttools'
 brew_install 'TTF/OTF → WOFF' 'sfnt2woff' 'bramstein/webfonttools'
 brew_install 'WOFF2' 'woff2' 'bramstein/webfonttools'
+brew_install 'Wget' 'wget --with-iri'
 brew_install 'Vim' 'vim --override-system-vi'
 brew_install 'Zopfli' 'zopfli'
 
