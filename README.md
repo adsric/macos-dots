@@ -65,6 +65,7 @@ as the `git` user credentials, e.g.:
 [user]
     name = Adam Richardson
     email = adam@example.com
+    signingkey = XXXXXXXX
 
 ```
 
