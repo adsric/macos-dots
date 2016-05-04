@@ -12,6 +12,7 @@ brew_install 'FFmpeg' 'ffmpeg --with-fdk-aac --with-libvpx --with-x265'
 brew_install 'Git' 'git'
 brew_install 'ImageMagick' 'imagemagick --with-webp'
 brew_install 'node' 'node'
+brew_install "ShellCheck" "shellcheck"
 brew_install 'ssh copy id' 'ssh-copy-id'
 brew_install 'tmux' 'tmux'
 brew_install 'tree' 'tree'
@@ -27,13 +28,16 @@ brew_install 'Chrome' 'google-chrome' 'caskroom/cask' 'cask'
 brew_install 'Chrome Canary' 'google-chrome-canary' 'caskroom/cask' 'cask'
 # brew_install 'Firefox' 'firefox' 'caskroom/cask' 'cask'
 # brew_install 'Firefox Developer' 'firefoxdeveloperedition' 'caskroom/versions' 'cask'
-# brew_install 'Firefox Nightly' 'firefox-nightly' 'caskroom/cask' 'cask'
+# brew_install 'Firefox Nightly' 'firefoxnightly' 'caskroom/cask' 'cask'
 brew_install 'Google Drive' 'google-drive' 'caskroom/cask' 'cask'
 # brew_install 'Opera' 'opera' 'caskroom/cask' 'cask'
 # brew_install 'Opera Beta' 'opera-beta' 'caskroom/cask' 'cask'
 # brew_install 'Opera Developer' 'opera-developer' 'caskroom/cask' 'cask'
+# brew_install "Safari Technology Preview" "safari-technology-preview" "caskroom/versions" "cask"
 brew_install 'Sequel Pro' 'sequel-pro' 'caskroom/cask' 'cask'
+brew_install "Transmission" "transmission" "caskroom/cask" "cask"
 brew_install 'Unarchiver' 'the-unarchiver' 'caskroom/cask' 'cask'
 brew_install 'VirtualBox' 'virtualbox' 'caskroom/cask' 'cask'
+brew_install "VLC" "vlc" "caskroom/cask" "cask"
 # brew_install 'WebKit' 'webkit-nightly' 'caskroom/cask' 'cask'
 

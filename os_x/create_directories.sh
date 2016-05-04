@@ -4,7 +4,7 @@ cd "$(dirname "$BASH_SOURCE")" \
   && source 'utils.sh'
 
 declare -a DIRECTORIES=(
-  "$HOME/Work"
+  "$HOME/Downloads/torrents"
 )
 
 # ------------------------------------------------------------------------------
