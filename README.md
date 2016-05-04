@@ -114,7 +114,7 @@ script](setup.sh).
 
 ```bash
 
-$ ./setup
+$ ./setup.sh
 
 ```
 
