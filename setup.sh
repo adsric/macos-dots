@@ -43,7 +43,9 @@ download() {
 
 download_dotfiles() {
 
-    local tmpFile="$(mktemp /tmp/XXXXX)"
+    local tmpFile=""
+
+    tmpFile="$(mktemp /tmp/XXXXX)"
 
     # --------------------------------------------------------------------------
 
@@ -102,13 +104,16 @@ download_dotfiles() {
 
     # --------------------------------------------------------------------------
 
-    cd "$dotfilesDirectory"
+    cd "$dotfilesDirectory/src" \
+        || return 1
 
 }
 
 download_utils() {
 
-    local tmpFile="$(mktemp /tmp/XXXXX)"
+    local tmpFile=""
+
+    tmpFile="$(mktemp /tmp/XXXXX)"
 
     download "$DOTFILES_UTILS_URL" "$tmpFile" \
         && source "$tmpFile" \
@@ -161,22 +166,26 @@ is_supported_version() {
 verify_os() {
 
     declare -r MINIMUM_OS_X_VERSION='10.10'
-    declare -r OS_NAME="$(uname -s)"
 
-    declare OS_VERSION=''
+    local OS_NAME=""
+    local OS_VERSION=""
 
     # --------------------------------------------------------------------------
 
     # Check if the OS is `OS X` and
     # it's above the required version
 
+    OS_NAME="$(uname -s)"
+
     if [ "$OS_NAME" == "Darwin" ]; then
 
         OS_VERSION="$(sw_vers -productVersion)"
 
-        is_supported_version "$OS_VERSION" "$MINIMUM_OS_X_VERSION" \
-            && return 0 \
-            || printf "Sorry, this script is intended only for OS X $MINIMUM_OS_X_VERSION+"
+        if is_supported_version "$OS_VERSION" "$MINIMUM_OS_X_VERSION"; then
+            return 0
+        else
+            printf "Sorry, this script is intended only for OS X %s+" "$MINIMUM_OS_X_VERSION"
+        fi
 
     # --------------------------------------------------------------------------
 
@@ -206,7 +215,8 @@ main() {
     #
     # http://mywiki.wooledge.org/BashFAQ/028
 
-    cd "$(dirname "$BASH_SOURCE")";
+    cd "$(dirname "${BASH_SOURCE[0]}")" \
+        || exit 1
 
     # --------------------------------------------------------------------------
 
