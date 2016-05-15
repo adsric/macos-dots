@@ -16,8 +16,6 @@ main() {
     ./preferences/set_dock_preferences.sh
     ./preferences/set_finder_preferences.sh
     ./preferences/set_keyboard_preferences.sh
-    ./preferences/set_mail_preferences.sh
-    ./preferences/set_messages_preferences.sh
     ./preferences/set_photos_preferences.sh
     ./preferences/set_safari_preferences.sh
     ./preferences/set_terminal_preferences.sh
