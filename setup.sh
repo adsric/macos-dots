@@ -167,21 +167,21 @@ verify_os() {
 
     declare -r MINIMUM_OS_X_VERSION='10.10'
 
-    local OS_NAME=""
-    local OS_VERSION=""
+    local os_name=""
+    local os_version=""
 
     # --------------------------------------------------------------------------
 
     # Check if the OS is `OS X` and
     # it's above the required version
 
-    OS_NAME="$(uname -s)"
+    os_name="$(uname -s)"
 
-    if [ "$OS_NAME" == "Darwin" ]; then
+    if [ "$os_name" == "Darwin" ]; then
 
-        OS_VERSION="$(sw_vers -productVersion)"
+        os_version="$(sw_vers -productVersion)"
 
-        if is_supported_version "$OS_VERSION" "$MINIMUM_OS_X_VERSION"; then
+        if is_supported_version "$os_version" "$MINIMUM_OS_X_VERSION"; then
             return 0
         else
             printf "Sorry, this script is intended only for OS X %s+" "$MINIMUM_OS_X_VERSION"

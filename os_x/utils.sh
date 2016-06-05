@@ -8,12 +8,12 @@ answer_is_yes() {
 
 ask() {
     print_question "$1"
-    read
+    read -r
 }
 
 ask_for_confirmation() {
     print_question "$1 (y/n) "
-    read -n 1
+    read -r -n 1
     printf "\n"
 }
 
@@ -73,25 +73,74 @@ brew_tap() {
 
 cmd_exists() {
     command -v "$1" &> /dev/null
-    return $?
 }
 
 execute() {
-    eval "$1" &> /dev/null
-    print_result $? "${2:-$1}"
+
+    local tmpFile="$(mktemp /tmp/XXXXX)"
+    local exitCode=0
+    local spinnerPID
+
+    # --------------------------------------------------------------------------
+
+    # Start spinner
+
+    print_spinner "${2:-$1}" &
+    spinnerPID=$!
+    trap 'kill $spinnerPID' SIGINT
+
+    # --------------------------------------------------------------------------
+
+    # Execute commands
+
+    eval "$1" \
+        &> /dev/null \
+        2> "$tmpFile"
+    exitCode=$?
+
+    # --------------------------------------------------------------------------
+
+    # Stop spinner
+
+    kill $spinnerPID
+    wait $spinnerPID &> /dev/null
+    printf "\r"
+
+    # --------------------------------------------------------------------------
+
+    # Log output
+
+    print_result $exitCode "${2:-$1}"
+
+    if [ $exitCode -ne 0 ]; then
+        print_error_stream "↳ ERROR:" < "$tmpFile"
+    fi
+
+    rm -rf "$tmpFile"
+
+    # --------------------------------------------------------------------------
+
+    return $exitCode
+
 }
 
 get_answer() {
-    printf "$REPLY"
+    printf "%s" "$REPLY"
 }
 
 get_os() {
 
-    declare -r OS_NAME="$(uname -s)"
-    local os=''
+    local os=""
+    local kernelName=""
 
-    if [ "$OS_NAME" == "Darwin" ]; then
-        os='osx'
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    kernelName="$(uname -s)"
+
+    if [ "$kernelName" == "Darwin" ]; then
+        os="osx"
+    else
+        os="$kernelName"
     fi
 
     printf "%s" "$os"
@@ -119,6 +168,12 @@ mkd() {
 
 print_error() {
     print_in_red "  [✖] $1 $2\n"
+}
+
+print_error_stream() {
+    while read -r line; do
+        print_error "$1 $line"
+    done
 }
 
 print_in_green() {
@@ -153,6 +208,34 @@ print_result() {
     return $1
 }
 
+print_spinner() {
+
+    declare -a -r FRAMES=(
+        "-"
+        "\\"
+        "|"
+        "/"
+    )
+
+    declare -r NUMBER_OR_FRAMES=${#FRAMES[@]}
+
+    local i=0
+
+    # --------------------------------------------------------------------------
+
+    while true; do
+        i=$(( (i + 1) % NUMBER_OR_FRAMES ))
+        printf "\r"
+        print_in_yellow "  [${FRAMES[$i]}] $1"
+        sleep 0.3
+    done
+
+}
+
 print_success() {
     print_in_green "  [✔] $1\n"
+}
+
+print_warning() {
+    print_in_yellow "  [!] $1\n"
 }
