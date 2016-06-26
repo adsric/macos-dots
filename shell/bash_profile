@@ -1,77 +1,55 @@
 #!/bin/bash
 
-# ------------------------------------------------------------------------------
-# | Helper Functions                                                           |
-# ------------------------------------------------------------------------------
-
-enable_programmable_completion() {
-
-    # Enable programmable completion features
-    # http://tldp.org/LDP/abs/html/tabexpansion.html
-
-    if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
-
-        # Use `bash-completion` 2.x
-        source $(brew --prefix)/share/bash-completion/bash_completion
-
-        # Make bash complete the `g` alias, just like it does `git`
-        complete -o default -o nospace -F _git g
-
-    fi
-
-}
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 source_bash_files() {
 
-    local file=''
-    local i=''
+    declare -r CURRENT_DIRECTORY="$(pwd)"
 
     declare -r -a FILES_TO_SOURCE=(
-        'bash_aliases'
-        'bash_exports'
-        'bash_functions'
-        'bash_options'
-        'bash_prompt'
-        'bash.local'  # for local settings that should
+        "bash_aliases"
+        "bash_autocomplete"
+        "bash_exports"
+        "bash_functions"
+        "bash_options"
+        "bash_prompt"
+        "bash.local"  # for local settings that should
                       # not be under version control
     )
 
+    local file=""
+    local i=""
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    cd "$(dirname "$(readlink "${BASH_SOURCE[0]}")")" \
+        && . "../os/utils.sh"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     for i in ${!FILES_TO_SOURCE[*]}; do
+
         file="$HOME/.${FILES_TO_SOURCE[$i]}"
-        [ -r "$file" ] && source "$file"
+
+        [ -r "$file" ] \
+            && . "$file"
+
     done
 
-}
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-source_bin_folder() {
-
-    # Adding dotfiles `bin` to `$PATH`
-    export PATH="$PATH:$HOME/projects/dotfiles/bin";
+    cd "$CURRENT_DIRECTORY"
 
 }
 
-# ------------------------------------------------------------------------------
-# | Main                                                                       |
-# ------------------------------------------------------------------------------
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-main() {
-
-    source_bash_files
-    source_bin_folder
-    enable_programmable_completion
-
-}
-
-main
-
-# ------------------------------------------------------------------------------
-
-# Unset functions in order to not pollute the global space
-unset -f enable_programmable_completion
-unset -f main
+source_bash_files
 unset -f source_bash_files
-unset -f source_bin_folder
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Clear system messages (e.g.: system copyright notice, the
 # date and time of the last login, the message of the day, etc.)
+
 clear

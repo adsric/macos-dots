@@ -1,4 +1,4 @@
- #!/bin/bash
+#!/bin/bash
 
 # DESCRIPTION:
 #
@@ -17,7 +17,7 @@
 #   * SDCH Specification:
 #     https://lists.w3.org/Archives/Public/ietf-http-wg/2008JulSep/att-0441/Shared_Dictionary_Compression_over_HTTP.pdf
 
-# ------------------------------------------------------------------------------
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 declare -r -a CURL_DEFAULT_OPTIONS=(
     --connect-timeout 30
@@ -36,7 +36,7 @@ declare -r -a CURL_DEFAULT_OPTIONS=(
                                        # the Accept-Encoding header
 )
 
-# ------------------------------------------------------------------------------
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 check_for_sdch() {
 
@@ -50,7 +50,7 @@ check_for_sdch() {
 
     # Check if the server advertised any dictionaries
     dicts="$( printf "%s" "$currentHeaders" |
-              grep -i 'Get-Dictionary:' |
+              grep -i "Get-Dictionary:" |
               cut -d':' -f2 |
               sed s/,/\ /g )"
 
@@ -92,7 +92,7 @@ check_for_sdch() {
         # Redo the request (advertising the available dictionaries)
         # and replace the old resulted headers with the new ones
 
-        printf "$( curl "${CURL_DEFAULT_OPTIONS[@]}" \
+        printf "%s" "$( curl "${CURL_DEFAULT_OPTIONS[@]}" \
                         -H "Avail-Dictionary: $availDicts" \
                         --dump-header - \
                         --output /dev/null \
@@ -131,7 +131,7 @@ get_content_encoding() {
 
             # Get the value of the `Content-Encoding` header
             encoding="$( printf "%s" "$currentHeaders" |
-                         grep -i 'Content-Encoding:' |
+                         grep -i "Content-Encoding:" |
                          cut -d' ' -f2 |
                          tr "\r" "," |
                          tr -d "\n" |
@@ -141,17 +141,17 @@ get_content_encoding() {
             [ -n "$encoding" ] && encoding="[$encoding]"
 
             if [ "$url" != "$1" ]; then
-                printf "$indent$url $encoding\n"
+                printf "%s %s\n" "$indent$url $encoding"
                 indent="  $indent"
             else
-                printf "\n  * $1 $encoding\n"
+                printf "\n  * %s %s\n" "$1" "$encoding"
                 indent="    ↳ "
             fi
 
             # Get the next URL from the series of redirects
             tmp="$url"
             url="$( printf "%s" "$currentHeaders" |
-                    grep -i 'Location' |
+                    grep -i "Location" |
                     sed -e 's/Location://' |
                     sed 's/^ *//' |
                     tr -d '\r' )"
@@ -163,15 +163,18 @@ get_content_encoding() {
     )
 }
 
-# ------------------------------------------------------------------------------
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
 
     # Check if `cURL` is installed
-    if [ ! -x "$(command -v "curl")" ]; then
+
+    if ! command -v "curl" &> /dev/null; then
         printf "cURL is required, please install it!\n"
-        exit;
+        exit 1
     fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     while [ $# -ne 0 ]; do
         get_content_encoding "$1"

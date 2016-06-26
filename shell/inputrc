@@ -3,7 +3,7 @@
 # Readline library configuration options
 # http://ss64.com/bash/syntax-inputrc.html
 
-# ------------------------------------------------------------------------------
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Disable beeping and window flashing
 set bell-style none
