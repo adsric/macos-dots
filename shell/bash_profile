@@ -44,7 +44,17 @@ source_bash_files() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+source_bin_dir() {
+
+    # Add `~/projects/dotfiles/bin` to the `$PATH`
+    export PATH="$PATH:$HOME/projects/dotfiles/bin";
+
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 source_bash_files
+source_bin_dir
 unset -f source_bash_files
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
