@@ -64,6 +64,12 @@ alias local-ip="ipconfig getifaddr en1"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Copy my public key to the pasteboard
+
+alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | printf '=> Public key copied to pasteboard.\n'"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Open `o` with no arguments opens the current directory, otherwise opens the given location
 
 o() {
