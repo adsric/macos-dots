@@ -8,12 +8,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 main() {
 
-    local os_arch=""
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    os_arch="$(get_os_arch)"
-
     update
     upgrade
 
