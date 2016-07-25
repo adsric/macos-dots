@@ -49,7 +49,7 @@ change_default_bash() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Set latest version of `Bash` as the default
-    # (macOS uses by default an older version of `Bash`)
+    # (macOS uses by default an older version of `Bash`).
 
     change_login_shell "$newShellPath"
 
@@ -58,7 +58,7 @@ change_default_bash() {
 change_login_shell() {
 
     execute \
-        "sudo chsh -s '$1'" \
+        "sudo chsh -s '$newShellPath'" \
         "Bash (use latest version)"
 
 }
@@ -85,7 +85,7 @@ get_homebrew_bash_path() {
 
 main() {
 
-    print_info " Bash"
+    print_in_purple "\n  Bash\n\n"
 
     brew_install "Bash" "bash" \
         && change_default_bash

@@ -12,6 +12,8 @@ install_plugins() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    # Install plugins.
+
     execute \
         "rm -rf '$VUNDLE_DIR' \
             && git clone --quiet '$VUNDLE_GIT_REPO_URL' '$VUNDLE_DIR' \
@@ -24,7 +26,7 @@ install_plugins() {
 
 main() {
 
-    print_info " Vim"
+    print_in_purple "\n  Vim\n\n"
 
     install_plugins
 

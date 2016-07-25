@@ -95,7 +95,7 @@ install_apps() {
 
 main() {
 
-    print_info " Miscellaneous"
+    print_in_purple "\n  Miscellaneous\n\n"
 
     install_apps
 
