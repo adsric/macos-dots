@@ -8,10 +8,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 install_apps() {
 
-    brew_install "Atom" "atom" "caskroom/cask" "cask"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     brew_install "Ack!" "ack"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -66,10 +62,6 @@ install_apps() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     brew_install "Vim" "vim --override-system-vi"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    brew_install "VirtualBox" "virtualbox" "caskroom/cask" "cask"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
