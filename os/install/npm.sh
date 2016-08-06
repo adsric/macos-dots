@@ -9,41 +9,22 @@ install_npm_package() {
 
     execute \
         ". $HOME/.bash.local \
-            && npm install --silent --global $1" \
-        "${2:-$1}"
+            && npm install --global --silent $2" \
+        "$1"
 
 }
 
-install_npm_packages() {
-
-    declare -r -a NPM_PACKAGES=(
-        "babel-cli"
-        "jshint"
-        "svgo"
-    )
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    for i in "${NPM_PACKAGES[@]}"; do
-        install_npm_package "$i"
-    done
-
-}
-
-update_npm() {
-    install_npm_package "npm" "npm (update)"
-}
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
 
-    print_info " npm"
+    print_in_purple "\n  npm\n\n"
 
-    update_npm
-
+    install_npm_package "npm (update)" "npm"
     printf "\n"
-    install_npm_packages
+    install_npm_package "Babel" "babel-cli"
+    install_npm_package "JSHint" "jshint"
+    install_npm_package "SVGO" "svgo"
 
 }
 
