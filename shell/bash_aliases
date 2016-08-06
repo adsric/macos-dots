@@ -23,7 +23,7 @@ alias rm="rm -rf --"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Vim `v` with no arguments opens the current directory in Vim, otherwise opens the given location
+# Vim with no arguments (opens the current directory in Vim), otherwise opens the given argument.
 
 v() {
     if [ $# -eq 0 ]; then
@@ -35,6 +35,6 @@ v() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Load OS specific aliases
+# Load OS specific aliases.
 
 . "$(get_os)/bash_aliases"

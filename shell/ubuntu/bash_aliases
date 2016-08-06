@@ -2,7 +2,7 @@
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Advanced Packaging Tool
+# Shorter commands for the `Advanced Packaging Tool`.
 
 alias apti="sudo apt-get install"
 alias aptr="sudo apt-get remove"
@@ -12,7 +12,7 @@ alias aptu="sudo apt-get update \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Update
+# Update applications and CLTs.
 
 alias u="sudo apt-get update \
             && sudo apt-get upgrade \

@@ -1,59 +1,60 @@
 [alias]
 
     a     = commit --amend
-    amend = commit --amend --reuse-message=HEAD     # Amend to latest commit
+    amend = commit --amend --reuse-message=HEAD   # Amend to latest commit.
     br    = branch
     c     = commit
-    ca    = !git add -A && git commit               # Commit all changes
+    ca    = !git add -A && git commit             # Commit all changes.
     co    = checkout
     cp    = cherry-pick
     d     = diff
     dc    = diff --cached
-    g     = log --graph --pretty=custom             # Show custom graph
-    l     = log --pretty=custom                     # Show custom log
-    lc    = shortlog --summary --numbered           # List contributors
-    rlc   = !git reset --hard HEAD~1                # Remove last commit
-    s     = status -s                               # Working tree (short)
-    st    = status                                  # Working tree
-    ulc   = reset --soft HEAD~1                     # Undo last commit
-    up    = push -f origin HEAD^:master             # Undo a `git push`
+    g     = log --graph --pretty=custom           # Show custom graph.
+    l     = log --pretty=custom                   # Show custom log.
+    lc    = shortlog --summary --numbered         # List contributors.
+    p     = push
+    rlc   = !git reset --hard HEAD~1              # Remove last commit.
+    s     = status -s                             # Working tree (short).
+    st    = status                                # Working tree.
+    ulc   = reset --soft HEAD~1                   # Undo last commit.
+    up    = push -f origin HEAD^:master           # Undo a `git push`.
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Add untracked, remove deleted, and show status
+    # Add untracked, remove deleted, and show status.
 
     adda = !git add -A && git status
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # `git clean -df`: remove untracked files and directories from the working tree
-    # `git stash clear`: remove all stashed states
+    # `git clean -df`: remove untracked files and directories from the working tree.
+    # `git stash clear`: remove all stashed states.
 
     cleanup = !git clean -df && git stash clear
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Remove branches that have already been merged with master
+    # Remove branches that have already been merged with master.
     # a.k.a. ‘delete merged’
 
     dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Interactive rebase with the given number of latest commits
+    # Interactive rebase with the given number of latest commits.
 
     reb = "!r() { git rebase -i HEAD~$1; }; r"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # `git remote prune origin`: remove remote-tracking branches that were deleted from the remote repo
-    # `git gc`: cleanup unnecessary files and optimize the local repository
+    # `git remote prune origin`: remove remote-tracking branches that were deleted from the remote repo.
+    # `git gc`: cleanup unnecessary files and optimize the local repository.
 
     trim = !git remote prune origin && git gc
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Show verbose output about tags, branches or remotes
+    # Show verbose output about tags, branches or remotes.
 
     tags = tag -l
     branches = branch -a
@@ -77,7 +78,7 @@
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Find commits by commit message
+    # Find commits by commit message.
 
     fm = "!f() { \
         git log --pretty=custom --decorate --date=short --grep=\"$1\"; \
@@ -85,7 +86,7 @@
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Credit an author on the latest commit
+    # Credit an author on the latest commit.
 
     credit = "!f() { \
         if [ -n \"$1\" ] && [ -n \"$2\" ]; then \
@@ -95,7 +96,7 @@
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # List remote branches
+    # List remote branches.
 
     lrb = "!f() { \
         remote="${1:-origin}"; \
@@ -105,7 +106,7 @@
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Merge GitHub pull request on top of the current branch or,
-    # if a branch name is specified, on top of the specified branch
+    # if a branch name is specified, on top of the specified branch.
 
     mpr = "!f() { \
       declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; \
@@ -124,7 +125,7 @@
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Remove the tag with the specified tag name if exists,
-    # and tag the latest commit with that name
+    # and tag the latest commit with that name.
 
     retag = "!f() { \
         git tag -d "$1" &> /dev/null; \
@@ -159,27 +160,16 @@
     editor = vim
     excludesfile = ~/.gitignore
 
-    # Make `git rebase` safer on OS X
-    # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
-
-    trustctime = false
-
 [commit]
 
-    # Sign commits using GPG
+    # Sign commits using GPG.
     # https://help.github.com/articles/signing-commits-using-gpg/
 
     gpgsign = true
 
-[diff]
-
-    # Detect copies as well as renames
-
-    renames = copies
-
 [diff "bin"]
 
-    # Use `hexdump` to diff binary files
+    # Use `hexdump` to diff binary files.
 
     textconv = hexdump -v -C
 
@@ -192,28 +182,28 @@
     #                     │        └─ decorations (branch, heads or tags)
     #                     └─ hash (abbreviated)
 
+
 [push]
 
-    default = simple
-
-    # Make `git push` push relevant
+    # Make `git push` automatically push relevant
     # annotated tags when pushing branches out.
 
     followTags = true
 
-[help]
-
-    # Automatically correct and execute mistyped commands
-
-    autocorrect = 1
-
 [user]
 
-    # Don't guess the user's identity
+    # Don't guess the user's identity.
     # https://github.com/git/git/blob/90f7b16b3adc78d4bbabbd426fb69aa78c714f71/Documentation/config.txt#L2847-L2855
 
     useConfigOnly = true
 
 [include]
+
+    # Load local configs.
+    # https://git-scm.com/docs/git-config#_includes
+    #
+    # [!] The following needs to remain at the end of this file in
+    #     order to allow any of the above configs to be overwritten
+    #     by the local ones
 
     path = ~/.gitconfig.local

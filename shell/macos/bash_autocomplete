@@ -1,11 +1,20 @@
 #!/bin/bash
 
-if [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
+# [!] Do not rename this file to `bash_completion`
+#     as it will create an infinite loop!
 
-    # Use latest `bash-completion`
-    . "$(brew --prefix)/share/bash-completion/bash_completion"
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Make Bash complete the `g` alias just like it does `git`
+declare -r BASH_COMPLETION_PATH="$(brew --prefix 2> /dev/null)/share/bash-completion/bash_completion"
+
+if [ -f "$BASH_COMPLETION_PATH" ]; then
+
+    # Use the latest `bash-completion`.
+
+    . "$BASH_COMPLETION_PATH"
+
+    # Make Bash complete the `g` alias just like it does `git`.
+
     complete -o default -o nospace -F _git g
 
 fi

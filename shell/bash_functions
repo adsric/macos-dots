@@ -2,7 +2,7 @@
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Simple Calculator
+# Simple Calculator.
 
 ? () {
 
@@ -14,7 +14,9 @@
     #                         (large numbers are printed on multiple lines)
 
     if [[ "$result" == *.* ]]; then
-        # Improve the output for decimal numbers
+
+        # Improve the output for decimal numbers.
+
         printf "%s" "$result" |
         sed -e "s/^\./0./"          # add "0" for cases like ".5"` \
             -e "s/^-\./-0./"        # add "0" for cases like "-.5"`\
@@ -29,7 +31,7 @@
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Create data URI from a file
+# Create data URI from a file.
 
 datauri() {
 
@@ -56,7 +58,7 @@ datauri() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
+# Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression.
 
 targz() {
     local tmpFile="${@%/}.tar";
@@ -69,7 +71,9 @@ targz() {
 
     local cmd="";
     if (( size < 52428800 )) && hash zopfli 2> /dev/null; then
-        # the .tar file is smaller than 50 MB and Zopfli is available; use it
+
+        # the .tar file is smaller than 50 MB and Zopfli is available; use it.
+
         cmd="zopfli";
     else
         if hash pigz 2> /dev/null; then
@@ -87,7 +91,7 @@ targz() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Extract archives - use: extract <file>
+# Extract archives - use: extract <file>.
 
 extract() {
     if [ -f "$1" ] ; then
@@ -101,7 +105,7 @@ extract() {
             echo
             if [[ $REPLY =~ ^[Nn]$ ]]; then
                 return
-            fi
+              fi
         fi
         mkdir -p "$foldername" && cd "$foldername"
         case $1 in
@@ -126,7 +130,7 @@ extract() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Delete files that match a certain pattern from the current directory
+# Delete files that match a certain pattern from the current directory.
 
 delete-files() {
     local q="${1:-*.DS_Store}"
@@ -135,7 +139,7 @@ delete-files() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Get gzip information (gzipped file size + reduction size)
+# Get gzip information (gzipped file size + reduction size).
 
 gz() {
 
@@ -171,7 +175,7 @@ gz() {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Human readable file size
-# (because `du -h` doesn't cut it for me)
+# (because `du -h` doesn't cut it for me).
 
 hrfs() {
 
@@ -205,7 +209,7 @@ hrfs() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Create new directories and enter the first one
+# Create new directories and enter the first one.
 
 mkd() {
     if [ -n "$*" ]; then
@@ -216,12 +220,12 @@ mkd() {
         cd "$@" \
             || exit 1
 
-    fi
+      fi
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Search history
+# Search history.
 
 qh() {
     #           ┌─ enable colors for pipe
@@ -234,7 +238,7 @@ qh() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Search for text within the current directory
+# Search for text within the current directory.
 
 qt() {
     grep -ir --color=always "$*" . | less -RX
@@ -244,7 +248,7 @@ qt() {
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Search plus relace text within the current directory
+# Search and relace text within the current directory.
 
 qr() {
     grep -r -l "$1" . | sort | uniq | xargs perl -e "s/$1/$2/" -pi
