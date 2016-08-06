@@ -40,19 +40,6 @@ is_xcode_installed() {
     xcode-select --print-path &> /dev/null
 }
 
-set_xcode_developer_directory() {
-
-    # Point the `xcode-select` developer directory to
-    # the appropriate directory from within `Xcode.app`.
-    #
-    # https://github.com/alrra/dotfiles/issues/13
-
-    execute \
-        "sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer" \
-        "Make 'xcode-select' developer directory point to Xcode"
-
-}
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
@@ -60,7 +47,6 @@ main() {
     print_in_purple "  XCode\n\n"
 
     install_xcode
-    set_xcode_developer_directory
     agree_with_xcode_licence
 
 }
