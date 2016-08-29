@@ -2,7 +2,7 @@
     "html": {
         "snippets": {
             "html5": "<!doctype html>\n<html lang=\"${lang}\">\n<head>\n\t<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n\t<meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\">\n\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\n\t<title></title>\n</head>\n<body>\n\t${child}\n</body>\n</html>",
-            "svg:icon": "<svg role=\"img\" title=\"\"><use xlink:href=\"\"/></svg>"
+            "svg:icon": "<svg class=\"icon\">\n\t<use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"\"/>\n</svg>"
         },
         "variables": {
             "lang": "en"
