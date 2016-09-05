@@ -240,7 +240,7 @@ main() {
     if ! cmd_exists "git" \
         || [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
 
-        print_in_purple "\n Download and extract archive\n\n"
+        print_in_purple "\n • Download and extract archive\n\n"
         download_dotfiles
 
     fi
@@ -266,16 +266,7 @@ main() {
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         if ! $skipQuestions; then
-
-            print_in_purple "\n\n Update content\n\n"
-
-            ask_for_confirmation "Do you want to update the content from the 'dotfiles' directory?"
-
-            if answer_is_yes; then
-                printf "\n"
-                ./update_content.sh
-            fi
-
+            ./update_content.sh
         fi
 
     fi
@@ -283,16 +274,7 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     if ! $skipQuestions; then
-
-        print_in_purple "\n\n Restart\n\n"
-
-        ask_for_confirmation "Do you want to restart?"
-        printf "\n"
-
-        if answer_is_yes; then
-            ./restart.sh
-        fi
-
+        ./restart.sh
     fi
 
 }
