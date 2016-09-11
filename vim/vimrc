@@ -149,6 +149,7 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'airblade/vim-gitgutter'
     Plugin 'altercation/vim-colors-solarized'
     Plugin 'ap/vim-css-color'
+    Plugin 'chrisbra/unicode.vim'
     Plugin 'editorconfig/editorconfig-vim'
     Plugin 'godlygeek/tabular'
     Plugin 'isRuslan/vim-es6'
