@@ -38,6 +38,12 @@ alias empty-trash="sudo rm -frv /Volumes/*/.Trashes; \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Edit the hosts.
+
+alias hosts="sudo $EDITOR /etc/hosts"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Hide/Show desktop icons.
 
 alias hide-desktop-icons="defaults write com.apple.finder CreateDesktop -bool false \
