@@ -6,31 +6,34 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-add_path_to_login_shells_list() {
-
-    declare -r NEW_SHELL_PATH="$1"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    if ! grep "$NEW_SHELL_PATH" < /etc/shells &> /dev/null; then
-        execute \
-            "printf '%s\n' '$NEW_SHELL_PATH' | sudo tee -a /etc/shells" \
-            "Bash (add '$NEW_SHELL_PATH' in '/etc/shells')"
-    fi
-
-}
-
 change_default_bash() {
 
+    declare -r LOCAL_SHELL_CONFIG_FILE="$HOME/.bash.local"
+
+    local configs=""
+    local pathConfig=""
+
     local newShellPath=""
+    local brewPrefix=""
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Try to get the path of the `Bash`
-    # version installed through `Homebrew`
+    # version installed through `Homebrew`.
 
-    newShellPath="$(get_homebrew_bash_path)" \
+    brewPrefix="$(brew_prefix)" \
         || return 1
+
+    pathConfig="PATH=\"$brewPrefix/bin:\$PATH\""
+    configs="
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+$pathConfig
+
+export PATH
+"
+
+    newShellPath="$brewPrefix/bin/bash" \
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -44,39 +47,31 @@ change_default_bash() {
     #
     # http://www.linuxfromscratch.org/blfs/view/7.4/postlfs/etcshells.html
 
-    add_path_to_login_shells_list "$newShellPath"
+    if ! grep "$newShellPath" < /etc/shells &> /dev/null; then
+        execute \
+            "printf '%s\n' '$newShellPath' | sudo tee -a /etc/shells" \
+            "Bash (add '$newShellPath' in '/etc/shells')" \
+        || return 1
+    fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Set latest version of `Bash` as the default
     # (macOS uses by default an older version of `Bash`).
 
-    change_login_shell "$newShellPath"
-
-}
-
-change_login_shell() {
-
-    execute \
-        "sudo chsh -s '$newShellPath'" \
-        "Bash (use latest version)"
-
-}
-
-get_homebrew_bash_path() {
-
-    local path=""
+    chsh -s "$newShellPath" &> /dev/null
+    print_result $? "Bash (use latest version)"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    path="$(brew --prefix 2> /dev/null)/bin/bash"
+    # If needed, add the necessary configs in the
+    # local shell configuration file.
 
-    if [ $? -eq 0 ]; then
-        printf "%s" "$path"
-        return 0
-    else
-        print_error "Bash (get shell path)"
-        return 1
+    if ! grep "^$pathConfig" < "$LOCAL_SHELL_CONFIG_FILE" &> /dev/null; then
+        execute \
+            "printf '%s' '$configs' >> $LOCAL_SHELL_CONFIG_FILE \
+                && . $LOCAL_SHELL_CONFIG_FILE" \
+            "Bash (update $LOCAL_SHELL_CONFIG_FILE)"
     fi
 
 }
@@ -85,7 +80,7 @@ get_homebrew_bash_path() {
 
 main() {
 
-    print_in_purple "\n  Bash\n\n"
+    print_in_purple "\n   Bash\n\n"
 
     brew_install "Bash" "bash" \
         && change_default_bash
