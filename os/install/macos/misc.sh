@@ -30,6 +30,12 @@ install_apps() {
 
     brew_install "Git" "git"
 
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    brew_install "GPG" "gpg"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     brew_install "Opera" "opera" "caskroom/cask" "cask"
     brew_install "Opera Beta" "opera-beta" "caskroom/versions" "cask"
     brew_install "Opera Developer" "opera-developer" "caskroom/versions" "cask"
