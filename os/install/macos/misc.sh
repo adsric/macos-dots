@@ -55,6 +55,7 @@ install_apps() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    brew_install "Reattach to user namespace" "reattach-to-user-namespace"
     brew_install "tmux" "tmux"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
