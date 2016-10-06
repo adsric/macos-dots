@@ -68,7 +68,7 @@ install_apps() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    brew_install "Vim" "vim --override-system-vi"
+    brew_install "Vim" "vim --with-override-system-vi"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
