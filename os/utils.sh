@@ -182,7 +182,7 @@ is_supported_version() {
         if (( 10#${v1[i]} < 10#${v2[i]} )); then
             return 1
         elif (( 10#${v1[i]} > 10#${v2[i]} )); then
- +          return 0
+            return 0
         fi
 
     done
