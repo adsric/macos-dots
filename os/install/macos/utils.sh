@@ -19,7 +19,7 @@ brew_cleanup() {
 
     execute \
         "brew cask cleanup" \
-        "Homebrew cask (cask cleanup)"
+        "Homebrew (cask cleanup)"
 
 }
 
@@ -55,12 +55,29 @@ brew_install() {
 
     # Install the specified formula.
 
-    if brew "$CMD" list "$FORMULA" &> /dev/null; then
+    # shellcheck disable=SC2086
+    if brew $CMD list "$FORMULA" &> /dev/null; then
         print_success "$FORMULA_READABLE_NAME"
     else
         execute \
             "brew $CMD install $FORMULA" \
             "$FORMULA_READABLE_NAME"
+    fi
+
+}
+
+brew_prefix() {
+
+    local path=""
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    if path="$(brew --prefix 2> /dev/null)"; then
+        printf "%s" "$path"
+        return 0
+    else
+        print_error "Homebrew (get prefix)"
+        return 1
     fi
 
 }
