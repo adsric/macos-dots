@@ -241,7 +241,7 @@ qh() {
 # Search for text within the current directory.
 
 qt() {
-    grep -ir --color=always "$*" . | less -RX
+    grep -ir --exclude="*\.git*" --color=always "$*" . | less -RX
     #     │└─ search all files under each directory, recursively
     #     └─ ignore case
 }
@@ -251,6 +251,6 @@ qt() {
 # Search and relace text within the current directory.
 
 qr() {
-    grep -r -l "$1" . | sort | uniq | xargs perl -e "s/$1/$2/" -pi
+    grep -r -l --exclude="*\.git*" "$1" . | sort | uniq | xargs perl -e "s/$1/$2/" -pi
     #     └─ search all files under each directory, recursively
 }
