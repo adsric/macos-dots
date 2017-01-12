@@ -82,12 +82,6 @@ install_apps() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    brew_install "Web Font Tools: TTF/OTF → WOFF (Zopfli)" "sfnt2woff-zopfli" "bramstein/webfonttools"
-    brew_install "Web Font Tools: TTF/OTF → WOFF" "sfnt2woff" "bramstein/webfonttools"
-    brew_install "Web Font Tools: WOFF2" "woff2" "bramstein/webfonttools"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     brew_install "WebKit" "webkit-nightly" "caskroom/versions" "cask"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
