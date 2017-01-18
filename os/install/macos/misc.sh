@@ -34,7 +34,7 @@ install_apps() {
 
     brew_install "GPG" "gpg"
     brew_install "GPG Agent" "gpg-agent"
-+   brew_install "Pinentry" "pinentry-mac"
+    brew_install "Pinentry" "pinentry-mac"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -69,10 +69,10 @@ install_apps() {
     brew_install "Unarchiver" "the-unarchiver" "caskroom/cask" "cask"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    
+
     brew_install "Visual Studio Code" "visual-studio-code" "caskroom/cask" "cask"
-+
-+   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     brew_install "Vim" "vim --with-override-system-vi"
 
