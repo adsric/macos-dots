@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd "$(dirname "${BASH_SOURCE[0]}")" \
-    && . "../../utils.sh"
+    && . "../utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -12,6 +12,6 @@ execute "defaults write com.apple.dashboard mcx-disabled -bool true" \
 
 # `killall Dashboard` doesn't actually do anything. To apply the
 # changes for `Dashboard`, `killall Dock` is enough as `Dock` is
-# is `Dashboard`'s parent process.		 +# `Dashboard`'s parent process.
+# is `Dashboard`'s parent process.
 
 killall "Dock" &> /dev/null

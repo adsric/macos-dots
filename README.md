@@ -29,9 +29,9 @@ The setup process will:
   [`shell`](shell), and
   [`vim`](vim) files
 * Install applications / command-line tools for
-  [`macOS`](os/install/macos)
+  [`macOS`](os/install)
 * Set custom
-  [`macOS`](os/preferences/macos)  preferences
+  [`macOS`](os/preferences)  preferences
 * Install [`vim` plugins](vim/vim/plugins)
 
 
