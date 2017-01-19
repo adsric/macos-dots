@@ -16,7 +16,6 @@ understand [what it does](os/setup.sh). Seriously, **DON'T**!)
 | OS | Snippet |
 |:---:|:---|
 | `macOS` | `bash -c "$(curl -LsS https://raw.github.com/adsric/dotfiles/master/os/setup.sh)"` |
-| `Ubuntu` | `bash -c "$(wget -qO - https://raw.github.com/adsric/dotfiles/master/os/setup.sh)"` |
 
 That's it! :sparkles:
 
@@ -30,11 +29,9 @@ The setup process will:
   [`shell`](shell), and
   [`vim`](vim) files
 * Install applications / command-line tools for
-  [`macOS`](os/install/macos) /
-  [`Ubuntu`](os/install/ubuntu)
+  [`macOS`](os/install/macos)
 * Set custom
-  [`macOS`](os/preferences/macos) /
-  [`Ubuntu`](os/preferences/ubuntu) preferences
+  [`macOS`](os/preferences/macos)  preferences
 * Install [`vim` plugins](vim/vim/plugins)
 
 

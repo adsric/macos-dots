@@ -12,19 +12,7 @@ install_apps() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    brew_install "Chrome" "google-chrome" "caskroom/cask" "cask"
-    brew_install "Chrome Canary" "google-chrome-canary" "caskroom/versions" "cask"
-    brew_install "Chromium" "chromium" "caskroom/cask" "cask"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    brew_install 'FFmpeg' 'ffmpeg --with-fdk-aac --with-libvpx --with-x265'
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    brew_install "Firefox" "firefox" "caskroom/cask" "cask"
-    brew_install "Firefox Developer" "firefoxdeveloperedition" "caskroom/versions" "cask"
-    brew_install "Firefox Nightly" "firefoxnightly" "caskroom/versions" "cask"
+    brew_install "FFmpeg" "ffmpeg"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -38,31 +26,12 @@ install_apps() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    brew_install "Opera" "opera" "caskroom/cask" "cask"
-    brew_install "Opera Beta" "opera-beta" "caskroom/versions" "cask"
-    brew_install "Opera Developer" "opera-developer" "caskroom/versions" "cask"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # `Safari Technology Preview` requires macOS 10.11.4 or la
-    # https://github.com/alrra/dotfiles/issues
-
-    if is_supported_version "$(get_os_version)" "10.11.4"; then
-        brew_install "Safari Technology Preview" "safari-technology-preview" "caskroom/versions" "cask"
-    fi
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     brew_install "ShellCheck" "shellcheck"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     brew_install "tmux" "tmux"
     brew_install "tmux (pasteboard)" "reattach-to-user-namespace"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    brew_install "Transmission" "transmission" "caskroom/cask" "cask"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -75,14 +44,6 @@ install_apps() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     brew_install "Vim" "vim --with-override-system-vi"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    brew_install "VLC" "vlc" "caskroom/cask" "cask"
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    brew_install "WebKit" "webkit-nightly" "caskroom/versions" "cask"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
