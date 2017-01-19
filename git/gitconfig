@@ -18,6 +18,7 @@
     st    = status                                # Working tree.
     ulc   = reset --soft HEAD~1                   # Undo last commit.
     up    = push -f origin HEAD^:master           # Undo a `git push`.
+    w     = instaweb --httpd=webrick               # Start web-based visualizer.
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
