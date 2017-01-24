@@ -36,26 +36,24 @@ export NVM_DIR=\"$NVM_DIRECTORY\"
 
 install_latest_stable_node() {
 
-    # Install the latest stable version of Node.JS
+    # Install the latest stable version of Node
     # (this will also set it as the default).
 
     execute \
         ". $LOCAL_SHELL_CONFIG_FILE \
             && nvm install node" \
         "nvm (install latest Node)"
-
 }
 
 install_nvm() {
 
     # Install `nvm` and add the necessary
-    # configs in the local shell config.
+    # configs in the local shell config file.
 
     execute \
-
         "git clone --quiet $NVM_GIT_REPO_URL $NVM_DIRECTORY" \
         "nvm (install)" \
-      && add_nvm_configs "$1"
+    && add_nvm_configs
 
 }
 
@@ -74,7 +72,7 @@ update_nvm() {
 
 main() {
 
-    print_in_purple "\n  nvm\n\n"
+    print_in_purple "\n   nvm\n\n"
 
     if [ ! -d "$NVM_DIRECTORY" ]; then
         install_nvm
