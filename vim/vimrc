@@ -146,7 +146,6 @@ call vundle#begin('~/.vim/plugins')
     " Let Vundle manage Vundle (this is important!)
     Plugin 'VundleVim/Vundle.vim'
 
-    Plugin 'airblade/vim-gitgutter'
     Plugin 'altercation/vim-colors-solarized'
     Plugin 'ap/vim-css-color'
     Plugin 'chrisbra/unicode.vim'
@@ -158,6 +157,7 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'marijnh/tern_for_vim'
     Plugin 'mattn/emmet-vim'
     Plugin 'mattn/webapi-vim'
+    Plugin 'mhinz/vim-signify'
     Plugin 'nathanaelkane/vim-indent-guides'
     Plugin 'othree/html5.vim'
     Plugin 'plasticboy/vim-markdown'
@@ -243,6 +243,16 @@ let g:neocomplcache_enable_at_startup=1
 " Make `<TAB>` autocomplete
 
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+
+
+" ----------------------------------------------------------------------
+" | Plugins - Signify                                                  |
+" ----------------------------------------------------------------------
+
+" Disable Signify by default.
+" https://github.com/mhinz/vim-signify
+
+let g:signify_disable_by_default=1
 
 
 " ----------------------------------------------------------------------
@@ -490,6 +500,12 @@ nmap <leader>cr 0yt=A<C-r>=<C-r>"<CR><Esc>
 " [,cs] Clear search.
 
 map <leader>cs <Esc>:noh<CR>
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" [,gd] Toggle Git differences.
+
+map <leader>gd :SignifyToggle<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
