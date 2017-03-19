@@ -28,10 +28,19 @@ create_gitconfig_local() {
     if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
 
         printf "%s\n" \
-            "[user]" \
-            "    name = <name>" \
-            "    email = <email>" \
-            "    signingkey = XXXXXXXX" \
+"[commit]
+
+    # Sign commits using GPG.
+    # https://help.github.com/articles/signing-commits-using-gpg/
+
+    # gpgsign = true
+
+
+[user]
+
+    name =
+    email =
+    # signingkey =" \
         >> "$FILE_PATH"
     fi
 

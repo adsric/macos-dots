@@ -57,9 +57,9 @@ Here is a very simple example of a `~/.bash.local` file:
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Set PATH additions
+# Set PATH additions.
 
-PATH="/usr/local/bin:$PATH"
+PATH="$PATH:$HOME/projects/dotfiles/bin"
 
 export PATH
 
@@ -75,12 +75,19 @@ __Note:__ Use `~/.gitconfig.local` to store sensitive information such
 as the `git` user credentials, e.g.:
 
 ```bash
+[commit]
+
+    # Sign commits using GPG.
+    # https://help.github.com/articles/signing-commits-using-gpg/
+
+    gpgsign = true
+
 
 [user]
+
     name = Adam Richardson
     email = adam@example.com
     signingkey = XXXXXXXX
-
 ```
 
 #### `~/.ssh/config`
@@ -122,12 +129,6 @@ username with your own in the [setup snippets](#setup) and [in the
 To update the dotfiles you can either run the [`setup`
 script](os/setup.sh) or, if you want to just update one particular
 part, run the appropriate [`os` script](os).
-
-```bash
-
-$ ./os/setup.sh
-
-```
 
 
 ## Acknowledgements
