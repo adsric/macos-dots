@@ -2,9 +2,9 @@
 " | General Settings                                                   |
 " ----------------------------------------------------------------------
 
-set nocompatible               " Don't make vim vi-compatibile.
+set nocompatible                " Don't make vim vi-compatibile.
 
-syntax on                      " Enable syntax highlighting.
+syntax on                       " Enable syntax highlighting.
 
 if has('autocmd')
     filetype plugin indent on
@@ -35,10 +35,14 @@ set cpoptions+=$                " When making a change, don't
                                 " put a `$` sign at the end of
                                 " the changed text.
 
+
+set textwidth=72                " Force the cursor onto a new line.
 set colorcolumn=73              " Highlight certain column(s).
+
 set cursorline                  " Highlight the current line.
 set directory=~/.vim/swaps      " Set directory for swap files.
 set encoding=utf-8 nobomb       " Use UTF-8 without BOM.
+set fileencoding=utf-8          " Use UTF-8.
 set history=5000                " Increase command line history.
 set hlsearch                    " Enable search highlighting.
 set ignorecase                  " Ignore case in search patterns.
@@ -115,12 +119,17 @@ set wildmenu                    " Enable enhanced command-line
                                 " command line with the first
                                 " match highlighted).
 
+set wildignore+=*.gif,*.jpg     " ┐
+set wildignore+=*.png           " │ Don’t offer to open certain
+set wildignore+=node_modules/*  " ┘ files/directories
+
+
 set winminheight=0              " Allow windows to be squashed.
 
 
-" ------------------------------------------------------------------------------
-" | Plugins                                                                    |
-" ------------------------------------------------------------------------------
+" ----------------------------------------------------------------------
+" | Plugins                                                            |
+" ----------------------------------------------------------------------
 
 " Use Vundle to manage the vim plugins.
 " https://github.com/gmarik/Vundle.vim
@@ -441,6 +450,7 @@ if has('autocmd')
     augroup END
 
 endif
+
 
 " ----------------------------------------------------------------------
 " | Color Scheme                                                       |
