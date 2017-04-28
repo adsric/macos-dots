@@ -1,24 +1,25 @@
 [alias]
 
     a     = commit --amend
-    amend = commit --amend --reuse-message=HEAD   # Amend to latest commit.
+    amend = commit --amend --reuse-message=HEAD  # Amend to latest commit.
     br    = branch
     c     = commit
-    ca    = !git add -A && git commit             # Commit all changes.
+    ca    = !git add -A && git commit            # Commit all changes.
     co    = checkout
     cp    = cherry-pick
     d     = diff
     dc    = diff --cached
-    g     = log --graph --pretty=custom           # Show custom graph.
-    l     = log --pretty=custom                   # Show custom log.
-    lc    = shortlog --summary --numbered         # List contributors.
+    g     = log --graph --pretty=custom          # Show custom graph.
+    l     = log --pretty=custom                  # Show custom log.
+    lc    = shortlog --summary --numbered        # List contributors.
     p     = push
-    rlc   = !git reset --hard HEAD~1              # Remove last commit.
-    s     = status -s                             # Working tree (short).
-    st    = status                                # Working tree.
-    ulc   = reset --soft HEAD~1                   # Undo last commit.
-    up    = push -f origin HEAD^:master           # Undo a `git push`.
-    w     = instaweb --httpd=webrick               # Start web-based visualizer.
+    pub   = push -u origin                       # Set upstream tracking.
+    rlc   = !git reset --hard HEAD~1             # Remove last commit.
+    s     = status -s                            # Working tree (short).
+    st    = status                               # Working tree.
+    ulc   = reset --soft HEAD~1                  # Undo last commit.
+    up    = push -f origin HEAD^:master          # Undo a `git push`.
+    w     = instaweb --httpd=webrick             # Web-based visualizer.
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
