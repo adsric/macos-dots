@@ -35,6 +35,11 @@ set cpoptions+=$                " When making a change, don't
                                 " put a `$` sign at the end of
                                 " the changed text.
 
+set display+=lastline           " When included, as much as possible of
+                                " the last line in a window will be
+                                " displayed.  When not included, a
+                                " last line that doesn't fit is
+                                " replaced with "@" lines.
 
 set textwidth=72                " Force the cursor onto a new line.
 set colorcolumn=73              " Highlight certain column(s).
