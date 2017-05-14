@@ -92,7 +92,9 @@ set scrolloff=5                 " When scrolling, keep the cursor
 set shortmess=aAItW             " Avoid all the hit-enter prompts.
 set showcmd                     " Show the command being typed.
 set showmode                    " Show current mode.
-set spelllang=en_gb             " Set the spellchecking language.
+
+set spell                       " Spell-check always on.
+set spelllang=en_gb             " Set the spell-check language.
 
 set smartcase                   " Override `ignorecase` option
                                 " if the search pattern contains
