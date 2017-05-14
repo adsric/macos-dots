@@ -37,11 +37,10 @@ set cpoptions+=$                " When making a change, don't
 
 set display+=lastline           " When included, as much as possible of
                                 " the last line in a window will be
-                                " displayed.  When not included, a
+                                " displayed. When not included, a
                                 " last line that doesn't fit is
                                 " replaced with "@" lines.
 
-set textwidth=72                " Force the cursor onto a new line.
 set colorcolumn=73              " Highlight certain column(s).
 
 set cursorline                  " Highlight the current line.
@@ -172,7 +171,6 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'mattn/emmet-vim'
     Plugin 'mattn/webapi-vim'
     Plugin 'mhinz/vim-signify'
-    Plugin 'mtscout6/syntastic-local-eslint.vim'
     Plugin 'nathanaelkane/vim-indent-guides'
     Plugin 'raimondi/delimitmate'
     Plugin 'scrooloose/nerdtree'
@@ -181,6 +179,7 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'shougo/neocomplcache.vim'
     Plugin 'shougo/neosnippet'
     Plugin 'shougo/neosnippet-snippets'
+    Plugin 'suan/vim-instant-markdown'
     Plugin 'shutnik/jshint2.vim'
     Plugin 'tomtom/tcomment_vim'
     Plugin 'tpope/vim-commentary'
@@ -234,6 +233,17 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven
 
 
 " ----------------------------------------------------------------------
+" | Plugins - Instant Markdown                                         |
+" ----------------------------------------------------------------------
+
+" Do not automatically launch the preview
+" window when the markdown file is open.
+" https://github.com/suan/vim-instant-markdown#ginstant_markdown_autostart
+
+let g:instant_markdown_autostart = 0
+
+
+" ----------------------------------------------------------------------
 " | Plugins - Markdown                                                 |
 " ----------------------------------------------------------------------
 
@@ -282,7 +292,7 @@ let g:signify_disable_by_default=1
 " Inform Syntastic which checkers to use based on file types.
 " https://github.com/scrooloose/syntastic#faq
 
-let g:syntastic_javascript_checkers = [ 'eslint' ]
+let g:syntastic_javascript_checkers = ['standard']
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

@@ -20,10 +20,18 @@ main() {
 
     print_in_purple "\n  npm\n\n"
 
-    install_npm_package "npm (update)" "npm"
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    install_npm_package "npm (update)" "npm"   a
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     printf "\n"
+
+    install_npm_package "!nstant-markdown-d" "instant-markdown-d"
     install_npm_package "Babel" "babel-cli"
     install_npm_package "JSHint" "jshint"
+    install_npm_package "Standard" "standard"
     install_npm_package "SVGO" "svgo"
 
 }
