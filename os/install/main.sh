@@ -10,7 +10,7 @@ print_in_purple "\n • Installs\n\n"
 ./xcode.sh
 ./homebrew.sh
 ./bash.sh
-./misc.sh
+./apps.sh
 ./nvm.sh
 ./npm.sh
 ./vim.sh

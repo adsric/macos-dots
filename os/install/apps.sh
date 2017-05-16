@@ -12,6 +12,10 @@ install_apps() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    brew_install "Docker" "docker" "caskroom/cask" "cask"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     brew_install "FFmpeg" "ffmpeg"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -51,7 +55,7 @@ install_apps() {
 
 main() {
 
-    print_in_purple "\n  Miscellaneous\n\n"
+    print_in_purple "\n  Apps\n\n"
 
     install_apps
 
