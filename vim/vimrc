@@ -13,6 +13,8 @@ if has('autocmd')
     "           └─────────────── Enable loading of plugin files.
 endif
 
+set breakindent                 " Better line wrapping.
+
 set autoindent                  " Copy indent to the new line.
 
 set backspace=indent            " ┐
@@ -93,8 +95,8 @@ set shortmess=aAItW             " Avoid all the hit-enter prompts.
 set showcmd                     " Show the command being typed.
 set showmode                    " Show current mode.
 
-set spell                       " Spell-check always on.
 set spelllang=en_gb             " Set the spell-check language.
+syntax spell toplevel
 
 set smartcase                   " Override `ignorecase` option
                                 " if the search pattern contains
@@ -113,6 +115,10 @@ set ttyfast                     " Enable fast terminal connection.
 set undodir=~/.vim/undos        " Set directory for undo files.
 set undofile                    " Automatically save undo history.
 set virtualedit=all             " Allow cursor to be anywhere.
+
+set nobackup                    " ┐
+set nowritebackup               " │ Disable vim backup and swap files.
+set noswapfile                  " ┘
 
 set visualbell                  " ┐
 set noerrorbells                " │ Disable beeping and window flashing
@@ -358,7 +364,7 @@ function! ToggleLimits()
     " [81]
     "   - general use
 
-    if ( &colorcolumn == '73' )
+    if (&colorcolumn == '73')
         set colorcolumn+=51,81
       else
         set colorcolumn-=51,81
@@ -369,7 +375,7 @@ endfunction
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 function! ToggleRelativeLineNumbers()
-    if ( &relativenumber == 1 )
+    if (&relativenumber == 1)
         set number
         set norelativenumber
     else
@@ -529,6 +535,13 @@ nmap <leader>cr 0yt=A<C-r>=<C-r>"<CR><Esc>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+" clear highlights by hitting [esc]
+" or by hitting [enter] in normal mode
+
+nnoremap <CR> :noh<CR><CR>
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 " [,cs] Clear search.
 
 map <leader>cs <Esc>:noh<CR>
@@ -557,6 +570,12 @@ nmap <leader>l :set list!<CR>
 " [,n ] Toggle `set relativenumber`.
 
 nmap <leader>n :call ToggleRelativeLineNumbers()<CR>
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+" [,sc] Toggle spellcheck.
+
+map <leader>sc :setlocal spell!<CR>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
