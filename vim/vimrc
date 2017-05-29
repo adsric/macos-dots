@@ -187,6 +187,7 @@ call vundle#begin('~/.vim/plugins')
     Plugin 'shougo/neocomplcache.vim'
     Plugin 'shougo/neosnippet'
     Plugin 'shougo/neosnippet-snippets'
+    Plugin 'sindresorhus/vim-xo'
     Plugin 'suan/vim-instant-markdown'
     Plugin 'shutnik/jshint2.vim'
     Plugin 'tomtom/tcomment_vim'
@@ -300,7 +301,7 @@ let g:signify_disable_by_default=1
 " Inform Syntastic which checkers to use based on file types.
 " https://github.com/scrooloose/syntastic#faq
 
-let g:syntastic_javascript_checkers = ['standard']
+let g:syntastic_javascript_checkers = ['xo']
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
