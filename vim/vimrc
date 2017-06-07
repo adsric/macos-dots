@@ -29,7 +29,7 @@ set backupskip+=/private/tmp/*  " ┘ for certain files.
 
 set clipboard=unnamed           " ┐
                                 " │ Use the system clipboard
-if has("unnamedplus")           " │ as the default register.
+if has('unnamedplus')           " │ as the default register.
     set clipboard+=unnamedplus  " │
 endif                           " ┘
 
@@ -44,6 +44,9 @@ set display+=lastline           " When included, as much as possible of
                                 " last line that doesn't fit is
                                 " replaced with "@" lines.
 
+set textwidth=80                " Force the cursor onto a new line
+								                " after 80 characters
+                                "
 set colorcolumn=73              " Highlight certain column(s).
 
 set cursorline                  " Highlight the current line.
@@ -109,8 +112,11 @@ set synmaxcol=2500              " Limit syntax highlighting (this
 
 set tabstop=2                   " ┐
 set softtabstop=2               " │ Set global <TAB> settings to 2 spaces
-set shiftwidth=2                " │ http://vimcasts.org/e/2
-set expandtab                   " ┘
+set shiftwidth=2                " ┘ http://vimcasts.org/e/2
+
+"set noexpandtab                " Indent using tab characters
+
+set expandtab                   " Indent using spaces
 
 set ttyfast                     " Enable fast terminal connection.
 set undodir=~/.vim/undos        " Set directory for undo files.
@@ -135,7 +141,6 @@ set wildmenu                    " Enable enhanced command-line
 set wildignore+=*.gif,*.jpg     " ┐
 set wildignore+=*.png           " │ Don’t offer to open certain
 set wildignore+=node_modules/*  " ┘ files/directories
-
 
 set winminheight=0              " Allow windows to be squashed.
 
