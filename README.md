@@ -77,17 +77,17 @@ as the `git` user credentials, e.g.:
 ```bash
 [commit]
 
-    # Sign commits using GPG.
-    # https://help.github.com/articles/signing-commits-using-gpg/
+	# Sign commits using GPG.
+	# https://help.github.com/articles/signing-commits-using-gpg/
 
-    gpgsign = true
+	gpgsign = true
 
 
 [user]
 
-    name = Adam Richardson
-    email = adam@example.com
-    signingkey = XXXXXXXX
+	name = Adam Richardson
+	email = adam@example.com
+	signingkey = XXXXXXXX
 ```
 
 #### `~/.ssh/config`
@@ -105,9 +105,9 @@ included in the repository e.g.:
 # contents of ~/.ssh/config
 
 Host example
-    HostName example.com
-    Port 22
-    User exampleuser
+	HostName example.com
+	Port 22
+	User exampleuser
 
 ```
 

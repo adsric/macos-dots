@@ -3,19 +3,15 @@
 # Readline library configuration options.
 # http://ss64.com/bash/syntax-inputrc.html
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# -----------------------------------------------------------------------
 
 # Disable beeping and window flashing.
 
 set bell-style none
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 # Use case-insensitive TAB autocompletion.
 
 set completion-ignore-case on
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Auto list TAB completions.
 

@@ -1,204 +1,230 @@
 [alias]
 
-    a     = commit --amend
-    amend = commit --amend --reuse-message=HEAD  # Amend to latest commit.
-    br    = branch
-    c     = commit
-    ca    = !git add -A && git commit            # Commit all changes.
-    co    = checkout
-    cp    = cherry-pick
-    d     = diff
-    dc    = diff --cached
-    g     = log --graph --pretty=custom          # Show custom graph.
-    l     = log --pretty=custom                  # Show custom log.
-    lc    = shortlog --summary --numbered        # List contributors.
-    p     = push
-    pub   = push -u origin                       # Set upstream tracking.
-    rlc   = !git reset --hard HEAD~1             # Remove last commit.
-    s     = status -s                            # Working tree (short).
-    st    = status                               # Working tree.
-    ulc   = reset --soft HEAD~1                  # Undo last commit.
-    up    = push -f origin HEAD^:master          # Undo a `git push`.
-    w     = instaweb --httpd=webrick             # Web-based visualizer.
+	a = commit --amend
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	# Amend to latest commit.
+	amend = commit --amend --reuse-message=HEAD 
+	br = branch
+	c = commit
 
-    # Add untracked, remove deleted, and show status.
+	# Commit all changes.
+	ca = !git add -A && git commit
+	co = checkout
+	cp = cherry-pick
+	d = diff
+	dc = diff --cached
 
-    adda = !git add -A && git status
+	# Show custom graph.
+	g = log --graph --pretty=custom
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	# Show custom log.
+	l = log --pretty=custom
 
-    # `git clean -df`: remove untracked files and directories from the working tree.
-    # `git stash clear`: remove all stashed states.
+	# List contributors.
+	lc = shortlog --summary --numbered
+	p = push
 
-    cleanup = !git clean -df && git stash clear
+	# Set upstream tracking.
+	pub = push -u origin
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	# Remove last commit.
+	rlc = !git reset --hard HEAD~1
 
-    # Remove branches that have already been merged with master.
-    # a.k.a. ‘delete merged’
+	# Working tree (short).
+	s = status -s
 
-    dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+	# Working tree.
+	st = status
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	# Undo last commit.
+	ulc = reset --soft HEAD~1
 
-    # Interactive rebase with the given number of latest commits.
+	# Undo a `git push`.
+	up = push -f origin HEAD^:master
 
-    reb = "!r() { git rebase -i HEAD~$1; }; r"
+	# Web-based visualizer.
+	w = instaweb --httpd=webrick
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	# ---------------------------------------------------------------------
 
-    # `git remote prune origin`: remove remote-tracking branches that were deleted from the remote repo.
-    # `git gc`: cleanup unnecessary files and optimize the local repository.
+	# Add untracked, remove deleted, and show status.
 
-    trim = !git remote prune origin && git gc
+	adda = !git add -A && git status
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	# ---------------------------------------------------------------------
 
-    # Show verbose output about tags, branches or remotes.
+	# `git clean -df`: remove untracked files and directories from the working tree.
+	# `git stash clear`: remove all stashed states.
 
-    tags = tag -l
-    branches = branch -a
-    remotes = remote -v
+	cleanup = !git clean -df && git stash clear
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	# ---------------------------------------------------------------------
 
-    # Switch to a branch, creating it if necessary
+	# Remove branches that have already been merged with master.
+	# a.k.a. ‘delete merged’
 
-    go = "!f() { \
-        git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; \
-    }; f"
+	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	# ---------------------------------------------------------------------
 
-    # Find commits by source code
+	# Interactive rebase with the given number of latest commits.
 
-    fc = "!f() { \
-        git log --pretty=custom --decorate --date=short -S\"$1\"; \
-    }; f"
+	reb = "!r() { git rebase -i HEAD~$1; }; r"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	# ---------------------------------------------------------------------
 
-    # Find commits by commit message.
+	# `git remote prune origin`: remove remote-tracking branches that were deleted from the remote repo.
+	# `git gc`: cleanup unnecessary files and optimize the local repository.
 
-    fm = "!f() { \
-        git log --pretty=custom --decorate --date=short --grep=\"$1\"; \
-    }; f"
+	trim = !git remote prune origin && git gc
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	# ---------------------------------------------------------------------
 
-    # Credit an author on the latest commit.
+	# Show verbose output about tags, branches or remotes.
 
-    credit = "!f() { \
-        if [ -n \"$1\" ] && [ -n \"$2\" ]; then \
-            git commit --amend --author \"$1 <$2>\" -C HEAD; \
-        fi \
-    }; f"
+	tags = tag -l
+	branches = branch -a
+	remotes = remote -v
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	# ---------------------------------------------------------------------
 
-    # List remote branches.
+	# Switch to a branch, creating it if necessary
 
-    lrb = "!f() { \
-        remote="${1:-origin}"; \
-        git ls-remote --heads "$remote"; \
-    }; f"
+	go = "!f() { \
+		git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; \
+	}; f"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	# ---------------------------------------------------------------------
 
-    # Merge GitHub pull request on top of the current branch or,
-    # if a branch name is specified, on top of the specified branch.
+	# Find commits by source code
 
-    mpr = "!f() { \
-      declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; \
-      declare branch=\"${2:-$currentBranch}\"; \
-      if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
-        git fetch origin refs/pull/$1/head:pr/$1 && \
-        git checkout -B $branch && \
-        git rebase $branch pr/$1 && \
-        git checkout -B $branch && \
-        git merge pr/$1 && \
-        git branch -D pr/$1 && \
-        git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
-      fi \
-    }; f"
+	fc = "!f() { \
+		git log --pretty=custom --decorate --date=short -S\"$1\"; \
+	}; f"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	# ---------------------------------------------------------------------
 
-    # Remove the tag with the specified tag name if exists,
-    # and tag the latest commit with that name.
+	# Find commits by commit message.
 
-    retag = "!f() { \
-        git tag -d "$1" &> /dev/null; \
-        git tag $1; \
-    }; f"
+	fm = "!f() { \
+		git log --pretty=custom --decorate --date=short --grep=\"$1\"; \
+	}; f"
+
+	# ---------------------------------------------------------------------
+
+	# Credit an author on the latest commit.
+
+	credit = "!f() { \
+		if [ -n \"$1\" ] && [ -n \"$2\" ]; then \
+			git commit --amend --author \"$1 <$2>\" -C HEAD; \
+		fi \
+	}; f"
+
+	# ---------------------------------------------------------------------
+
+	# List remote branches.
+
+	lrb = "!f() { \
+		remote="${1:-origin}"; \
+		git ls-remote --heads "$remote"; \
+	}; f"
+
+	# ---------------------------------------------------------------------
+
+	# Merge GitHub pull request on top of the current branch or,
+	# if a branch name is specified, on top of the specified branch.
+
+	mpr = "!f() { \
+		declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; \
+		declare branch=\"${2:-$currentBranch}\"; \
+		if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
+			git fetch origin refs/pull/$1/head:pr/$1 && \
+			git checkout -B $branch && \
+			git rebase $branch pr/$1 && \
+			git checkout -B $branch && \
+			git merge pr/$1 && \
+			git branch -D pr/$1 && \
+			git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
+		fi \
+	}; f"
+
+	# ---------------------------------------------------------------------
+
+	# Remove the tag with the specified tag name if exists,
+	# and tag the latest commit with that name.
+
+	retag = "!f() { \
+		git tag -d "$1" &> /dev/null; \
+		git tag $1; \
+	}; f"
 
 
 [color "branch"]
 
-    current = green bold
-    local = green
-    remote = yellow
+	current = green bold
+	local = green
+	remote = yellow
 
 [color "diff"]
 
-    frag = magenta
-    meta = yellow
-    new = green
-    old = red
+	frag = magenta
+	meta = yellow
+	new = green
+	old = red
 
 [color "status"]
 
-    added = green reverse
-    changed = yellow reverse
-    untracked = red reverse
+	added = green reverse
+	changed = yellow reverse
+	untracked = red reverse
 
 [core]
 
-    abbrev = 12
-    attributesfile = ~/.gitattributes
-    autocrlf = input
-    editor = vim
-    excludesfile = ~/.gitignore
+	abbrev = 12
+	attributesfile = ~/.gitattributes
+	autocrlf = input
+	editor = vim
+	excludesfile = ~/.gitignore
 
 [diff "bin"]
 
-    # Use `hexdump` to diff binary files.
+	# Use `hexdump` to diff binary files.
 
-    textconv = hexdump -v -C
+	textconv = hexdump -v -C
 
 [pretty]
 
-    custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
-    #                     │        │            │            │             └─ author name
-    #                     │        │            │            └─ message
-    #                     │        │            └─ date (relative)
-    #                     │        └─ decorations (branch, heads or tags)
-    #                     └─ hash (abbreviated)
+	custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
+	#                    [1]      [2]          [3]          [4]           [5]
+	#
+	# 1. hash (abbreviated)
+	# 2. decorations (branch, heads or tags)
+	# 3. date (relative)
+	# 4. message
+	# 5. author name
 
 
 [push]
 
-    # Make `git push` automatically push relevant
-    # annotated tags when pushing branches out.
+	# Make `git push` automatically push relevant
+	# annotated tags when pushing branches out.
 
-    followTags = true
+	followTags = true
 
 [user]
 
-    # Don't guess the user's identity.
-    # https://github.com/git/git/blob/90f7b16b3adc78d4bbabbd426fb69aa78c714f71/Documentation/config.txt#L2847-L2855
+	# Don't guess the user's identity.
+	# https://github.com/git/git/blob/90f7b16b3adc78d4bbabbd426fb69aa78c714f71/Documentation/config.txt#L2847-L2855
 
-    useConfigOnly = true
+	useConfigOnly = true
 
 [include]
 
-    # Load local configs.
-    # https://git-scm.com/docs/git-config#_includes
-    #
-    # [!] The following needs to remain at the end of this file in
-    #     order to allow any of the above configs to be overwritten
-    #     by the local ones
+	# Load local configs.
+	# https://git-scm.com/docs/git-config#_includes
+	#
+	# [!] The following needs to remain at the end of this file in
+	#     order to allow any of the above configs to be overwritten
+	#     by the local ones
 
-    path = ~/.gitconfig.local
+	path = ~/.gitconfig.local
