@@ -6,9 +6,9 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # -----------------------------------------------------------------------
 
-change_default_bash() {
+change_shell() {
 
-	declare -r LOCAL_SHELL_CONFIG_FILE="$HOME/.bash.local"
+	declare -r LOCAL_SHELL_CONFIG_FILE="$HOME/.zsh.local"
 
 	local configs=""
 	local pathConfig=""
@@ -16,7 +16,7 @@ change_default_bash() {
 	local newShellPath=""
 	local brewPrefix=""
 
-	# Try to get the path of the `Bash`
+	# Try to get the path of the `ZSH`
 	# version installed through `Homebrew`.
 
 	brewPrefix="$(brew_prefix)" \
@@ -31,9 +31,9 @@ $pathConfig
 export PATH
 "
 
-	newShellPath="$brewPrefix/bin/bash" \
+	newShellPath="$brewPrefix/bin/zsh" \
 
-	# Add the path of the `Bash` version installed through `Homebrew`
+	# Add the path of the `ZSH` version installed through `Homebrew`
 	# to the list of login shells from the `/etc/shells` file.
 	#
 	# This needs to be done because applications use this file to
@@ -46,15 +46,14 @@ export PATH
 	if ! grep "$newShellPath" < /etc/shells &> /dev/null; then
 		execute \
 			"printf '%s\n' '$newShellPath' | sudo tee -a /etc/shells" \
-			"Bash (add '$newShellPath' in '/etc/shells')" \
+			"ZSH (add '$newShellPath' in '/etc/shells')" \
 		|| return 1
 	fi
 
-	# Set latest version of `Bash` as the default
-	# (macOS uses by default an older version of `Bash`).
+	# Set latest version of `Zsh` as the default
 
 	chsh -s "$newShellPath" &> /dev/null
-	print_result $? "Bash (use latest version)"
+	print_result $? "Change shell to ZSH"
 
 	# If needed, add the necessary configs in the
 	# local shell configuration file.
@@ -63,7 +62,7 @@ export PATH
 		execute \
 			"printf '%s' '$configs' >> $LOCAL_SHELL_CONFIG_FILE \
 				&& . $LOCAL_SHELL_CONFIG_FILE" \
-			"Bash (update $LOCAL_SHELL_CONFIG_FILE)"
+			"Zsh (update $LOCAL_SHELL_CONFIG_FILE)"
 	fi
 
 }
@@ -72,12 +71,16 @@ export PATH
 
 main() {
 
-	print_in_purple "\n   Bash\n\n"
+	print_in_purple "\n   Zsh\n\n"
 
-	brew_install "Bash" "bash" \
-		&& change_default_bash
+	brew_install "ZSH" "zsh" \
+		&& change_shell
 
-	brew_install "Bash Completion 2" "bash-completion2" "homebrew/versions"
+	brew_install "ZSH Completions" "zsh-completions"
+
+	execute \
+		'sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"' \
+		"Oh My ZSH!"
 
 }
 

@@ -6,7 +6,7 @@ tell application "Terminal"
 	local initialOpenedWindows
 	local windowID
 
-	set themeName to "Solarized Dark"
+	set themeName to "Snazzy"
 
 	(* Store the IDs of all the open terminal windows. *)
 	set initialOpenedWindows to id of every window

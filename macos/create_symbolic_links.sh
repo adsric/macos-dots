@@ -9,18 +9,15 @@ create_symlinks() {
 
 	declare -a FILES_TO_SYMLINK=(
 
-		"shell/bash_autocomplete"
-		"shell/bash_logout"
-		"shell/bash_options"
-		"shell/bash_profile"
-		"shell/bash_prompt"
-		"shell/bashrc"
 		"shell/curlrc"
 		"shell/inputrc"
 		"shell/screenrc"
 		"shell/shell_aliases"
 		"shell/shell_exports"
 		"shell/shell_functions"
+		"shell/zlogout"
+		"shell/zprofile"
+		"shell/zshrc"
 
 		"git/gitattributes"
 		"git/gitconfig"
