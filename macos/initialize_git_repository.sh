@@ -17,14 +17,14 @@ initialize_git_repository() {
 	if ! is_git_repository; then
 
 		# Run the following Git commands in the root of
-		# the dotfiles directory, not in the `os/` directory.
-
+		# the dotfiles directory, not in the `os/` directory
 		cd ../ \
 			|| print_error "Failed to 'cd ../'"
 
-		execute \
-			"git init && git remote add origin $GIT_ORIGIN" \
-			"Initialize the Git repository"
+		git init &> /dev/null \
+			&& git remote add origin "$GIT_ORIGIN" &> /dev/null
+
+		print_result $? 'Initialize the Git repository'
 
 	fi
 
@@ -34,7 +34,7 @@ initialize_git_repository() {
 
 main() {
 	print_in_purple "\n • Initialize Git repository\n\n"
-	initialize_git_repository "$1"
+	initialize_git_repository
 }
 
-main "$1"
+main

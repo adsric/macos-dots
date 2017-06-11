@@ -11,11 +11,11 @@ To set up the `dotfiles` just run the appropriate snippet in the
 terminal:
 
 (:warning: **DO NOT** run the `setup` snippet if you don't fully
-understand [what it does](os/setup.sh). Seriously, **DON'T**!)
+understand [what it does](macos/setup.sh). Seriously, **DON'T**!)
 
 | OS | Snippet |
 |:---:|:---|
-| `macOS` | `bash -c "$(curl -LsS https://raw.github.com/adsric/dotfiles/master/os/setup.sh)"` |
+| `macOS` | `bash -c "$(curl -LsS https://raw.github.com/adsric/dotfiles/master/macos/setup.sh)"` |
 
 That's it! :sparkles:
 
@@ -29,9 +29,9 @@ The setup process will:
   [`shell`](shell), and
   [`vim`](vim) files
 * Install applications / command-line tools for
-  [`macOS`](os/install)
+  [`macOS`](macos/install)
 * Set custom
-  [`macOS`](os/preferences)  preferences
+  [`macOS`](macos/preferences)  preferences
 * Install [`vim` plugins](vim/vim/plugins)
 
 
@@ -121,14 +121,14 @@ settings from `~/.vimrc`.
 
 If you decide to fork this project, don't forget to substitute my
 username with your own in the [setup snippets](#setup) and [in the
-`setup` script](https://github.com/adsric/dotfiles/blob/master/os/setup.sh#L3).
+`setup` script](https://github.com/adsric/dotfiles/blob/master/macos/setup.sh#L3).
 
 
 ## Update
 
 To update the dotfiles you can either run the [`setup`
-script](os/setup.sh) or, if you want to just update one particular
-part, run the appropriate [`os` script](os).
+script](macos/setup.sh) or, if you want to just update one particular
+part, run the appropriate script.
 
 
 ## Acknowledgements
