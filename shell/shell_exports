@@ -5,9 +5,6 @@
 
 # -----------------------------------------------------------------------
 
-# Make `vim` the default editor.
-export EDITOR="vim"
-
 # Ignore commands that start with spaces and duplicates.
 export HISTCONTROL=ignoreboth
 
@@ -45,3 +42,20 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # Make Python use UTF-8 encoding for output to stdin/stdout/stderr.
 export PYTHONIOENCODING="UTF-8"
+
+# Do not overwrite files when redirecting using ">". Note that you can still override this with ">|"
+set -o noclobber
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+	export EDITOR="vim"
+else
+	export EDITOR="code"
+fi
+
+# Format of command execution time stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+HIST_STAMPS="dd.mm.yyyy"
+
+# Disable sharing history between terminals enabled by Oh My Zsh
+unsetopt share_history

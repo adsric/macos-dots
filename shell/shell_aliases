@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 alias ..="cd .."
 alias ...="cd ../.."
@@ -9,14 +9,11 @@ alias cd..="cd .."
 
 alias :q="exit"
 alias c="clear"
-alias ch="history -c && > ~/.bash_history"
 alias g="git"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias l='ls -l'
 alias la='ls -la'
 alias lsd="ls -l | grep --color=never '^d'"
-alias m="man"
-alias map="xargs -n1"
 alias n="npm"
 alias q="exit"
 alias rm="rm -rf --"

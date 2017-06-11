@@ -215,6 +215,7 @@ main() {
 	fi
 
 	./create_symbolic_links.sh
+	./create_local_config_files.sh
 	./install_packages.sh
 	./setup_preferences.sh
 
