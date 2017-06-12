@@ -32,7 +32,6 @@ The setup process will:
   [`macOS`](macos/install)
 * Set custom
   [`macOS`](macos/preferences)  preferences
-* Install [`vim` plugins](vim/vim/plugins)
 
 
 ## Customize
@@ -42,20 +41,20 @@ The setup process will:
 The `dotfiles` can be easily extended to suit additional local
 requirements by using the following files:
 
-#### `~/.bash.local`
+#### `~/.zsh.local`
 
-If the `~/.bash.local` file exists, it will be automatically sourced
-after all the other [`bash` related files](src/shell), thus, allowing
+If the `~/.zsh.local` file exists, it will be automatically sourced
+after all the other [`ZSH` related files](shell), thus, allowing
 its content to add to or overwrite the existing aliases, settings,
 PATH, etc.
 
-Here is a very simple example of a `~/.bash.local` file:
+Here is a very simple example of a `~/.zsh.local` file:
 
-```bash
+```
 
-#!/bin/bash
+#!/bin/zsh
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# -----------------------------------------------------------------------
 
 # Set PATH additions.
 
@@ -74,7 +73,7 @@ its content to overwrite or add to the existing `git` configurations.
 __Note:__ Use `~/.gitconfig.local` to store sensitive information such
 as the `git` user credentials, e.g.:
 
-```bash
+```
 [commit]
 
 	# Sign commits using GPG.
@@ -100,7 +99,7 @@ addresses then the ssh_config will make life easy.
 __Note:__ Because `~/.ssh/config` stores sensitive information it is not
 included in the repository e.g.:
 
-```bash
+```
 
 # contents of ~/.ssh/config
 
@@ -110,12 +109,6 @@ Host example
 	User exampleuser
 
 ```
-
-#### `~/.vimrc.local`
-
-If the `~/.vimrc.local` file exists, it will be automatically sourced
-after `~/.vimrc`, thus, allowing its content to add or overwrite the
-settings from `~/.vimrc`.
 
 ### Forks
 
