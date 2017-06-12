@@ -18,6 +18,5 @@ if answer_is_yes; then
 	./packages/brew_packages.sh
 	./packages/nvm.sh
 	./packages/npm.sh
-	./packages/vim.sh
 
 fi

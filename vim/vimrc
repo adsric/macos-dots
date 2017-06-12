@@ -14,15 +14,12 @@ if has('autocmd')
 	"
 	" 1. Enable loading of plugin files.
 	" 2. Enable loading of indent file.
-	" 3. Enable file type detection. 
+	" 3. Enable file type detection.
 endif
 
 
 " Copy indent to the new line.
 set autoindent
-
-" Better line wrapping.
-set breakindent
 
 " Allow `backspace` in insert mode.
 set backspace=indent
@@ -45,14 +42,6 @@ endif
 " When making a change, don't redisplay the line, and instead, put a
 " `$` sign at the end of the changed text.
 set cpoptions+=$
-
-" When included, as much as possible of the last line in a window will be
-" displayed. When not included, a last line that doesn't fit is replaced
-" with "@" lines.
-set display+=lastline
-
-" Force the cursor onto a new line after 80 characters
-set textwidth=80
 
 " Highlight certain column(s).
 set colorcolumn=73
@@ -84,12 +73,12 @@ set incsearch
 " Always show the status line.
 set laststatus=2
 
-" Do not redraw the screen while executing macros, registers and other 
+" Do not redraw the screen while executing macros, registers and other
 " commands that have not been typed.
 set lazyredraw
 
 "  Use custom symbols to represent invisible characters.
-set listchars=tab:→\
+set listchars=tab:→→
 set listchars+=trail:·
 set listchars+=eol:↴
 set listchars+=nbsp:_
@@ -106,7 +95,7 @@ set mousehide
 " Disable error bells.
 set noerrorbells
 
-" When using the join command, only insert a single space 
+" When using the join command, only insert a single space
 " after a `.`, `?`, or `!`.
 set nojoinspaces
 
@@ -144,7 +133,7 @@ set showmatch
 " Set the spell-check language.
 set spelllang=en_gb
 
-" Override `ignorecase` option if the search pattern 
+" Override `ignorecase` option if the search pattern
 " contains uppercase characters.
 set smartcase
 
@@ -160,6 +149,16 @@ set shiftwidth=4
 
 " Indent using tab characters (Indent using spaces set expandtab).
 set noexpandtab
+
+" Smart indents
+set smartindent
+set smarttab
+
+" Don't wrap lines
+set nowrap
+
+" Wrap lines at convenient points
+set linebreak
 
 " Enable fast terminal connection.
 set ttyfast
@@ -194,188 +193,7 @@ set winminheight=0
 
 
 " -----------------------------------------------------------------------
-" Plugins
-" -----------------------------------------------------------------------
-
-" Use Vundle to manage the vim plugins.
-" https://github.com/gmarik/Vundle.vim
-
-" -----------------------------------------------------------------------
-
-" Disable file type detection
-" (this is required by Vundle).
-
-filetype off
-
-" -----------------------------------------------------------------------
-
-" Include Vundle in the runtime path.
-
-set runtimepath+=~/.vim/plugins/Vundle.vim
-
-" Initialize Vundle and specify the path
-" where the plugins should be installed .
-
-call vundle#begin('~/.vim/plugins')
-
-	" Let Vundle manage Vundle (this is important!)
-	Plugin 'VundleVim/Vundle.vim'
-
-	Plugin 'altercation/vim-colors-solarized'
-	Plugin 'ap/vim-css-color'
-	Plugin 'chrisbra/unicode.vim'
-	Plugin 'editorconfig/editorconfig-vim'
-	Plugin 'godlygeek/tabular'
-	Plugin 'isRuslan/vim-es6'
-	Plugin 'jelera/vim-javascript-syntax'
-	Plugin 'kien/ctrlp.vim'
-	Plugin 'marijnh/tern_for_vim'
-	Plugin 'mattn/emmet-vim'
-	Plugin 'mattn/webapi-vim'
-	Plugin 'mhinz/vim-signify'
-	Plugin 'nathanaelkane/vim-indent-guides'
-	Plugin 'raimondi/delimitmate'
-	Plugin 'scrooloose/nerdtree'
-	Plugin 'scrooloose/syntastic'
-	Plugin 'sheerun/vim-polyglot'
-	Plugin 'shougo/neocomplcache.vim'
-	Plugin 'shougo/neosnippet'
-	Plugin 'shougo/neosnippet-snippets'
-	Plugin 'sindresorhus/vim-xo'
-	Plugin 'suan/vim-instant-markdown'
-	Plugin 'shutnik/jshint2.vim'
-	Plugin 'tomtom/tcomment_vim'
-	Plugin 'tpope/vim-commentary'
-	Plugin 'tpope/vim-fugitive'
-	Plugin 'tpope/vim-repeat'
-	Plugin 'tpope/vim-surround'
-
-call vundle#end()
-
-" -----------------------------------------------------------------------
-
-" Re-enable file type detection
-" (disabling it was required by Vundle).
-
-filetype on
-
-
-" -----------------------------------------------------------------------
-" Plugins - Emmet
-" -----------------------------------------------------------------------
-
-" Redefine trigger key for Emmet.
-" http://docs.emmet.io/cheat-sheet/
-
-let g:user_emmet_leader_key='<C-E>'
-
-" Load custom Emmet snippets.
-" http://docs.emmet.io/customization/snippets/
-
-let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.vim/snippets/emmet.json')), "\n"))
-
-
-" -----------------------------------------------------------------------
-" Plugins - Indent Guides
-" -----------------------------------------------------------------------
-
-" Set custom indent colors.
-" https://github.com/nathanaelkane/vim-indent-guides#setting-custom-indent-colors
-
-let g:indent_guides_auto_colors = 0
-
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd
-		\ guibg=#00323D
-		\ ctermbg=Magenta
-
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven
-		\ guibg=#073642
-		\ ctermbg=DarkMagenta
-
-
-" -----------------------------------------------------------------------
-" Plugins - Instant Markdown
-" -----------------------------------------------------------------------
-
-" Do not automatically launch the preview
-" window when the markdown file is open.
-" https://github.com/suan/vim-instant-markdown#ginstant_markdown_autostart
-
-let g:instant_markdown_autostart = 0
-
-
-" -----------------------------------------------------------------------
-" Plugins - Markdown
-" -----------------------------------------------------------------------
-
-" Disable Folding.
-" https://github.com/plasticboy/vim-markdown#disable-folding
-
-let g:vim_markdown_folding_disabled = 1
-
-
-" -----------------------------------------------------------------------
-" Plugins - NeoComplCache
-" -----------------------------------------------------------------------
-
-" Enable `neocomplcache` by default.
-" https://github.com/Shougo/neocomplcache.vim#installation
-
-let g:neocomplcache_enable_at_startup = 1
-
-" Make `Tab` autocomplete.
-
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-
-" Make `Shift+Tab` insert `Tab` character.
-
-inoremap <S-TAB> <C-V><TAB>
-
-
-" -----------------------------------------------------------------------
-" Plugins - Signify
-" -----------------------------------------------------------------------
-
-" Disable Signify by default.
-" https://github.com/mhinz/vim-signify
-
-let g:signify_disable_by_default = 1
-
-
-" -----------------------------------------------------------------------
-" Plugins - Syntastic
-" -----------------------------------------------------------------------
-
-" Inform Syntastic which checkers to use based on file types.
-" https://github.com/scrooloose/syntastic#faq
-
-let g:syntastic_javascript_checkers = ['xo']
-
-" Disable syntax checking by default.
-
-let g:syntastic_mode_map = {
-	\ 'active_filetypes': [],
-	\ 'mode': 'passive',
-	\ 'passive_filetypes': []
-\}
-
-
-" -----------------------------------------------------------------------
 " Helper Functions
-" -----------------------------------------------------------------------
-
-function! GetGitBranchName()
-
-	let branchName = ''
-
-	if exists('g:loaded_fugitive')
-		let branchName = '[' . fugitive#head() . ']'
-	endif
-
-	return branchName
-
-endfunction
-
 " -----------------------------------------------------------------------
 
 function! StripTrailingWhitespaces()
@@ -515,23 +333,20 @@ endif
 " Enable full-color support.
 set t_Co=256
 
-" Use colors that look good on a dark background.
-set background=dark
-
-" Set custom configurations for when the
-" Solarized theme is used from vim's Terminal mode.
-"
-" http://ethanschoonover.com/solarized/vim-colors-solarized#advanced-configuration
-
-if !has('gui_running')
-	let g:solarized_contrast = 'normal'
-	let g:solarized_termcolors = 256
-	let g:solarized_termtrans = 1
-	let g:solarized_visibility = 'low'
-endif
-
-" Use custom color scheme.
-colorscheme solarized
+" Use color scheme.
+hi javaRepeat ctermfg=green
+hi javaType ctermfg=green
+hi javaStorageClass ctermfg=green cterm=bold
+hi javaDocTags ctermfg=green
+hi Conditional ctermfg=green
+hi Comment ctermfg=gray
+hi Statement ctermfg=blue
+hi Function ctermfg=blue
+hi Identifier ctermfg=blue
+hi Exception ctermfg=green
+hi Special ctermfg=green
+hi String ctermfg=yellow
+hi MatchParen ctermbg=none cterm=underline ctermfg=magenta
 
 
 " -----------------------------------------------------------------------
@@ -556,20 +371,6 @@ nmap <leader>* :%s/\<<C-r><C-w>\>//<Left>
 
 " -----------------------------------------------------------------------
 
-" [,cc] Toggle code comments.
-" https://github.com/tomtom/tcomment_vim
-
-map <leader>cc :TComment<CR>
-
-" -----------------------------------------------------------------------
-
-" [,cr] Calculate result.
-" http://vimcasts.org/e/56
-
-nmap <leader>cr 0yt=A<C-r>=<C-r>"<CR><Esc>
-
-" -----------------------------------------------------------------------
-
 " clear highlights by hitting [esc]
 " or by hitting [enter] in normal mode
 
@@ -580,19 +381,6 @@ nnoremap <CR> :noh<CR><CR>
 " [,cs] Clear search.
 
 map <leader>cs <Esc>:noh<CR>
-
-" -----------------------------------------------------------------------
-
-" [,gd] Toggle Git differences.
-
-map <leader>gd :SignifyToggle<CR>
-
-" -----------------------------------------------------------------------
-
-" [,h ] JSHint the code.
-" https://github.com/Shutnik/jshint2.vim
-
-nmap <leader>h :JSHint<CR>
 
 " -----------------------------------------------------------------------
 
@@ -620,27 +408,9 @@ nmap <leader>ss :call StripTrailingWhitespaces()<CR>
 
 " -----------------------------------------------------------------------
 
-" [,tn] Toggle NERDTree.
-
-map <leader>t :NERDTreeToggle<CR>
-
-" -----------------------------------------------------------------------
-
-" [,ti] Toggle indent.
-
-nmap <leader>ti <Plug>IndentGuidesToggle
-
-" -----------------------------------------------------------------------
-
 " [,tl] Toggle show limits.
 
 nmap <leader>tl :call ToggleLimits()<CR>
-
-" -----------------------------------------------------------------------
-
-" [,ts] Toggle Syntastic.
-
-nmap <leader>ts :SyntasticToggleMode \| w<CR>
 
 " -----------------------------------------------------------------------
 
@@ -667,18 +437,18 @@ map <leader>W :w !sudo tee %<CR>
 
 highlight ColorColumn
 	\ term=NONE
-	\ cterm=NONE  ctermbg=237    ctermfg=NONE
-	\ gui=NONE    guibg=#073642  guifg=NONE
+	\ cterm=NONE  ctermbg=gray   ctermfg=NONE
+	\ gui=NONE    guibg=#282a36  guifg=NONE
 
 highlight CursorLine
 	\ term=NONE
-	\ cterm=NONE  ctermbg=235  ctermfg=NONE
-	\ gui=NONE    guibg=#073642  guifg=NONE
+	\ cterm=NONE  ctermbg=gray ctermfg=black
+	\ gui=NONE    guibg=#282a36 guifg=NONE
 
 highlight CursorLineNr
 	\ term=bold
-	\ cterm=bold  ctermbg=NONE   ctermfg=178
-	\ gui=bold    guibg=#073642  guifg=Orange
+	\ cterm=bold  ctermbg=NONE   ctermfg=magenta
+	\ gui=bold    guibg=#282a36 guifg=Cyan
 
 highlight LineNr
 	\ term=NONE
@@ -687,13 +457,12 @@ highlight LineNr
 
 highlight User1
 	\ term=NONE
-	\ cterm=NONE  ctermbg=237    ctermfg=Grey
-	\ gui=NONE    guibg=#073642  guifg=#839496
+	\ cterm=NONE  ctermbg=blue    ctermfg=black
+	\ gui=NONE    guibg=#282a36 guifg=#839496
 
 set statusline=
 set statusline+=%1*                           " User1 highlight
 set statusline+=\ [%n]                        " Buffer number
-set statusline+=\ %{GetGitBranchName()}       " Git branch name
 set statusline+=\ [%f]                        " Path to the file
 set statusline+=%m                            " Modified flag
 set statusline+=%r                            " Readonly flag
@@ -715,19 +484,4 @@ set statusline+=\ (%P)\                       " Percent through file
 
 " Preview:
 "
-" [1] [master] [vim/vimrc][vim][unix:utf-8]            17,238/381 (59%)
-
-
-" -----------------------------------------------------------------------
-" Local Settings
-" -----------------------------------------------------------------------
-
-" Load local settings if they exist.
-"
-" [!] The following needs to remain at the end of this file in
-"     order to allow any of the above settings to be overwritten
-"     by the local ones.
-
-if filereadable(glob("~/.vimrc.local"))
-	source ~/.vimrc.local
-endif
+" [1] [vim/vimrc][vim][unix:utf-8]            17,238/381 (59%)
