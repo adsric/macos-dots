@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 alias ..="cd .."
 alias ...="cd ../.."
@@ -21,7 +21,7 @@ alias t="tmux"
 
 # -----------------------------------------------------------------------
 
-# Vim with no arguments (opens the current directory in Vim), 
+# Vim with no arguments (opens the current directory in Vim),
 # otherwise opens the given argument.
 
 v() {
@@ -34,7 +34,7 @@ v() {
 
 # -----------------------------------------------------------------------
 
-# Open with no arguments (opens the current directory), 
+# Open with no arguments (opens the current directory),
 # otherwise opens the given argument.
 
 o() {
