@@ -8,6 +8,9 @@ source_shell_files() {
 	[[ -f ~/.shell_exports ]] && source ~/.shell_exports
 	[[ -f ~/.shell_functions ]] && source ~/.shell_functions
 
+	# Load extra (docker alias)
+	[[ -f ~/.docker_aliases ]] && source ~/.docker_aliases
+
 	# Load extra (local/private) settings
 	[ -f ~/.zsh.local ] && source ~/.zsh.local
 

@@ -19,6 +19,8 @@ create_symlinks() {
 		"shell/zprofile"
 		"shell/zshrc"
 
+		"shell/docker_aliases"
+
 		"git/gitattributes"
 		"git/gitconfig"
 		"git/gitignore"

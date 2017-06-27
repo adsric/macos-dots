@@ -1,0 +1,100 @@
+#!/bin/bash
+
+# -----------------------------------------------------------------------
+
+export DOCKER_PREFIX="\033[4mDOCKER\033[0m -"
+
+COLOR_RED="\033[0;31m"
+COLOR_YELLOW="\033[1;33m"
+COLOR_GREEN="\033[0;32m"
+COLOR_BLUE="\033[1;34m"
+COLOR_LIGHT_RED="\033[1;31m"
+COLOR_LIGHT_GREEN="\033[1;32m"
+COLOR_WHITE="\033[1;37m"
+COLOR_LIGHT_GRAY="\033[0;37m"
+COLOR_NONE="\033[0m"
+
+# -----------------------------------------------------------------------
+
+# Check docker deamon is running.
+
+doCheck() {
+
+	docker info > /dev/null 2>&1
+	if [ $? -ne 0 ]; then
+		echo -e "${DOCKER_PREFIX} Local deamon is ${COLOR_RED}not running${COLOR_NONE}\n";
+		return 1
+	fi
+
+	DOCKER_MACHINE_NAME=$(docker info |awk -F':' '/Name/ {print $2}' | tr -d ' ')
+	echo -e "${DOCKER_PREFIX} Local deamon \"${DOCKER_MACHINE_NAME}\" is ${COLOR_GREEN}running${COLOR_NONE}.\n"
+
+}
+
+# -----------------------------------------------------------------------
+
+#  Docker alias
+
+doAlias() {
+	alias doco="docker-compose"
+
+	alias doup="docker-compose build && docker-compose up -d --remove-orphans"
+	alias dodown="docker-compose down --remove-orphans"
+	alias dorestart="dodown && doup"
+	alias doreload="dodown && doup"
+	alias dologs="docker-compose logs"
+
+	alias doall="docker-compose down && docker-compose rm && docker-compose build --no-cache --force-rm && docker-compose up -d"
+}
+
+# -----------------------------------------------------------------------
+
+# Docker help, lists the alias commands
+
+dohelp() {
+	echo -e "${DOCKER_PREFIX} Helper Commands.\n"
+
+	echo -e "  ${COLOR_BLUE}doup${COLOR_NONE} : Build and Up the current Docker compose."
+	echo -e "  ${COLOR_BLUE}dodown${COLOR_NONE} : Down the current Docker compose."
+	echo -e "  ${COLOR_BLUE}doreload${COLOR_NONE} : Down and up the current Docker compose."
+	echo -e "  ${COLOR_BLUE}doshell${COLOR_NONE} : Open shell on specified container (autocomplete)."
+	echo -e "  ${COLOR_BLUE}dologs${COLOR_NONE} : Start the Logging system for the current Docker compose."
+
+	echo -e "  ${COLOR_WHITE}doco${COLOR_NONE} : Simple alias for docker-compose."
+}
+
+# -----------------------------------------------------------------------
+
+# Run a shell on the specified container
+
+doshell() {
+	docker exec -t -i $1 /bin/bash
+}
+
+# -----------------------------------------------------------------------
+
+# Autocompleter for doshell
+
+if $(type complete >/dev/null); then
+	_completeshell() {
+		local word="${COMP_WORDS[COMP_CWORD]}"
+		COMPREPLY=( $(compgen -W "$(docker ps --filter status=running --format "{{.Names}}")" -- "$word") )
+	}
+
+	complete -F _completeshell doshell
+fi
+
+# -----------------------------------------------------------------------
+
+main() {
+	doAlias
+	doCheck
+}
+
+main
+
+# -----------------------------------------------------------------------
+
+# Cleanup.
+
+unset -f main
