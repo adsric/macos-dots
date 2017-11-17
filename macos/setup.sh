@@ -214,23 +214,23 @@ main() {
 
 	fi
 
-	./create_symbolic_links.sh
-	./create_local_config_files.sh
-	./install_packages.sh
-	./setup_preferences.sh
+	./macos/create_symbolic_links.sh
+	./macos/create_local_config_files.sh
+	./macos/install_packages.sh
+	./macos/setup_preferences.sh
 
 	if cmd_exists 'git'; then
 
 		if [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
 			print_info 'Initialize Git repository'
-			./os/initialize_git_repository.sh "$DOTFILES_ORIGIN"
+			./macos/initialize_git_repository.sh "$DOTFILES_ORIGIN"
 		fi
 
-		./update_content.sh
+		./macos/update_content.sh
 
 	fi
 
-	./restart.sh
+	./macos/restart.sh
 
 }
 
