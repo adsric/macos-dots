@@ -222,7 +222,6 @@ main() {
 	if cmd_exists 'git'; then
 
 		if [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
-			print_info 'Initialize Git repository'
 			./macos/initialize_git_repository.sh "$DOTFILES_ORIGIN"
 		fi
 

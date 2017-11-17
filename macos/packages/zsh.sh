@@ -62,7 +62,7 @@ export PATH
 		execute \
 			"printf '%s' '$configs' >> $LOCAL_SHELL_CONFIG_FILE \
 				&& . $LOCAL_SHELL_CONFIG_FILE" \
-			"Zsh (update $LOCAL_SHELL_CONFIG_FILE)"
+			"ZSH (update $LOCAL_SHELL_CONFIG_FILE)"
 	fi
 
 }
@@ -71,7 +71,7 @@ export PATH
 
 main() {
 
-	print_in_purple "\n   Zsh\n\n"
+	print_in_purple "\n   ZSH Shell\n\n"
 
 	brew_install "ZSH" "zsh" \
 		&& change_shell
