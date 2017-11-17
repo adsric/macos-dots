@@ -41,18 +41,18 @@ The setup process will:
 The `dotfiles` can be easily extended to suit additional local
 requirements by using the following files:
 
-#### `~/.zsh.local`
+#### `~/.shell.local`
 
-If the `~/.zsh.local` file exists, it will be automatically sourced
+If the `~/.shell.local` file exists, it will be automatically sourced
 after all the other [`ZSH` related files](shell), thus, allowing
 its content to add to or overwrite the existing aliases, settings,
 PATH, etc.
 
-Here is a very simple example of a `~/.zsh.local` file:
+Here is a very simple example of a `~/.shell.local` file:
 
 ```
 
-#!/bin/zsh
+#!/bin/shell
 
 # -----------------------------------------------------------------------
 
@@ -92,8 +92,8 @@ as the `git` user credentials, e.g.:
 #### `~/.ssh/config`
 
 If you're anything like me, you probably log in and out of a half dozen
-remote or local servers on a daily basis. And if you're even more like 
-me, you have trouble remembering all of the various usernames and 
+remote or local servers on a daily basis. And if you're even more like
+me, you have trouble remembering all of the various usernames and
 addresses then the ssh_config will make life easy.
 
 __Note:__ Because `~/.ssh/config` stores sensitive information it is not

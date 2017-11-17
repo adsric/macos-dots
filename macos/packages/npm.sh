@@ -8,7 +8,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 install_npm_package() {
 
 	execute \
-		". $HOME/.zsh.local \
+		". $HOME/.shell.local \
 			&& npm install --global --silent $2" \
 		"$1"
 

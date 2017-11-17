@@ -10,7 +10,7 @@ main() {
 	ssh -T git@github.com &> /dev/null
 
 	if [ $? -ne 1 ]; then
-		./set_github_ssh_key.sh \
+		./setup_github_ssh_key.sh \
 			|| return 1
 	fi
 

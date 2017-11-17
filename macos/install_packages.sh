@@ -5,17 +5,17 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # -----------------------------------------------------------------------
 
-print_in_purple "\n • Package installs\n\n"
+print_in_purple "\n • Install Packages\n\n"
 
-ask_for_confirmation 'Do you want to install the application/command line tool packages?'
+ask_for_confirmation 'Do you want to install the commandline/application packages?'
 printf '\n'
 
 if answer_is_yes; then
 
 	./packages/xcode.sh
 	./packages/homebrew.sh
-	./packages/zsh.sh
-	./packages/brew_packages.sh
+	./packages/commandline.sh
+	./packages/apps.sh
 	./packages/nvm.sh
 	./packages/npm.sh
 

@@ -15,9 +15,6 @@ create_symlinks() {
 		"shell/shell_aliases"
 		"shell/shell_exports"
 		"shell/shell_functions"
-		"shell/zlogout"
-		"shell/zprofile"
-		"shell/zshrc"
 
 		"shell/docker_aliases"
 

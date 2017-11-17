@@ -12,7 +12,7 @@ source_shell_files() {
 	[[ -f ~/.docker_aliases ]] && source ~/.docker_aliases
 
 	# Load extra (local/private) settings
-	[ -f ~/.zsh.local ] && source ~/.zsh.local
+	[ -f ~/.shell.local ] && source ~/.shell.local
 
 }
 

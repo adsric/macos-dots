@@ -6,9 +6,48 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # -----------------------------------------------------------------------
 
-change_shell() {
+setup_shell_symlinks() {
 
-	declare -r LOCAL_SHELL_CONFIG_FILE="$HOME/.zsh.local"
+	declare -a FILES_TO_SYMLINK=(
+
+		"shell/zlogout"
+		"shell/zprofile"
+		"shell/zshrc"
+
+	)
+
+	local i=''
+	local sourceFile=''
+	local targetFile=''
+
+	for i in ${FILES_TO_SYMLINK[@]}; do
+
+		sourceFile="$(cd .. && pwd)/$i"
+		targetFile="$HOME/.$(printf "%s" "$i" | sed "s/.*\/\(.*\)/\1/g")"
+
+		if [ ! -e "$targetFile" ]; then
+			execute "ln -fs $sourceFile $targetFile" "$targetFile → $sourceFile"
+		elif [ "$(readlink "$targetFile")" == "$sourceFile" ]; then
+			print_success "$targetFile → $sourceFile"
+		else
+			ask_for_confirmation "'$targetFile' already exists, do you want to overwrite it?"
+			if answer_is_yes; then
+				rm -rf "$targetFile"
+				execute "ln -fs $sourceFile $targetFile" "$targetFile → $sourceFile"
+			else
+				print_error "$targetFile → $sourceFile"
+			fi
+		fi
+
+	done
+
+}
+
+# -----------------------------------------------------------------------
+
+setup_shell_change() {
+
+	declare -r LOCAL_SHELL_CONFIG_FILE="$HOME/.shell.local"
 
 	local configs=""
 	local pathConfig=""
@@ -50,7 +89,7 @@ export PATH
 		|| return 1
 	fi
 
-	# Set latest version of `Zsh` as the default
+	# Set latest version of `ZSH` as the default
 
 	chsh -s "$newShellPath" &> /dev/null
 	print_result $? "Change shell to ZSH"
@@ -71,16 +110,22 @@ export PATH
 
 main() {
 
-	print_in_purple "\n   ZSH Shell\n\n"
+	print_in_purple "\n • Shell\n\n"
 
-	brew_install "ZSH" "zsh" \
-		&& change_shell
-
+	brew_install "ZSH" "zsh"
 	brew_install "ZSH Completions" "zsh-completions"
 
 	execute \
 		'sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"' \
 		"Oh My ZSH!"
+
+	execute \
+		'setup_shell_symlinks' \
+		"Create symbolic shell links"
+
+	execute \
+		'setup_shell_change' \
+		"Setup the shell change"
 
 }
 

@@ -60,18 +60,13 @@ execute "defaults write -g PMPrintingExpandedStateForPrint -bool true" \
 	"Expand print panel by default"
 
 execute "sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string 'Macbook' && \
-		sudo scutil --set ComputerName 'Macbook' && \
-		sudo scutil --set HostName 'Macbook' && \
-		sudo scutil --set LocalHostName 'Macbook'" \
+		sudo scutil --set ComputerName 'MacBook Pro' && \
+		sudo scutil --set HostName 'MacBook Pro' && \
+		sudo scutil --set LocalHostName 'MacBook Pro'" \
 	"Set computer name"
 
 execute "sudo systemsetup -setrestartfreeze on" \
 	"Restart automatically if the computer freezes"
-
-execute "sudo defaults write /Library/Preferences/com.apple.Bluetooth.plist ControllerPowerState 0 && \
-		sudo launchctl unload /System/Library/LaunchDaemons/com.apple.blued.plist && \
-		sudo launchctl load /System/Library/LaunchDaemons/com.apple.blued.plist" \
-	"Turn Bluetooth off"
 
 execute "for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
 			sudo defaults write \"\${domain}\" dontAutoLoad -array \
