@@ -41,24 +41,24 @@ The setup process will:
 The `dotfiles` can be easily extended to suit additional local
 requirements by using the following files:
 
-#### `~/.shell.local`
+#### `~/.bash.local`
 
-If the `~/.shell.local` file exists, it will be automatically sourced
-after all the other [`ZSH` related files](shell), thus, allowing
+If the `~/.bash.local` file exists, it will be automatically sourced
+after all the other [`bash` related files](shell), thus, allowing
 its content to add to or overwrite the existing aliases, settings,
 PATH, etc.
 
-Here is a very simple example of a `~/.shell.local` file:
+Here is a very simple example of a `~/.bash.local` file:
 
 ```
 
-#!/bin/shell
+#!/bin/bash
 
 # -----------------------------------------------------------------------
 
 # Set PATH additions.
 
-PATH="$PATH:$HOME/projects/dotfiles/bin"
+PATH="$PATH:$HOME/code/dotfiles/bin"
 
 export PATH
 

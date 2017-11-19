@@ -5,12 +5,12 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # -----------------------------------------------------------------------
 
-create_shell_local() {
+create_bash_local() {
 
-	declare -r FILE_PATH="$HOME/.shell.local"
+	declare -r FILE_PATH="$HOME/.bash.local"
 
 	if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
-		printf "%s\n\n" "#!/bin/shell" >> "$FILE_PATH"
+		printf "%s\n\n" "#!/bin/bash" >> "$FILE_PATH"
 	fi
 
 	print_result $? "$FILE_PATH"
@@ -50,7 +50,7 @@ main() {
 
 	print_in_purple "\n • Create local configs\n\n"
 
-	create_shell_local
+	create_bash_local
 	create_gitconfig_local
 
 }

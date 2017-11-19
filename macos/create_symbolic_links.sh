@@ -9,14 +9,20 @@ create_symlinks() {
 
 	declare -a FILES_TO_SYMLINK=(
 
+		"docker/docker_aliases"
+
+		"shell/bash_aliases"
+		"shell/bash_autocomplete"
+		"shell/bash_exports"
+		"shell/bash_functions"
+		"shell/bash_logout"
+		"shell/bash_options"
+		"shell/bash_profile"
+		"shell/bash_prompt"
+		"shell/bashrc"
 		"shell/curlrc"
 		"shell/inputrc"
 		"shell/screenrc"
-		"shell/shell_aliases"
-		"shell/shell_exports"
-		"shell/shell_functions"
-
-		"shell/docker_aliases"
 
 		"git/gitattributes"
 		"git/gitconfig"
