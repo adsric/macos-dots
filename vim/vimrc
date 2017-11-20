@@ -193,6 +193,35 @@ set winminheight=0
 
 
 " -----------------------------------------------------------------------
+" Plugins
+" -----------------------------------------------------------------------
+
+" Use minpac to package manage the Vim plugins.
+" http://vimcasts.org/episodes/minpac/
+
+" -----------------------------------------------------------------------
+
+" Include and initialize minpac.
+
+packadd minpac
+call minpac#init()
+
+" -----------------------------------------------------------------------
+
+" List of plugins to be installed.
+
+call minpac#add('chriskempson/base16-vim')
+call minpac#add('k-takata/minpac', {'type':'opt'})
+
+" -----------------------------------------------------------------------
+
+" Commands for updating and removing plugins.
+
+command! PackUpdate call minpac#update()
+command! PackClean call minpac#clean()
+
+
+" -----------------------------------------------------------------------
 " Helper Functions
 " -----------------------------------------------------------------------
 
@@ -334,19 +363,10 @@ endif
 set t_Co=256
 
 " Use color scheme.
-hi javaRepeat ctermfg=green
-hi javaType ctermfg=green
-hi javaStorageClass ctermfg=green cterm=bold
-hi javaDocTags ctermfg=green
-hi Conditional ctermfg=green
-hi Comment ctermfg=gray
-hi Statement ctermfg=blue
-hi Function ctermfg=blue
-hi Identifier ctermfg=blue
-hi Exception ctermfg=green
-hi Special ctermfg=green
-hi String ctermfg=yellow
-hi MatchParen ctermbg=none cterm=underline ctermfg=magenta
+colorscheme base16-ocean
+
+" Access colors present in 256 colorspace
+let base16colorspace=256
 
 
 " -----------------------------------------------------------------------
