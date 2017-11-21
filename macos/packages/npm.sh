@@ -25,7 +25,6 @@ main() {
 	printf "\n"
 
 	install_npm_package "Babel" "babel-cli"
-	install_npm_package "JSHint" "jshint"
 	install_npm_package "SVGO" "svgo"
 	install_npm_package "XO" "xo"
 

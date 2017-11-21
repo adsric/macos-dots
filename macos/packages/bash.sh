@@ -25,7 +25,7 @@ change_default_bash() {
 
 	pathConfig="PATH=\"$brewPrefix/bin:\$PATH\""
 	configs="
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# -----------------------------------------------------------------------
 
 $pathConfig
 
