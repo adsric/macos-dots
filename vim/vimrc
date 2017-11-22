@@ -17,7 +17,6 @@ if has('autocmd')
 	" 3. Enable file type detection.
 endif
 
-
 " Copy indent to the new line.
 set autoindent
 
@@ -210,8 +209,23 @@ call minpac#init()
 
 " List of plugins to be installed.
 
-call minpac#add('chriskempson/base16-vim')
 call minpac#add('k-takata/minpac', {'type':'opt'})
+
+" Colorscheme
+
+call minpac#add('altercation/vim-colors-solarized')
+
+" Editor
+
+call minpac#add('mhinz/vim-signify')
+call minpac#add('scrooloose/nerdtree')
+call minpac#add('shougo/neocomplcache.vim')
+
+" Syntax
+
+call minpac#add('isRuslan/vim-es6')
+call minpac#add('jelera/vim-javascript-syntax')
+call minpac#add('sheerun/vim-polyglot')
 
 " -----------------------------------------------------------------------
 
@@ -219,6 +233,32 @@ call minpac#add('k-takata/minpac', {'type':'opt'})
 
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
+
+
+" -----------------------------------------------------------------------
+" Plugins - NeoComplCache
+" -----------------------------------------------------------------------
+
+" Enable `neocomplcache` by default.
+" https://github.com/Shougo/neocomplcache.vim#installation
+
+let g:neocomplcache_enable_at_startup=1
+
+" -----------------------------------------------------------------------
+
+" Make `Tab` autocomplete.
+
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+
+
+" -----------------------------------------------------------------------
+" Plugins - Signify
+" -----------------------------------------------------------------------
+
+" Disable Signify by default.
+" https://github.com/mhinz/vim-signify
+
+let g:signify_disable_by_default=1
 
 
 " -----------------------------------------------------------------------
@@ -362,11 +402,23 @@ endif
 " Enable full-color support.
 set t_Co=256
 
-" Use color scheme.
-colorscheme base16-ocean
+ " Use colors that look good on a dark background.
+set background=dark
 
-" Access colors present in 256 colorspace
-let base16colorspace=256
+" Set custom configurations for when the
+" Solarized theme is used from Vim's Terminal mode.
+"
+" http://ethanschoonover.com/solarized/vim-colors-solarized#advanced-configuration
+
+if !has("gui_running")
+    let g:solarized_contrast = "high"
+    let g:solarized_termcolors = 256
+    let g:solarized_termtrans = 1
+    let g:solarized_visibility = "high"
+endif
+
+ " Use custom color scheme.
+colorscheme solarized
 
 
 " -----------------------------------------------------------------------
@@ -404,6 +456,12 @@ map <leader>cs <Esc>:noh<CR>
 
 " -----------------------------------------------------------------------
 
+" [,gd] Toggle Git differences.
+
+map <leader>gd :SignifyToggle<CR>
+
+" -----------------------------------------------------------------------
+
 " [,l ] Toggle `set list`.
 
 nmap <leader>l :set list!<CR>
@@ -428,6 +486,12 @@ nmap <leader>ss :call StripTrailingWhitespaces()<CR>
 
 " -----------------------------------------------------------------------
 
+" [,t ] Toggle NERDTree.
+
+map <leader>t :NERDTreeToggle<CR>
+
+" -----------------------------------------------------------------------
+
 " [,tl] Toggle show limits.
 
 nmap <leader>tl :call ToggleLimits()<CR>
@@ -444,7 +508,6 @@ nmap <leader>v :vsp $MYVIMRC<CR>
 
 map <leader>W :w !sudo tee %<CR>
 
-
 " -----------------------------------------------------------------------
 " Status Line
 " -----------------------------------------------------------------------
@@ -456,29 +519,29 @@ map <leader>W :w !sudo tee %<CR>
 "  3. gui   (GUIs)
 
 highlight ColorColumn
-	\ term=NONE
-	\ cterm=NONE  ctermbg=gray   ctermfg=NONE
-	\ gui=NONE    guibg=#282a36  guifg=NONE
+    \ term=NONE
+    \ cterm=NONE  ctermbg=237    ctermfg=NONE
+    \ gui=NONE    guibg=#073642  guifg=NONE
 
 highlight CursorLine
-	\ term=NONE
-	\ cterm=NONE  ctermbg=gray ctermfg=black
-	\ gui=NONE    guibg=#282a36 guifg=NONE
+    \ term=NONE
+    \ cterm=NONE  ctermbg=237    ctermfg=NONE
+    \ gui=NONE    guibg=#073642  guifg=NONE
 
 highlight CursorLineNr
-	\ term=bold
-	\ cterm=bold  ctermbg=NONE   ctermfg=magenta
-	\ gui=bold    guibg=#282a36 guifg=Cyan
+    \ term=bold
+    \ cterm=bold  ctermbg=NONE   ctermfg=178
+    \ gui=bold    guibg=#073642  guifg=Orange
 
 highlight LineNr
-	\ term=NONE
-	\ cterm=NONE  ctermfg=241    ctermbg=NONE
-	\ gui=NONE    guifg=#839497  guibg=#073642
+    \ term=NONE
+    \ cterm=NONE  ctermfg=241    ctermbg=NONE
+    \ gui=NONE    guifg=#839497  guibg=#073642
 
 highlight User1
-	\ term=NONE
-	\ cterm=NONE  ctermbg=blue    ctermfg=black
-	\ gui=NONE    guibg=#282a36 guifg=#839496
+    \ term=NONE
+    \ cterm=NONE  ctermbg=237    ctermfg=Grey
+    \ gui=NONE    guibg=#073642  guifg=#839496
 
 set statusline=
 set statusline+=%1*                           " User1 highlight
