@@ -1,28 +1,27 @@
-# dotfiles
+# .dot files
 
-These are the base dotfiles that I start with when I set up a
-new environment. For more specific local needs I use the `.local`
-files described in the [`Local Settings`](#local-settings) section.
-
+These are my terminal and .dot files that I start with when I set up a
+new environment. For more specific needs I use the `.local` files
+described in the [`Customize`](#customize) section.
 
 ## Setup
 
-To set up the `dotfiles` just run the appropriate snippet in the
+The setup is simple just run the appropriate snippet in the
 terminal:
 
-(:warning: **DO NOT** run the `setup` snippet if you don't fully
-understand [what it does](macos/setup.sh). Seriously, **DON'T**!)
+(Note: do not run the `setup` snippet if you don't fully
+understand [what it does](macos/setup.sh))
+
 
 | OS | Snippet |
 |:---:|:---|
 | `macOS` | `bash -c "$(curl -LsS https://raw.github.com/adsric/dotfiles/master/macos/setup.sh)"` |
 
-That's it! :sparkles:
 
 The setup process will:
 
 * Download the dotfiles on your computer (by default it will suggest
-  `~/projects/dotfiles`)
+  `~/code/dotfiles`)
 * Create some additional [directories](os/create_directories.sh)
 * [Symlink](os/create_symbolic_links.sh) the
   [`git`](git),
@@ -31,27 +30,27 @@ The setup process will:
 * Install applications / command-line tools for
   [`macOS`](macos/install)
 * Set custom
-  [`macOS`](macos/preferences)  preferences
+  [`macOS`](macos/preferences) preferences
+
+(Note: To update the dotfiles you can either run the [`setup`
+script](macos/setup.sh))
 
 
 ## Customize
 
-### Local Settings
+I easily extend my .dot files with additional requirements by
+using the following methods below:
 
-The `dotfiles` can be easily extended to suit additional local
-requirements by using the following files:
+#### Customize - Shell
 
-#### `~/.bash.local`
-
-If the `~/.bash.local` file exists, it will be automatically sourced
-after all the other [`bash` related files](shell), thus, allowing
-its content to add to or overwrite the existing aliases, settings,
+The `~/.bash.local` is created during the setup and will be automatically
+sourced after all the other [`bash` related files](shell), thus, allowing
+amends or overwrites to the existing aliases, settings,
 PATH, etc.
 
-Here is a very simple example of a `~/.bash.local` file:
+Below is a simple example of a `~/.bash.local` file:
 
 ```
-
 #!/bin/bash
 
 # -----------------------------------------------------------------------
@@ -64,14 +63,16 @@ export PATH
 
 ```
 
-#### `~/.gitconfig.local`
+#### Customize - Git
 
-If the `~/.gitconfig.local` file exists, it will be automatically
+The `~/.gitconfig.local` is created during the setup and will be automatically
 included after the configurations from `~/.gitconfig`, thus, allowing
-its content to overwrite or add to the existing `git` configurations.
+amends or overwrites to the existing configuration.
 
-__Note:__ Use `~/.gitconfig.local` to store sensitive information such
-as the `git` user credentials, e.g.:
+(Note: use to store sensitive information such as the `git` user credentials
+, etc...)
+
+Below is a simple example of a `~/.gitconfig.local` file:
 
 ```
 [commit]
@@ -81,59 +82,33 @@ as the `git` user credentials, e.g.:
 
 	gpgsign = true
 
-
 [user]
 
-	name = Adam Richardson
-	email = adam@example.com
+	name = yourname
+	email = email@example.com
 	signingkey = XXXXXXXX
-```
-
-#### `~/.ssh/config`
-
-If you're anything like me, you probably log in and out of a half dozen
-remote or local servers on a daily basis. And if you're even more like
-me, you have trouble remembering all of the various usernames and
-addresses then the ssh_config will make life easy.
-
-__Note:__ Because `~/.ssh/config` stores sensitive information it is not
-included in the repository e.g.:
 
 ```
 
-# contents of ~/.ssh/config
+#### Customize - ssh
+
+I log in and out of a half dozen remote or local servers on a daily
+basis. So to make remembering all of the various usernames and
+addresses I let a `~/.ssh/config` file do it all.
+
+(Note: this file stores sensitive information and so is not included)
+
+Below is a simple example of a `~/.ssh/config` file:
+
+```
+#!/ssh/config
+
+# -----------------------------------------------------------------------
 
 Host example
 	HostName example.com
 	Port 22
 	User exampleuser
+	IdentityFile ~/.ssh/{{key}}
 
 ```
-
-### Forks
-
-If you decide to fork this project, don't forget to substitute my
-username with your own in the [setup snippets](#setup) and [in the
-`setup` script](https://github.com/adsric/dotfiles/blob/master/macos/setup.sh#L3).
-
-
-## Update
-
-To update the dotfiles you can either run the [`setup`
-script](macos/setup.sh) or, if you want to just update one particular
-part, run the appropriate script.
-
-
-## Acknowledgements
-
-Inspiration and code was taken from many sources, including:
-
-* [Mathias Bynens'](https://github.com/mathiasbynens)
-  [dotfiles](https://github.com/mathiasbynens/dotfiles)
-* [Cătălin Mariș's](https://github.com/alrra)
-  [dotfiles](https://github.com/alrra/dotfiles)
-
-
-## License
-
-The code is available under the [MIT license](LICENSE.md).
