@@ -3,7 +3,7 @@
 	a = commit --amend
 
 	# Amend to latest commit.
-	amend = commit --amend --reuse-message=HEAD 
+	amend = commit --amend --reuse-message=HEAD
 	br = branch
 	c = commit
 
@@ -183,7 +183,7 @@
 	abbrev = 12
 	attributesfile = ~/.gitattributes
 	autocrlf = input
-	editor = vim
+	editor = code -w
 	excludesfile = ~/.gitignore
 
 [diff "bin"]
