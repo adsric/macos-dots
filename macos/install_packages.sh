@@ -15,7 +15,7 @@ if answer_is_yes; then
 	./packages/xcode.sh
 	./packages/homebrew.sh
 	./packages/bash.sh
-	./packages/commandline.sh
+	./packages/cli.sh
 	./packages/apps.sh
 	./packages/nvm.sh
 	./packages/npm.sh

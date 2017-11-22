@@ -24,7 +24,7 @@ install_commandline_packages() {
 
 main() {
 
-	print_in_purple "\n  Homebrew commandline packages \n\n"
+	print_in_purple "\n  CLI packages \n\n"
 
 	install_commandline_packages
 

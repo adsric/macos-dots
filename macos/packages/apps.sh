@@ -16,7 +16,7 @@ install_app_packages() {
 
 main() {
 
-	print_in_purple "\n  Homebrew cask packages \n\n"
+	print_in_purple "\n  Application packages \n\n"
 
 	install_app_packages
 
