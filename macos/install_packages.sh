@@ -16,7 +16,7 @@ if answer_is_yes; then
 	./packages/homebrew.sh
 	./packages/bash.sh
 	./packages/cli.sh
-	./packages/apps.sh
+	./packages/applications.sh
 	./packages/nvm.sh
 	./packages/npm.sh
 

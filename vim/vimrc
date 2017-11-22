@@ -211,21 +211,13 @@ call minpac#init()
 
 call minpac#add('k-takata/minpac', {'type':'opt'})
 
-" Colorscheme
-
 call minpac#add('altercation/vim-colors-solarized')
-
-" Editor
-
-call minpac#add('mhinz/vim-signify')
-call minpac#add('scrooloose/nerdtree')
-call minpac#add('shougo/neocomplcache.vim')
-
-" Syntax
-
 call minpac#add('isRuslan/vim-es6')
 call minpac#add('jelera/vim-javascript-syntax')
+call minpac#add('mhinz/vim-signify')
+call minpac#add('scrooloose/nerdtree')
 call minpac#add('sheerun/vim-polyglot')
+call minpac#add('shougo/neocomplcache.vim')
 
 " -----------------------------------------------------------------------
 
