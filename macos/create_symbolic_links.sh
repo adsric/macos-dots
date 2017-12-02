@@ -9,7 +9,7 @@ create_symlinks() {
 
 	declare -a FILES_TO_SYMLINK=(
 
-		"docker/docker_aliases"
+		"docker/docker"
 
 		"shell/bash_aliases"
 		"shell/bash_autocomplete"
@@ -22,7 +22,6 @@ create_symlinks() {
 		"shell/bashrc"
 		"shell/curlrc"
 		"shell/inputrc"
-		"shell/screenrc"
 
 		"git/gitattributes"
 		"git/gitconfig"

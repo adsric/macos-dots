@@ -45,10 +45,3 @@ export PYTHONIOENCODING="UTF-8"
 
 # Do not overwrite files when redirecting using ">". Note that you can still override this with ">|"
 set -o noclobber
-
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-	export EDITOR="vim"
-else
-	export EDITOR="code"
-fi
