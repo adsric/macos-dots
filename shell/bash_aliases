@@ -21,19 +21,6 @@ alias t="tmux"
 
 # -----------------------------------------------------------------------
 
-# Vim with no arguments (opens the current directory in Vim),
-# otherwise opens the given argument.
-
-v() {
-	if [ $# -eq 0 ]; then
-		vim .;
-	else
-		vim "$@";
-	fi
-}
-
-# -----------------------------------------------------------------------
-
 # Open with no arguments (opens the current directory),
 # otherwise opens the given argument.
 
@@ -85,7 +72,7 @@ alias empty-trash="sudo rm -frv /Volumes/*/.Trashes; \
 
 # Edit the hosts.
 
-alias hosts="sudo vim /etc/hosts"
+alias hosts="sudo code /etc/hosts"
 
 # -----------------------------------------------------------------------
 

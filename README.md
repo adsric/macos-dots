@@ -24,9 +24,8 @@ The setup process will:
   `~/code/dotfiles`)
 * Create some additional [directories](os/create_directories.sh)
 * [Symlink](os/create_symbolic_links.sh) the
-  [`git`](git),
-  [`shell`](shell), and
-  [`vim`](vim) files
+  [`git`](git) and
+  [`shell`](shell) files
 * Install applications / command-line tools for
   [`macOS`](macos/install)
 * Set custom

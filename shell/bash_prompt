@@ -12,13 +12,18 @@ enable_color_support() {
 
 # -----------------------------------------------------------------------
 
-set_prompts() {
+set_prompt() {
 
 	export GIT_PS1_SHOWDIRTYSTATE=true
 	export GIT_PS1_SHOWUNTRACKEDFILES=true
 	export GIT_PS1_SHOWCOLORHINTS=true
 
-	# pretty prompt
+	# Pretty Prompt
+	#
+	# Terminal title (Unicorn)
+	# [Cyan] Working directory [/Cyan]
+	# [Light Purple] Git Prompt
+	# [No Colour]:
 	export PS1='🦄 \[\e[0;36m\]\[\e[0;36m\] \W\[\033[0;35m\]$(__git_ps1 " (%s)")\[\e[0m\]: '
 
 }
@@ -27,7 +32,7 @@ set_prompts() {
 
 main() {
 	enable_color_support
-	set_prompts
+	set_prompt
 }
 
 main
@@ -38,4 +43,4 @@ main
 
 unset -f enable_color_support
 unset -f main
-unset -f set_prompts
+unset -f set_prompt

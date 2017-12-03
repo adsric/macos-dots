@@ -15,7 +15,6 @@ install_commandline_packages() {
 	brew_install "Pinentry" "pinentry-mac"
 	brew_install "tmux" "tmux"
 	brew_install "tmux (pasteboard)" "reattach-to-user-namespace"
-	brew_install "Vim" "vim --with-override-system-vi"
 	brew_install "Zopfli" "zopfli"
 
 }
