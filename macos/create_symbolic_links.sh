@@ -9,7 +9,7 @@ create_symlinks() {
 
 	declare -a FILES_TO_SYMLINK=(
 
-		"docker/docker"
+		"docker/docker_shell"
 
 		"shell/bash_aliases"
 		"shell/bash_autocomplete"
