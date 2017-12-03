@@ -12,11 +12,30 @@ enable_color_support() {
 
 # -----------------------------------------------------------------------
 
+# What kind of session we use ? Local, Telnet, SSH
+
+set_connection() {
+	if [[ -n "$SSH_CLIENT$SSH2_CLIENT" ]] ; then
+		SESSION="\u@\h (ssh) "
+	else
+		local SESSION_SRC=$(who am i | sed -n 's/.*(\(.*\))/\1/p')
+		if [[ -z "$SESSION_SRC" || "$SESSION_SRC" = ":"* ]] ; then
+			SESSION=""
+		else
+			SESSION="\u@\h "
+		fi
+	fi
+}
+
+# -----------------------------------------------------------------------
+
 set_prompt() {
 
 	export GIT_PS1_SHOWDIRTYSTATE=true
 	export GIT_PS1_SHOWUNTRACKEDFILES=true
 	export GIT_PS1_SHOWCOLORHINTS=true
+
+	set_connection
 
 	# Pretty Prompt
 	#
@@ -24,7 +43,9 @@ set_prompt() {
 	# [Cyan] Working directory [/Cyan]
 	# [Light Purple] Git Prompt
 	# [No Colour]:
-	export PS1='🦄 \[\e[0;36m\]\[\e[0;36m\] \W\[\033[0;35m\]$(__git_ps1 " (%s)")\[\e[0m\]: '
+	PS1='🦄 \[\e[0;36m\]${SESSION}\[\e[0;36m\]\W\[\033[0;35m\]$(__git_ps1 " (%s)")\[\e[0m\] ➜ '
+
+	export PS1
 
 }
 
