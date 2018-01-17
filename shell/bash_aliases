@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# -----------------------------------------------------------------------
+
+# I need colors !!!
+
+alias ls='ls -G'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# -----------------------------------------------------------------------
+
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -11,9 +22,12 @@ alias :q="exit"
 alias c="clear"
 alias g="git"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias l='ls -l'
+alias l='ls -lAh'
 alias la='ls -la'
 alias lsd="ls -l | grep --color=never '^d'"
+alias lssh='egrep "Host\ .*" ~/.ssh/config | cut -f2 -d " "'
+alias duh='du -hs'
+alias tree="find . | sed 's/[^/]*\//|   /g;s/| *\([^| ]\)/+--- \1/'"
 alias n="npm"
 alias q="exit"
 alias rm="rm -rf --"
