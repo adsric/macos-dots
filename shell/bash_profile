@@ -7,7 +7,6 @@ source_bash_files() {
 	declare -r CURRENT_DIRECTORY="$(pwd)"
 
 	declare -r -a FILES_TO_SOURCE=(
-		"docker_shell"
 		"bash_aliases"
 		"bash_autocomplete"
 		"bash_exports"
@@ -15,6 +14,8 @@ source_bash_files() {
 		"bash_options"
 		"bash_prompt"
 		"bash.local" # For local settings.
+
+		"docker_commands"
 	)
 
 	local file=""

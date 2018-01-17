@@ -1,6 +1,6 @@
-# .dot files
+# .dots
 
-These are my terminal and .dot files that I start with when I set up a
+These are my terminal and dotfiles that I start with when I set up a
 new environment. For more specific needs I use the `.local` files
 described in the [`Customize`](#customize) section.
 
