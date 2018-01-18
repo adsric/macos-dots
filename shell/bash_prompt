@@ -12,7 +12,7 @@ __color_support() {
 
 # -----------------------------------------------------------------------
 
- __git_prompt() {
+__git_prompt() {
 	local branchName="";
 	local git_arrows=""
 	local change_summary=""
@@ -116,8 +116,12 @@ __prompt_command() {
 		PS1+="\[\033[1;31m\]";
 	fi
 
+	# PS1 - Default interactive prompt
 	PS1+="➜ \[\033[0m\]";
-	PS2="… ";
+
+	# PS2 - Continuation interactive prompt
+	PS2="⚡ "
+
 }
 
 
@@ -142,6 +146,6 @@ main
 
 # Cleanup.
 
-unset -f enable_color_support
+unset -f __color_support
+unset -f __set_prompt
 unset -f main
-unset -f set_prompt
