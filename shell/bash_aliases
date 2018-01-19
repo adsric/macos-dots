@@ -18,20 +18,16 @@ alias cd..="cd .."
 
 # -----------------------------------------------------------------------
 
-alias :q="exit"
 alias c="clear"
-alias g="git"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias l='ls -lAh'
-alias la='ls -la'
-alias lsd="ls -l | grep --color=never '^d'"
+alias l='ls -lFh'
+alias la='ls -lAh'
 alias lssh='egrep "Host\ .*" ~/.ssh/config | cut -f2 -d " "'
 alias duh='du -hs'
 alias tree="find . | sed 's/[^/]*\//|   /g;s/| *\([^| ]\)/+--- \1/'"
-alias n="npm"
+alias :q="exit"
 alias q="exit"
 alias rm="rm -rf --"
-alias t="tmux"
 
 # -----------------------------------------------------------------------
 
@@ -70,7 +66,7 @@ alias brewu="brew update \
 # Clear DNS cache.
 
 alias clear-dns-cache="sudo dscacheutil -flushcache; \
-					sudo killall -HUP mDNSResponder"
+						sudo killall -HUP mDNSResponder"
 
 # -----------------------------------------------------------------------
 
@@ -78,25 +74,25 @@ alias clear-dns-cache="sudo dscacheutil -flushcache; \
 # and clear Apple’s system logs to improve shell startup speed.
 
 alias empty-trash="sudo rm -frv /Volumes/*/.Trashes; \
-				sudo rm -frv ~/.Trash; \
-				sudo rm -frv /private/var/log/asl/*.asl; \
-				sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
+					sudo rm -frv ~/.Trash; \
+					sudo rm -frv /private/var/log/asl/*.asl; \
+					sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
 
 # -----------------------------------------------------------------------
 
 # Edit the hosts.
 
-alias hosts="sudo code /etc/hosts"
+alias edit-hosts="sudo code /etc/hosts"
 
 # -----------------------------------------------------------------------
 
 # Hide/Show desktop icons.
 
 alias hide-desktop-icons="defaults write com.apple.finder CreateDesktop -bool false \
-						&& killall Finder"
+							&& killall Finder"
 
 alias show-desktop-icons="defaults write com.apple.finder CreateDesktop -bool true \
-						&& killall Finder"
+							&& killall Finder"
 
 # -----------------------------------------------------------------------
 
@@ -117,17 +113,17 @@ alias local-ip="ipconfig getifaddr en1"
 # -----------------------------------------------------------------------
 
 # Merge PDF files
-# Usage: `mergepdf -o output.pdf input{1,2,3}.pdf`
+# Usage: `merge-pdf -o output.pdf input{1,2,3}.pdf`
 
-alias mergepdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
+alias merge-pdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
 
 # -----------------------------------------------------------------------
 
 # Update applications and CLTs.
 
-alias u="sudo softwareupdate --install --all \
-			&& brew update \
-			&& brew upgrade \
-			&& brew cleanup \
-			&& npm install -g npm \
-			&& npm update -g"
+alias update="sudo softwareupdate --install --all \
+				&& brew update \
+				&& brew upgrade \
+				&& brew cleanup \
+				&& npm install -g npm \
+				&& npm update -g"
