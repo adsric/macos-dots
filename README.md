@@ -1,4 +1,4 @@
-# .dots
+# dotfiles
 
 These are my terminal and dotfiles that I start with when I set up a
 new environment. For more specific needs I use the `.local` files
