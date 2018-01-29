@@ -16,11 +16,21 @@ install_npm_package() {
 
 # -----------------------------------------------------------------------
 
+install_npm_completion() {
+	execute \
+		"npm completion > /usr/local/etc/bash_completion.d/npm" \
+		"$1"
+}
+
+# -----------------------------------------------------------------------
+
 main() {
 
 	print_in_purple "\n  npm\n\n"
 
 	install_npm_package "npm (update)" "npm"
+
+	install_npm_completion "npm (tab-completion)"
 
 	printf "\n"
 
