@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# -----------------------------------------------------------------------
+# ---------------------------------------------------------------------
 
 # I need colors !!!
 
@@ -9,14 +9,16 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-# -----------------------------------------------------------------------
+
+# ---------------------------------------------------------------------
 
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias cd..="cd .."
 
-# -----------------------------------------------------------------------
+
+# ---------------------------------------------------------------------
 
 alias c="clear"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -29,7 +31,8 @@ alias :q="exit"
 alias q="exit"
 alias rm="rm -rf --"
 
-# -----------------------------------------------------------------------
+
+# ---------------------------------------------------------------------
 
 # Open with no arguments (opens the current directory),
 # otherwise opens the given argument.
@@ -42,13 +45,15 @@ o() {
 	fi
 }
 
-# -----------------------------------------------------------------------
+
+# ---------------------------------------------------------------------
 
 # Lock screen.
 
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
-# -----------------------------------------------------------------------
+
+# ---------------------------------------------------------------------
 
 # Shorter commands for `Homebrew`.
 
@@ -61,14 +66,48 @@ alias brewu="brew update \
 				&& brew cleanup \
 				&& brew cask cleanup"
 
-# -----------------------------------------------------------------------
+
+# ---------------------------------------------------------------------
+
+# Docker commands
+
+alias doup="docker-compose build && docker-compose up -d --remove-orphans"
+alias dodown="docker-compose stop"
+alias doreload="dodown && doup"
+alias dologs="docker-compose logs"
+alias doall="docker-compose down && docker-compose rm && docker-compose build --no-cache --force-rm && docker-compose up -d"
+alias dops="docker ps"
+
+
+# Run a shell on the specified container
+
+doshell() {
+	docker exec -t -i $1 /bin/bash
+}
+
+
+# Run for help on the commands
+
+dohelp() {
+	echo ''
+	echo -e "Docker commands."
+	echo ''
+	echo -e "  doup:     Build and Up the current Docker compose."
+	echo -e "  dodown:   Down the current Docker compose."
+	echo -e "  doreload: Down and up the current Docker compose."
+	echo -e "  doshell:  Open shell on specified container."
+	echo -e "  dologs:   Start the Logging system for the current Docker compose."
+}
+
+# ---------------------------------------------------------------------
 
 # Clear DNS cache.
 
 alias clear-dns-cache="sudo dscacheutil -flushcache; \
 						sudo killall -HUP mDNSResponder"
 
-# -----------------------------------------------------------------------
+
+# ---------------------------------------------------------------------
 
 # Empty the trash, the main HDD and on all mounted volumes,
 # and clear Apple’s system logs to improve shell startup speed.
@@ -78,13 +117,15 @@ alias empty-trash="sudo rm -frv /Volumes/*/.Trashes; \
 					sudo rm -frv /private/var/log/asl/*.asl; \
 					sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
 
-# -----------------------------------------------------------------------
+
+# ---------------------------------------------------------------------
 
 # Edit the hosts.
 
 alias edit-hosts="sudo code /etc/hosts"
 
-# -----------------------------------------------------------------------
+
+# ---------------------------------------------------------------------
 
 # Hide/Show desktop icons.
 
@@ -94,7 +135,8 @@ alias hide-desktop-icons="defaults write com.apple.finder CreateDesktop -bool fa
 alias show-desktop-icons="defaults write com.apple.finder CreateDesktop -bool true \
 							&& killall Finder"
 
-# -----------------------------------------------------------------------
+
+# ---------------------------------------------------------------------
 
 # Hide/Show hidden files in Finder.
 
@@ -104,20 +146,23 @@ alias hide-hidden-files="defaults write com.apple.finder AppleShowAllFiles -bool
 alias show-hidden-files="defaults write com.apple.finder AppleShowAllFiles -bool true \
 							&& killall Finder"
 
-# -----------------------------------------------------------------------
+
+# ---------------------------------------------------------------------
 
 # Get local IP.
 
 alias local-ip="ipconfig getifaddr en1"
 
-# -----------------------------------------------------------------------
+
+# ---------------------------------------------------------------------
 
 # Merge PDF files
 # Usage: `merge-pdf -o output.pdf input{1,2,3}.pdf`
 
 alias merge-pdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
 
-# -----------------------------------------------------------------------
+
+# ---------------------------------------------------------------------
 
 # Update applications and CLTs.
 

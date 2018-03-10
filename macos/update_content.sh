@@ -3,14 +3,14 @@
 cd "$(dirname "${BASH_SOURCE[0]}")" \
 	&& . "utils.sh"
 
-# -----------------------------------------------------------------------
+# ---------------------------------------------------------------------
 
 main() {
 
 	ssh -T git@github.com &> /dev/null
 
 	if [ $? -ne 1 ]; then
-		./setup_github_ssh_key.sh \
+		./create_github_ssh_key.sh \
 			|| return 1
 	fi
 

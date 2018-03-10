@@ -2,7 +2,7 @@
 
 These are my terminal and dotfiles that I start with when I set up a
 new environment. For more specific needs I use the `.local` files
-described in the [`Customize`](#customize) section.
+described in the [`Extend`](#extend) section.
 
 ## Setup
 
@@ -28,19 +28,18 @@ The setup process will:
   [`shell`](shell) files
 * Install applications / command-line tools for
   [`macOS`](macos/install)
-* Set custom
-  [`macOS`](macos/preferences) preferences
+* Set [`macOS`](macos/preferences) preferences
 
 (Note: To update the dotfiles you can either run the [`setup`
 script](macos/setup.sh))
 
 
-## Customize
+## Extend
 
-I easily extend my .dot files with additional requirements by
+I easily extend my dotfiles with additional requirements by
 using the following methods below:
 
-#### Customize - Shell
+#### Extend (Shell)
 
 The `~/.bash.local` is created during the setup and will be automatically
 sourced after all the other [`bash` related files](shell), thus, allowing
@@ -52,17 +51,14 @@ Below is a simple example of a `~/.bash.local` file:
 ```
 #!/bin/bash
 
-# -----------------------------------------------------------------------
-
 # Set PATH additions.
 
 PATH="$PATH:$HOME/code/dotfiles/bin"
-
 export PATH
 
 ```
 
-#### Customize - Git
+#### Extend (Git)
 
 The `~/.gitconfig.local` is created during the setup and will be automatically
 included after the configurations from `~/.gitconfig`, thus, allowing
@@ -89,7 +85,7 @@ Below is a simple example of a `~/.gitconfig.local` file:
 
 ```
 
-#### Customize - ssh
+#### Extend (ssh)
 
 I log in and out of a half dozen remote or local servers on a daily
 basis. So to make remembering all of the various usernames and
@@ -100,10 +96,6 @@ addresses I let a `~/.ssh/config` file do it all.
 Below is a simple example of a `~/.ssh/config` file:
 
 ```
-#!/ssh/config
-
-# -----------------------------------------------------------------------
-
 Host example
 	HostName example.com
 	Port 22

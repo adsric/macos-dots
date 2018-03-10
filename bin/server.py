@@ -15,8 +15,6 @@ except ImportError:
 	import http.server as server
 	import socketserver
 
-# -----------------------------------------------------------------------
-
 handler = server.SimpleHTTPRequestHandler
 map = handler.extensions_map
 port = int(sys.argv[1])

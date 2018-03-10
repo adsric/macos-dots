@@ -91,7 +91,6 @@ print_success() {
 	print_in_green "  [✔] $1\n"
 }
 
-# -----------------------------------------------------------------------
 
 brew_cleanup() {
 
@@ -119,7 +118,6 @@ brew_install() {
 	declare -r TAP_VALUE="$3"
 
 	# Check if `Homebrew` is installed.
-
 	if ! cmd_exists "brew"; then
 		print_error "$FORMULA_READABLE_NAME ('Homebrew' is not installed)"
 		return 1
@@ -127,7 +125,6 @@ brew_install() {
 
 	# If `brew tap` needs to be executed,
 	# check if it executed correctly.
-
 	if [ -n "$TAP_VALUE" ]; then
 		if ! brew_tap "$TAP_VALUE"; then
 			print_error "$FORMULA_READABLE_NAME ('brew tap $TAP_VALUE' failed)"
@@ -136,7 +133,6 @@ brew_install() {
 	fi
 
 	# Install the specified formula.
-
 	if brew $CMD list "$FORMULA" &> /dev/null; then
 		print_success "$FORMULA_READABLE_NAME"
 	else

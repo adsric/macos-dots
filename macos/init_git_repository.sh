@@ -3,7 +3,7 @@
 cd "$(dirname "${BASH_SOURCE[0]}")" \
 	&& . "utils.sh"
 
-# -----------------------------------------------------------------------
+# ---------------------------------------------------------------------
 
 initialize_git_repository() {
 
@@ -26,16 +26,17 @@ initialize_git_repository() {
 			"git init && git remote add origin $GIT_ORIGIN" \
 			"Initialize the Git repository"
 
-
 	fi
 
 }
 
-# -----------------------------------------------------------------------
+# ---------------------------------------------------------------------
 
 main() {
-	print_in_purple "\n • Setup Git repository\n\n"
+
+	print_in_purple "\n • Initialize Git repository\n\n"
 	initialize_git_repository "$1"
+
 }
 
 main "$1"

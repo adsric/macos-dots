@@ -3,7 +3,7 @@
 cd "$(dirname "${BASH_SOURCE[0]}")" \
 	&& . "utils.sh"
 
-# -----------------------------------------------------------------------
+# ---------------------------------------------------------------------
 
 print_in_purple "\n • Install Packages\n\n"
 
@@ -12,12 +12,32 @@ printf '\n'
 
 if answer_is_yes; then
 
-	./packages/xcode.sh
-	./packages/homebrew.sh
-	./packages/bash.sh
-	./packages/cli.sh
-	./packages/applications.sh
-	./packages/nvm.sh
-	./packages/npm.sh
+	./install_xcode_tools.sh
+	./install_homebrew.sh
+	./install_bash.sh
+
+	print_in_purple "\n  Brew packages \n\n"
+
+	brew_install "Ack!" "ack"
+	brew_install "FFmpeg" "ffmpeg"
+	brew_install "Git" "git"
+	brew_install "GPG" "gpg"
+	brew_install "GPG Agent" "gpg-agent"
+	brew_install "Pinentry" "pinentry-mac"
+	brew_install "Zopfli" "zopfli"
+
+	printf '\n'
+
+	print_in_purple "\n  Brewcask packages \n\n"
+
+	brew_install "Docker" "docker" "caskroom/cask" "cask"
+	brew_install "Hyper" "hyper" "caskroom/cask" "cask"
+	brew_install "Visual Studio Code" "visual-studio-code" "caskroom/cask" "cask"
+
+	printf '\n'
+
+	brew_cleanup
+
+	./install_node.sh
 
 fi

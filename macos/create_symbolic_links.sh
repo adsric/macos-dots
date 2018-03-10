@@ -3,13 +3,11 @@
 cd "$(dirname "${BASH_SOURCE[0]}")" \
 	&& . "utils.sh"
 
-# -----------------------------------------------------------------------
+# ---------------------------------------------------------------------
 
 create_symlinks() {
 
 	declare -a FILES_TO_SYMLINK=(
-
-		"docker/docker_commands"
 
 		"shell/bash_aliases"
 		"shell/bash_autocomplete"
@@ -26,8 +24,6 @@ create_symlinks() {
 		"git/gitattributes"
 		"git/gitconfig"
 		"git/gitignore"
-
-		"tmux/tmux.conf"
 
 	)
 
@@ -58,7 +54,7 @@ create_symlinks() {
 
 }
 
-# -----------------------------------------------------------------------
+# ---------------------------------------------------------------------
 
 main() {
 	print_in_purple "\n • Create symbolic links\n\n"

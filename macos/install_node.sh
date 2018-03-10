@@ -1,18 +1,17 @@
 #!/bin/bash
 
 cd "$(dirname "${BASH_SOURCE[0]}")" \
-	&& . "../utils.sh"
+	&& . "utils.sh"
 
 declare -r LOCAL_SHELL_CONFIG_FILE="$HOME/.bash.local"
 declare -r NVM_DIRECTORY="$HOME/.nvm"
 declare -r NVM_GIT_REPO_URL="https://github.com/creationix/nvm.git"
 
-# -----------------------------------------------------------------------
+# ---------------------------------------------------------------------
 
 add_nvm_configs() {
 
 	declare -r CONFIGS="
-# -----------------------------------------------------------------------
 
 # Node Version Manager
 
@@ -64,11 +63,26 @@ update_nvm() {
 
 }
 
-# -----------------------------------------------------------------------
+install_npm_completion() {
+	execute \
+		"npm completion > /usr/local/etc/bash_completion.d/npm" \
+		"$1"
+}
+
+install_npm_package() {
+
+	execute \
+		". $HOME/.bash.local \
+			&& npm install --global --silent $2" \
+		"$1"
+
+}
+
+# ---------------------------------------------------------------------
 
 main() {
 
-	print_in_purple "\n  nvm\n\n"
+	print_in_purple "\n  node (nvm)\n\n"
 
 	if [ ! -d "$NVM_DIRECTORY" ]; then
 		install_nvm
@@ -77,6 +91,15 @@ main() {
 	fi
 
 	install_latest_stable_node
+
+	install_npm_package "npm (update)" "npm"
+
+	install_npm_completion "npm (tab-completion)"
+
+	printf "\n"
+
+	install_npm_package "Babel" "babel-cli"
+	install_npm_package "SVGO" "svgo"
 
 }
 
