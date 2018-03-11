@@ -3,7 +3,7 @@
 # Bash Variables.
 # https://www.gnu.org/software/bash/manual/html_node/Bash-Variables.html
 
-# ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Ignore commands that start with spaces and duplicates.
 export HISTCONTROL=ignoreboth

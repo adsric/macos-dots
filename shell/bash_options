@@ -3,7 +3,7 @@
 # Bash options.
 # https://www.gnu.org/software/bash/manual/bashref.html#The-Shopt-Builtin
 
-# ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Automatically prepend `cd` to directory names.
 shopt -s autocd

@@ -6,8 +6,6 @@ main() {
 	local i=0
 	local port="${1:-8000}"
 
-	# -----------------------------------------------------------------
-
 	# Wait for the server to be available, and once
 	# it is, open its address in the default browser.
 
@@ -19,8 +17,6 @@ main() {
 		i=$(( i + 1 ))
 		sleep 1
 	done &
-
-	# -----------------------------------------------------------------
 
 	# Start server.
 

@@ -39,7 +39,7 @@ script](macos/setup.sh))
 I easily extend my dotfiles with additional requirements by
 using the following methods below:
 
-#### Extend (Shell)
+#### Extend (Bash)
 
 The `~/.bash.local` is created during the setup and will be automatically
 sourced after all the other [`bash` related files](shell), thus, allowing

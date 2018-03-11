@@ -6,13 +6,11 @@ declare -r DOTFILES_ORIGIN="git@github.com:$GITHUB_REPOSITORY.git"
 declare -r DOTFILES_TARBALL_URL="https://github.com/$GITHUB_REPOSITORY/tarball/master"
 declare -r DOTFILES_UTILS_URL="https://raw.githubusercontent.com/$GITHUB_REPOSITORY/master/macos/utils.sh"
 
-# ---------------------------------------------------------------------
-
 declare dotfilesDirectory="$HOME/code/dotfiles"
 
-# ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+
 # Helper Functions
-# ---------------------------------------------------------------------
 
 download() {
 
@@ -82,12 +80,10 @@ download_dotfiles() {
 	print_result $? "Create '$dotfilesDirectory'" 'true'
 
 	# Extract archive in the `dotfiles` directory
-
 	extract "$tmpFile" "$dotfilesDirectory"
 	print_result $? 'Extract archive' 'true'
 
 	# Remove archive
-
 	rm -rf "$tmpFile"
 	print_result $? 'Remove archive'
 
@@ -155,7 +151,7 @@ verify_os() {
 
 	declare OS_VERSION=''
 
-	# -----------------------------------------------------------------
+	# --------------------------------------------------------------------------
 
 	# Check if the OS is `OS X` and
 	# it's above the required version
@@ -176,9 +172,7 @@ verify_os() {
 
 }
 
-# ---------------------------------------------------------------------
-# Main
-# ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 main() {
 
@@ -216,20 +210,62 @@ main() {
 
 	./create_symbolic_links.sh
 	./create_local_configs.sh
-
 	./install_packages.sh
-
 	./set_preferences.sh
 
 	if cmd_exists 'git'; then
 
 		if [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
-			./init_git_repository.sh "$DOTFILES_ORIGIN"
+
+			print_in_purple "\n • Initialize Git repository\n\n"
+
+			if [ -z "$DOTFILES_ORIGIN" ]; then
+				print_error "Please provide a URL for the Git origin"
+				exit 1
+			fi
+
+			if ! is_git_repository; then
+
+				# Run the following Git commands in the root of
+				# the dotfiles directory, not in the `os/` directory
+
+				cd ../ \
+					|| print_error "Failed to 'cd ../'"
+
+				execute \
+					"git init && git remote add origin $DOTFILES_ORIGIN" \
+					"Initialize the Git repository"
+
+			fi
+
 		fi
 
-		./update_content.sh
+		# ----------------------------------------------------------------------
+
+		ssh -T git@github.com &> /dev/null
+
+		if [ $? -ne 1 ]; then
+			./create_github_ssh_key.sh \
+				|| return 1
+		fi
+
+		print_in_purple "\n • Update content\n\n"
+
+		ask_for_confirmation "Do you want to update the content from the 'dotfiles' directory?"
+
+		if answer_is_yes; then
+
+			git fetch --all 1> /dev/null \
+				&& git reset --hard origin/master 1> /dev/null \
+				&& git clean -fd 1> /dev/null
+
+			print_result $? "Update content"
+
+		fi
 
 	fi
+
+	# --------------------------------------------------------------------------
 
 	print_in_purple "\n • Restart\n\n"
 

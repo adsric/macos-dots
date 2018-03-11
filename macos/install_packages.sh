@@ -3,7 +3,7 @@
 cd "$(dirname "${BASH_SOURCE[0]}")" \
 	&& . "utils.sh"
 
-# ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 print_in_purple "\n • Install Packages\n\n"
 
@@ -25,8 +25,6 @@ if answer_is_yes; then
 	brew_install "GPG Agent" "gpg-agent"
 	brew_install "Pinentry" "pinentry-mac"
 	brew_install "Zopfli" "zopfli"
-
-	printf '\n'
 
 	print_in_purple "\n  Brewcask packages \n\n"
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ---------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------
 
 # I need colors !!!
 
@@ -10,7 +10,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 
-# ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 alias ..="cd .."
 alias ...="cd ../.."
@@ -18,7 +18,7 @@ alias ....="cd ../../.."
 alias cd..="cd .."
 
 
-# ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 alias c="clear"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -32,7 +32,7 @@ alias q="exit"
 alias rm="rm -rf --"
 
 
-# ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Open with no arguments (opens the current directory),
 # otherwise opens the given argument.
@@ -46,14 +46,14 @@ o() {
 }
 
 
-# ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Lock screen.
 
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
 
-# ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Shorter commands for `Homebrew`.
 
@@ -67,7 +67,7 @@ alias brewu="brew update \
 				&& brew cask cleanup"
 
 
-# ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Docker commands
 
@@ -99,7 +99,7 @@ dohelp() {
 	echo -e "  dologs:   Start the Logging system for the current Docker compose."
 }
 
-# ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Clear DNS cache.
 
@@ -107,7 +107,7 @@ alias clear-dns-cache="sudo dscacheutil -flushcache; \
 						sudo killall -HUP mDNSResponder"
 
 
-# ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Empty the trash, the main HDD and on all mounted volumes,
 # and clear Apple’s system logs to improve shell startup speed.
@@ -118,14 +118,14 @@ alias empty-trash="sudo rm -frv /Volumes/*/.Trashes; \
 					sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
 
 
-# ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Edit the hosts.
 
 alias edit-hosts="sudo code /etc/hosts"
 
 
-# ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Hide/Show desktop icons.
 
@@ -136,7 +136,7 @@ alias show-desktop-icons="defaults write com.apple.finder CreateDesktop -bool tr
 							&& killall Finder"
 
 
-# ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Hide/Show hidden files in Finder.
 
@@ -147,14 +147,14 @@ alias show-hidden-files="defaults write com.apple.finder AppleShowAllFiles -bool
 							&& killall Finder"
 
 
-# ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Get local IP.
 
 alias local-ip="ipconfig getifaddr en1"
 
 
-# ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Merge PDF files
 # Usage: `merge-pdf -o output.pdf input{1,2,3}.pdf`
@@ -162,7 +162,7 @@ alias local-ip="ipconfig getifaddr en1"
 alias merge-pdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
 
 
-# ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Update applications and CLTs.
 

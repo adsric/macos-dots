@@ -64,9 +64,11 @@ update_nvm() {
 }
 
 install_npm_completion() {
+
 	execute \
 		"npm completion > /usr/local/etc/bash_completion.d/npm" \
 		"$1"
+
 }
 
 install_npm_package() {
@@ -82,7 +84,7 @@ install_npm_package() {
 
 main() {
 
-	print_in_purple "\n  node (nvm)\n\n"
+	print_in_purple "\n  Node js\n\n"
 
 	if [ ! -d "$NVM_DIRECTORY" ]; then
 		install_nvm

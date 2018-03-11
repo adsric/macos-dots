@@ -55,7 +55,7 @@ set_github_ssh_key() {
 	local sshKeyFileName="$HOME/.ssh/github"
 
 	# If there is already a file with that
-	# name, generate another, unique, file name.
+	# name, generate another, unique, filename.
 
 	if [ -f "$sshKeyFileName" ]; then
 		sshKeyFileName="$(mktemp -u "$HOME/.ssh/github_XXXXX")"

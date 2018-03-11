@@ -3,7 +3,7 @@
 # [!] Do not rename this file to `bash_completion`
 #     as it will create an infinite loop!
 
-# ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 declare -r BASH_COMPLETION_PATH="$(brew --prefix 2> /dev/null)/share/bash-completion/bash_completion"
 
@@ -19,7 +19,7 @@ if [ -f "$BASH_COMPLETION_PATH" ]; then
 
 fi
 
-# ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 

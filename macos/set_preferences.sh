@@ -3,7 +3,7 @@
 cd "$(dirname "${BASH_SOURCE[0]}")" \
 	&& . "utils.sh"
 
-# ---------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 print_in_purple "\n • Preferences\n\n"
 
@@ -12,7 +12,7 @@ printf '\n'
 
 if answer_is_yes; then
 
-	# -----------------------------------------------------------------
+	# --------------------------------------------------------------------------
 
 	print_in_purple "\n  Dock\n\n"
 
@@ -39,20 +39,12 @@ if answer_is_yes; then
 
 	killall "Dock" &> /dev/null
 
-	# -----------------------------------------------------------------
+	# --------------------------------------------------------------------------
 
 	print_in_purple "\n  Finder\n\n"
 
-	execute "defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true && \
-			defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true && \
-			defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true" \
-		"Automatically open a new Finder window when a volume is mounted"
-
 	execute "defaults write com.apple.finder _FXShowPosixPathInTitle -bool true" \
 		"Use full POSIX path as window title"
-
-	execute "defaults write com.apple.finder DisableAllAnimations -bool true" \
-		"Disable all animations"
 
 	execute "defaults write com.apple.finder WarnOnEmptyTrash -bool false" \
 		"Disable the warning before emptying the Trash"
@@ -66,55 +58,15 @@ if answer_is_yes; then
 	execute "defaults write com.apple.finder FXPreferredViewStyle -string 'Nlsv'" \
 		"Use list view in all Finder windows by default"
 
-	execute "defaults write com.apple.finder NewWindowTarget -string 'PfDe' && \
-			defaults write com.apple.finder NewWindowTargetPath -string 'file://$HOME/Desktop/'" \
-		"Set 'Desktop' as the default location for new Finder windows"
-
-	execute "defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true && \
-			defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true && \
-			defaults write com.apple.finder ShowMountedServersOnDesktop -bool true && \
-			defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true" \
-		"Show icons for hard drives, servers, and removable media on the desktop"
-
 	execute "defaults write com.apple.finder ShowRecentTags -bool false" \
 		"Do not show recent tags"
 
 	execute "defaults write -g AppleShowAllExtensions -bool true" \
 		"Show all filename extensions"
 
-	execute "/usr/libexec/PlistBuddy -c 'Set :DesktopViewSettings:IconViewSettings:iconSize 72' ~/Library/Preferences/com.apple.finder.plist && \
-			/usr/libexec/PlistBuddy -c 'Set :StandardViewSettings:IconViewSettings:iconSize 72' ~/Library/Preferences/com.apple.finder.plist" \
-		"Set icon size"
-
-	execute "/usr/libexec/PlistBuddy -c 'Set :DesktopViewSettings:IconViewSettings:gridSpacing 1' ~/Library/Preferences/com.apple.finder.plist && \
-			/usr/libexec/PlistBuddy -c 'Set :StandardViewSettings:IconViewSettings:gridSpacing 1' ~/Library/Preferences/com.apple.finder.plist" \
-		"Set icon grid spacing size"
-
-	execute "/usr/libexec/PlistBuddy -c 'Set :DesktopViewSettings:IconViewSettings:textSize 13' ~/Library/Preferences/com.apple.finder.plist && \
-			/usr/libexec/PlistBuddy -c 'Set :StandardViewSettings:IconViewSettings:textSize 13' ~/Library/Preferences/com.apple.finder.plist" \
-		"Set icon label text size"
-
-	execute "/usr/libexec/PlistBuddy -c 'Set :DesktopViewSettings:IconViewSettings:labelOnBottom true' ~/Library/Preferences/com.apple.finder.plist && \
-			/usr/libexec/PlistBuddy -c 'Set :StandardViewSettings:IconViewSettings:labelOnBottom true' ~/Library/Preferences/com.apple.finder.plist" \
-		"Set icon label position"
-
-	execute "/usr/libexec/PlistBuddy -c 'Set :DesktopViewSettings:IconViewSettings:showItemInfo true' ~/Library/Preferences/com.apple.finder.plist && \
-			/usr/libexec/PlistBuddy -c 'Set :StandardViewSettings:IconViewSettings:showItemInfo true' ~/Library/Preferences/com.apple.finder.plist" \
-		"Show item info"
-
-	execute "/usr/libexec/PlistBuddy -c 'Set :DesktopViewSettings:IconViewSettings:arrangeBy none' ~/Library/Preferences/com.apple.finder.plist && \
-			/usr/libexec/PlistBuddy -c 'Set :StandardViewSettings:IconViewSettings:arrangeBy none' ~/Library/Preferences/com.apple.finder.plist" \
-		"Set sort method"
-
 	killall "Finder" &> /dev/null
 
-	# Starting with Mac OS X Mavericks preferences are cached,
-	# so in order for things to get properly set using `PlistBuddy`,
-	# the `cfprefsd` process also needs to be killed.
-
-	killall "cfprefsd" &> /dev/null
-
-	# -----------------------------------------------------------------
+	# --------------------------------------------------------------------------
 
 	print_in_purple "\n  Keyboard\n\n"
 
@@ -136,7 +88,7 @@ if answer_is_yes; then
 	execute "defaults write -g NSAutomaticDashSubstitutionEnabled -bool false" \
 		"Disable smart dashes"
 
-	# -----------------------------------------------------------------
+	# --------------------------------------------------------------------------
 
 	print_in_purple "\n  Safari\n\n"
 
@@ -175,7 +127,7 @@ if answer_is_yes; then
 
 	killall "Safari" &> /dev/null
 
-	# -----------------------------------------------------------------
+	# --------------------------------------------------------------------------
 
 	print_in_purple "\n  Terminal\n\n"
 
@@ -191,7 +143,7 @@ if answer_is_yes; then
 	execute "defaults write com.apple.terminal StringEncodings -array 4" \
 		"Only use UTF-8"
 
-	# -----------------------------------------------------------------
+	# --------------------------------------------------------------------------
 
 	print_in_purple "\n  Trackpad\n\n"
 
@@ -209,7 +161,7 @@ if answer_is_yes; then
 			defaults -currentHost write -g com.apple.trackpad.trackpadCornerClickBehavior -int 0" \
 		"Map 'click or tap with two fingers' to the secondary click"
 
-	# -----------------------------------------------------------------
+	# --------------------------------------------------------------------------
 
 	print_in_purple "\n  UI & UX\n\n"
 
@@ -252,12 +204,6 @@ if answer_is_yes; then
 
 	execute "defaults write -g NSNavPanelExpandedStateForSaveMode -bool true" \
 		"Expand save panel by default"
-
-	execute "defaults write -g NSTableViewDefaultSizeMode -int 2" \
-		"Set sidebar icon size to medium"
-
-	execute "defaults write -g NSUseAnimatedFocusRing -bool false" \
-		"Disable the over-the-top focus ring animation"
 
 	execute "defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false" \
 		"Disable resume system-wide"
