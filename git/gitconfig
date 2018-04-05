@@ -27,9 +27,6 @@
 	# Set upstream tracking.
 	pub = push -u origin
 
-	# Remove last commit.
-	rlc = !git reset --hard HEAD~1
-
 	# Working tree (short).
 	s = status -s
 
@@ -156,6 +153,15 @@
 	retag = "!f() { \
 		git tag -d "$1" &> /dev/null; \
 		git tag $1; \
+	}; f"
+
+	# --------------------------------------------------------------------------
+
+	# Remove last commits (by default it removes the last commit).
+
+	rlc = "!f() { \
+		 declare n=\"${1:-1}\"; \
+		 git reset --hard \"HEAD~$n\"; \
 	}; f"
 
 
