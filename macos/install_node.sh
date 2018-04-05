@@ -100,7 +100,6 @@ main() {
 
 	printf "\n"
 
-	install_npm_package "SVGO" "svgo"
 	install_npm_package "XO" "xo"
 
 }
