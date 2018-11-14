@@ -104,10 +104,6 @@ brew_cleanup() {
 		"brew cleanup" \
 		"Homebrew (cleanup)"
 
-	execute \
-		"brew cask cleanup" \
-		"Homebrew (cask cleanup)"
-
 }
 
 brew_install() {
