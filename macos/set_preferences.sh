@@ -143,14 +143,12 @@ if answer_is_yes; then
 	execute "defaults write com.apple.terminal StringEncodings -array 4" \
 		"Only use UTF-8"
 
-	# If there is a Touch Bar, ensure the Touch ID is used when
- 	# `sudo` is required.
+	# Ensure the Touch ID is used when `sudo` is required.
 
- 	if ioreg | grep -q "AppleEmbeddedOSSupportHost" \
- 		&& ! grep -q "pam_tid.so" "/etc/pam.d/sudo"; then
- 		execute "sudo sh -c 'echo \"auth sufficient pam_tid.so\" >> /etc/pam.d/sudo'" \
- 			"Use Touch ID to authenticate sudo"
- 	fi
+	if ! grep -q "pam_tid.so" "/etc/pam.d/sudo"; then
+		execute "sudo sh -c 'echo \"auth sufficient pam_tid.so\" >> /etc/pam.d/sudo'" \
+			"Use Touch ID to authenticate sudo"
+	fi
 
 	# --------------------------------------------------------------------------
 
