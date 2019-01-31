@@ -16,7 +16,7 @@ if answer_is_yes; then
 	./install_homebrew.sh
 	./install_bash.sh
 
-	print_in_purple "\n  Brew packages \n\n"
+	print_in_purple "\n  Brew Packages \n\n"
 
 	brew_install "Ack!" "ack"
 	brew_install "FFmpeg" "ffmpeg"
@@ -26,11 +26,16 @@ if answer_is_yes; then
 	brew_install "Pinentry" "pinentry-mac"
 	brew_install "Zopfli" "zopfli"
 
-	print_in_purple "\n  Brewcask packages \n\n"
+	print_in_purple "\n  Brew Cask Packages \n\n"
 
 	brew_install "Docker" "docker" "caskroom/cask" "cask"
 	brew_install "Hyper" "hyper" "caskroom/cask" "cask"
 	brew_install "Visual Studio Code" "visual-studio-code" "caskroom/cask" "cask"
+
+	print_in_purple "\n  Brew Cask Quick Look Packages \n\n"
+
+	brew_install "JSON" "quicklook-json" "caskroom/cask" "cask"
+	brew_install "Markdown" "qlmarkdown" "caskroom/cask" "cask"
 
 	printf '\n'
 
