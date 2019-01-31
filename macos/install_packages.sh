@@ -34,8 +34,6 @@ if answer_is_yes; then
 
 	printf '\n'
 
-	brew_cleanup
-
 	./install_node.sh
 
 fi
