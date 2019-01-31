@@ -22,7 +22,6 @@ if answer_is_yes; then
 	brew_install "FFmpeg" "ffmpeg"
 	brew_install "Git" "git"
 	brew_install "GPG" "gpg"
-	brew_install "GPG Agent" "gpg-agent"
 	brew_install "Pinentry" "pinentry-mac"
 	brew_install "Zopfli" "zopfli"
 
