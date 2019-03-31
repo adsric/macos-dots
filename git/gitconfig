@@ -39,40 +39,40 @@
 	# Web-based visualizer.
 	w = instaweb --httpd=webrick
 
-	# --------------------------------------------------------------------------
+	# -----------------------------------------------------------------
 
 	# Add untracked, remove deleted, and show status.
 
 	adda = !git add -A && git status
 
-	# --------------------------------------------------------------------------
+	# -----------------------------------------------------------------
 
 	# `git clean -df`: remove untracked files and directories from the working tree.
 	# `git stash clear`: remove all stashed states.
 
 	cleanup = !git clean -df && git stash clear
 
-	# --------------------------------------------------------------------------
+	# -----------------------------------------------------------------
 
 	# Remove branches that have already been merged with master.
 	# a.k.a. ‘delete merged’
 
 	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
-	# --------------------------------------------------------------------------
+	# -----------------------------------------------------------------
 
 	# Interactive rebase with the given number of latest commits.
 
 	reb = "!r() { git rebase -i HEAD~$1; }; r"
 
-	# --------------------------------------------------------------------------
+	# -----------------------------------------------------------------
 
 	# `git remote prune origin`: remove remote-tracking branches that were deleted from the remote repo.
 	# `git gc`: cleanup unnecessary files and optimize the local repository.
 
 	trim = !git remote prune origin && git gc
 
-	# --------------------------------------------------------------------------
+	# -----------------------------------------------------------------
 
 	# Show verbose output about tags, branches or remotes.
 
@@ -80,7 +80,7 @@
 	branches = branch -a
 	remotes = remote -v
 
-	# --------------------------------------------------------------------------
+	# -----------------------------------------------------------------
 
 	# Switch to a branch, creating it if necessary
 
@@ -88,7 +88,7 @@
 		git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; \
 	}; f"
 
-	# --------------------------------------------------------------------------
+	# -----------------------------------------------------------------
 
 	# Find commits by source code
 
@@ -96,7 +96,7 @@
 		git log --pretty=custom --decorate --date=short -S\"$1\"; \
 	}; f"
 
-	# --------------------------------------------------------------------------
+	# -----------------------------------------------------------------
 
 	# Find commits by commit message.
 
@@ -104,7 +104,7 @@
 		git log --pretty=custom --decorate --date=short --grep=\"$1\"; \
 	}; f"
 
-	# --------------------------------------------------------------------------
+	# -----------------------------------------------------------------
 
 	# Credit an author on the latest commit.
 
@@ -114,7 +114,20 @@
 		fi \
 	}; f"
 
-	# --------------------------------------------------------------------------
+	# -----------------------------------------------------------------
+
+    # Credit a co-author on the latest commit.
+    #
+    # https://help.github.com/en/articles/creating-a-commit-with-multiple-authors
+    # https://help.github.com/en/articles/creating-a-commit-on-behalf-of-an-organization
+
+    credit-co-author = "!f() { \
+        if [ -n \"$1\" ] && [ -n \"$2\" ]; then \
+            GIT_EDITOR=\"git interpret-trailers --in-place --trailer='Co-authored-by: $1 <$2>'\" git commit --amend; \
+        fi \
+    }; f"
+
+	# -----------------------------------------------------------------
 
 	# List remote branches.
 
@@ -123,7 +136,7 @@
 		git ls-remote --heads "$remote"; \
 	}; f"
 
-	# --------------------------------------------------------------------------
+	# -----------------------------------------------------------------
 
 	# Merge GitHub pull request on top of the current branch or,
 	# if a branch name is specified, on top of the specified branch.
@@ -142,7 +155,7 @@
 		fi \
 	}; f"
 
-	# --------------------------------------------------------------------------
+	# -----------------------------------------------------------------
 
 	# Remove the tag with the specified tag name if exists,
 	# and tag the latest commit with that name.
@@ -152,7 +165,7 @@
 		git tag $1; \
 	}; f"
 
-	# --------------------------------------------------------------------------
+	# -----------------------------------------------------------------
 
 	# Remove last commits (by default it removes the last commit).
 
@@ -161,7 +174,7 @@
 		 git reset --hard \"HEAD~$n\"; \
 	}; f"
 
-	# --------------------------------------------------------------------------
+	# -----------------------------------------------------------------
 
 	# Undo last commits (by default it undoes the last commit).
 
