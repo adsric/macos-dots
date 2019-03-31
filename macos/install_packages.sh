@@ -18,20 +18,20 @@ if answer_is_yes; then
 
 	print_in_purple "\n  Brew Packages \n\n"
 
-	brew_install "Ack!" "ack"
-	brew_install "FFmpeg" "ffmpeg"
 	brew_install "Git" "git"
 	brew_install "GPG" "gpg"
 	brew_install "Pinentry" "pinentry-mac"
+	brew_install "Ack!" "ack"
+	brew_install "FFmpeg" "ffmpeg"
 	brew_install "Zopfli" "zopfli"
 
-	print_in_purple "\n  Brew Cask Packages \n\n"
+	print_in_purple "\n  Brew Casks \n\n"
 
 	brew_install "Docker" "docker" "caskroom/cask" "cask"
 	brew_install "Hyper" "hyper" "caskroom/cask" "cask"
 	brew_install "Visual Studio Code" "visual-studio-code" "caskroom/cask" "cask"
 
-	print_in_purple "\n  Brew Cask Quick Look Packages \n\n"
+	print_in_purple "\n  Brew Casks  Quick Look \n\n"
 
 	brew_install "JSON" "quicklook-json" "caskroom/cask" "cask"
 	brew_install "Markdown" "qlmarkdown" "caskroom/cask" "cask"
