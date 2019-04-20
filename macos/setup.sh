@@ -183,17 +183,14 @@ verify_os() {
 
 main() {
 
-	# Ensure the OS is supported and
-	# it's above the required version
-
-	verify_os || exit 1
-
 	# Ensure that the following actions
 	# are made relative to this file's path
 	#
 	# http://mywiki.wooledge.org/BashFAQ/028
 
 	cd "$(dirname "$BASH_SOURCE")"
+
+	# --------------------------------------------------------------------------
 
 	# Load utils
 
@@ -203,22 +200,35 @@ main() {
 		download_utils || exit 1
 	fi
 
+	# --------------------------------------------------------------------------
+
+	# Ensure the OS is supported and
+	# it's above the required version
+
+	verify_os || exit 1
+
+
+	# --------------------------------------------------------------------------
+
 	ask_for_sudo
 
-	# Setup the `dotfiles` if needed
+	# --------------------------------------------------------------------------
 
-	if ! cmd_exists 'git' \
-		|| [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
+	# Check if this script was run directly (./<path>/setup.sh),
+    # and if not, it most likely means that the dotfiles were not
+    # yet set up, and they will need to be downloaded.
 
-		print_info 'Download and extract archive'
-		download_dotfiles
+    printf "%s" "${BASH_SOURCE[0]}" | grep "setup.sh" &> /dev/null \
+		|| download_dotfiles
 
-	fi
+	# --------------------------------------------------------------------------
 
 	./create_symbolic_links.sh
 	./create_local_configs.sh
 	./install.sh
 	./preferences.sh
+
+	# --------------------------------------------------------------------------
 
 	if cmd_exists 'git'; then
 
