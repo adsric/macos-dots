@@ -79,15 +79,22 @@ download_dotfiles() {
 	mkdir -p "$dotfilesDirectory"
 	print_result $? "Create '$dotfilesDirectory'" 'true'
 
+	# -----------------------------------------------------------------
+
 	# Extract archive in the `dotfiles` directory
 	extract "$tmpFile" "$dotfilesDirectory"
 	print_result $? 'Extract archive' 'true'
+
+	# -----------------------------------------------------------------
 
 	# Remove archive
 	rm -rf "$tmpFile"
 	print_result $? 'Remove archive'
 
-	cd "$dotfilesDirectory"
+	# -----------------------------------------------------------------
+
+	 cd "$dotfilesDirectory/macos" \
+        || return 1
 
 }
 
