@@ -217,8 +217,8 @@ main() {
 
 	./create_symbolic_links.sh
 	./create_local_configs.sh
-	./install_packages.sh
-	./set_preferences.sh
+	./install.sh
+	./preferences.sh
 
 	if cmd_exists 'git'; then
 

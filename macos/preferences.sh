@@ -14,13 +14,17 @@ if answer_is_yes; then
 
 	# --------------------------------------------------------------------------
 
+	print_in_purple "\n  App Store\n\n"
+
+	execute "defaults write com.apple.commerce AutoUpdate -bool true" \
+		"Turn on auto-update"
+
+	# --------------------------------------------------------------------------
+
 	print_in_purple "\n  Dock\n\n"
 
 	execute "defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true" \
 		"Enable spring loading for all Dock items"
-
-	execute "defaults write com.apple.dock expose-group-by-app -bool false" \
-		"Do not group windows by application in Mission Control"
 
 	execute "defaults write com.apple.dock mineffect -string 'scale'" \
 		"Change minimize/maximize window effect"
@@ -30,9 +34,6 @@ if answer_is_yes; then
 
 	execute "defaults write com.apple.dock mru-spaces -bool false" \
 		"Do not automatically rearrange spaces based on most recent use"
-
-	execute "defaults write com.apple.dock show-process-indicators -bool true" \
-		"Show indicator lights for open applications"
 
 	execute "defaults write com.apple.dock showhidden -bool true" \
 		"Make icons of hidden applications translucent"
@@ -70,18 +71,6 @@ if answer_is_yes; then
 
 	print_in_purple "\n  Keyboard\n\n"
 
-	execute "defaults write -g AppleKeyboardUIMode -int 3" \
-		"Enable full keyboard access for all controls"
-
-	execute "defaults write -g ApplePressAndHoldEnabled -bool false" \
-		"Disable press-and-hold in favor of key repeat"
-
-	execute "defaults write -g 'InitialKeyRepeat_Level_Saved' -int 10" \
-		"Set delay until repeat"
-
-	execute "defaults write -g KeyRepeat -int 1" \
-		"Set the key repeat rate to fast"
-
 	execute "defaults write -g NSAutomaticQuoteSubstitutionEnabled -bool false" \
 		"Disable smart quotes"
 
@@ -111,9 +100,6 @@ if answer_is_yes; then
 
 	execute "defaults write com.apple.Safari IncludeInternalDebugMenu -bool true" \
 		"Enable 'Debug' menu"
-
-	execute "defaults write com.apple.Safari ShowFavoritesBar -bool false" \
-		"Hide bookmarks bar by default"
 
 	execute "defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true" \
 		"Show the full URL in the address bar"
@@ -152,31 +138,10 @@ if answer_is_yes; then
 
 	# --------------------------------------------------------------------------
 
-	print_in_purple "\n  Trackpad\n\n"
-
-	execute "defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true && \
-			defaults write com.apple.AppleMultitouchTrackpad Clicking -int 1 && \
-			defaults write -g com.apple.mouse.tapBehavior -int 1 && \
-			defaults -currentHost write -g com.apple.mouse.tapBehavior -int 1" \
-		"Enable 'Tap to click'"
-
-	execute "defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true && \
-			defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -int 1 && \
-			defaults -currentHost write -g com.apple.trackpad.enableSecondaryClick -bool true && \
-			defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 0 && \
-			defaults write com.apple.AppleMultitouchTrackpad TrackpadCornerSecondaryClick -int 0 && \
-			defaults -currentHost write -g com.apple.trackpad.trackpadCornerClickBehavior -int 0" \
-		"Map 'click or tap with two fingers' to the secondary click"
-
-	# --------------------------------------------------------------------------
-
 	print_in_purple "\n  UI & UX\n\n"
 
 	execute "defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true" \
-	"Avoid creating '.DS_Store' files on network volumes"
-
-	execute "defaults write com.apple.menuextra.battery ShowPercent -string 'NO'" \
-		"Hide battery percentage from the menu bar"
+		"Avoid creating '.DS_Store' files on network volumes"
 
 	execute "defaults write com.apple.CrashReporter UseUNC 1" \
 		"Make crash reports appear as notifications"
@@ -193,6 +158,9 @@ if answer_is_yes; then
 	execute "defaults write com.apple.screencapture location -string '$HOME/Desktop'" \
 		"Save screenshots to the Desktop"
 
+	execute "defaults write com.apple.screencapture show-thumbnail -bool false" \
+		"Do not show thumbnail"
+
 	execute "defaults write com.apple.screencapture type -string 'png'" \
 		"Save screenshots as PNGs"
 
@@ -203,36 +171,14 @@ if answer_is_yes; then
 	execute "defaults write -g AppleFontSmoothing -int 2" \
 		"Enable subpixel font rendering on non-Apple LCDs"
 
-	execute "defaults write -g AppleShowScrollBars -string 'Always'" \
-		"Always show scrollbars"
-
-	execute "defaults write -g NSDisableAutomaticTermination -bool true" \
-		"Disable automatic termination of inactive apps"
-
 	execute "defaults write -g NSNavPanelExpandedStateForSaveMode -bool true" \
 		"Expand save panel by default"
-
-	execute "defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false" \
-		"Disable resume system-wide"
 
 	execute "defaults write -g PMPrintingExpandedStateForPrint -bool true" \
 		"Expand print panel by default"
 
 	execute "sudo systemsetup -setrestartfreeze on" \
 		"Restart automatically if the computer freezes"
-
-	execute "for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
-				sudo defaults write \"\${domain}\" dontAutoLoad -array \
-					'/System/Library/CoreServices/Menu Extras/TimeMachine.menu' \
-					'/System/Library/CoreServices/Menu Extras/Volume.menu'
-			done \
-				&& sudo defaults write com.apple.systemuiserver menuExtras -array \
-					'/System/Library/CoreServices/Menu Extras/Bluetooth.menu' \
-					'/System/Library/CoreServices/Menu Extras/AirPort.menu' \
-					'/System/Library/CoreServices/Menu Extras/Battery.menu' \
-					'/System/Library/CoreServices/Menu Extras/Clock.menu'
-			" \
-		"Hide Time Machine and Volume icons from the menu bar"
 
 	killall "SystemUIServer" &> /dev/null
 

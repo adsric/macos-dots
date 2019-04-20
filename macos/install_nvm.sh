@@ -63,28 +63,11 @@ update_nvm() {
 
 }
 
-install_npm_completion() {
-
-	execute \
-		"npm completion > /usr/local/etc/bash_completion.d/npm" \
-		"$1"
-
-}
-
-install_npm_package() {
-
-	execute \
-		". $HOME/.bash.local \
-			&& npm install --global --silent $2" \
-		"$1"
-
-}
-
 # ---------------------------------------------------------------------
 
 main() {
 
-	print_in_purple "\n  Node js\n\n"
+	print_in_purple "\n  nvm\n\n"
 
 	if [ ! -d "$NVM_DIRECTORY" ]; then
 		install_nvm
@@ -93,14 +76,6 @@ main() {
 	fi
 
 	install_latest_stable_node
-
-	install_npm_package "npm (update)" "npm"
-
-	install_npm_completion "npm (tab-completion)"
-
-	printf "\n"
-
-	install_npm_package "XO" "xo"
 
 }
 
