@@ -27,8 +27,8 @@ The setup process will:
   [`git`](git) and
   [`shell`](shell) files
 * Install applications / command-line tools for
-  [`macOS`](macos/install)
-* Set [`macOS`](macos/preferences) preferences
+  [`macOS`](macos/install.sh)
+* Set [`macOS`](macos/preferences.sh) preferences
 
 (Note: To update the dotfiles you can either run the [`setup`
 script](macos/setup.sh))
@@ -53,7 +53,7 @@ Below is a simple example of a `~/.bash.local` file:
 
 # Set PATH additions.
 
-PATH="$PATH:$HOME/code/dotfiles/bin"
+PATH="$PATH:$HOME/dev/dotfiles/bin"
 export PATH
 
 ```
