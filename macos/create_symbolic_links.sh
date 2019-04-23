@@ -21,6 +21,8 @@ create_symlinks() {
 		"shell/curlrc"
 		"shell/inputrc"
 
+		"mackup/mackup.cfg"
+
 		"git/gitattributes"
 		"git/gitconfig"
 		"git/gitignore"

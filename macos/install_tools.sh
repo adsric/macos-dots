@@ -5,6 +5,12 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # ------------------------------------------------------------------------------
 
+print_in_purple "\n   Misc Tools\n\n"
+
+brew_install "Mackup" "mackup"
+
+# ------------------------------------------------------------------------------
+
 print_in_purple "\n   Compression Tools\n\n"
 
 brew_install "Zopfli" "zopfli"
