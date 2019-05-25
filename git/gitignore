@@ -38,3 +38,7 @@ Session.vim
 Desktop.ini
 ehthumbs.db
 Thumbs.db
+
+
+# Builds
+.cache
