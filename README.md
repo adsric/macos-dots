@@ -1,37 +1,35 @@
 # dotfiles
 
-These are my terminal and dotfiles that I start with when I set up a
-new environment. For more specific needs I use the `.local` files
+These are my dotfiles that I maintain for my environment.
+For any private configurations I use `.extra`
 described in the [`Extend`](#extend) section.
 
-## Setup
 
-The setup is simple just run the appropriate snippet in the
-terminal:
+## Install
 
-(Note: do not run the `setup` snippet if you don't fully
-understand [what it does](macos/setup.sh))
+**Warning:** If you want to give these dotfiles a try, you should first fork this
+repository, review the code, and remove things you don’t want or need. Don’t
+blindly use my settings unless you know what that entails. Use at your own risk!
 
+### Install with Git and the setup script
 
-| OS | Snippet |
-|:---:|:---|
-| `macOS` | `bash -c "$(curl -LsS https://raw.github.com/adsric/dotfiles/master/macos/setup.sh)"` |
+You can clone the repository wherever you want. (I like to keep it in ~/dev/dotfiles,
+with ~/dotfiles as a symlink.) The setup script will pull in the latest version
+and copy the files to your home folder.
 
+`git clone https://github.com/adsric/dotfiles.git && cd dotfiles && source setup.sh`
 
-The setup process will:
+To update, cd into your local dotfiles repository and then:
 
-* Download the dotfiles on your computer (by default it will suggest
-  `~/code/dotfiles`)
-* Create some additional [directories](os/create_directories.sh)
-* [Symlink](os/create_symbolic_links.sh) the
-  [`git`](git) and
-  [`shell`](shell) files
-* Install applications / command-line tools for
-  [`macOS`](macos/install.sh)
-* Set [`macOS`](macos/preferences.sh) preferences
+`source setup.sh`
 
-(Note: To update the dotfiles you can either run the [`setup`
-script](macos/setup.sh))
+### Install Git-free
+
+To install these dotfiles without Git:
+
+`cd; curl -#L https://github.com/adsric/dotfiles/tarball/master | tar -xzv --strip-components 1 --exclude={README.md,LICENSE.md,setup.sh}`
+
+To update later on, just run that command again.
 
 
 ## Extend
@@ -39,35 +37,33 @@ script](macos/setup.sh))
 I easily extend my dotfiles with additional requirements by
 using the following methods below:
 
-#### Extend (Bash)
+#### Extend the `$PATH`
 
-The `~/.bash.local` is created during the setup and will be automatically
-sourced after all the other [`bash` related files](shell), thus, allowing
-amends or overwrites to the existing aliases, settings,
-PATH, etc.
+If `~/.path` exists, it will be sourced along with the other files, before any feature testing takes place.
 
-Below is a simple example of a `~/.bash.local` file:
+Here’s an example `~/.path` file that adds `/usr/local/bin` to the `$PATH`:
 
-```
-#!/bin/bash
-
-# Set PATH additions.
-
-PATH="$PATH:$HOME/dev/dotfiles/bin"
-export PATH
-
+```bash
+export PATH="/usr/local/bin:$PATH"
 ```
 
-#### Extend (Git)
+#### Extend without creating a new fork
 
-The `~/.gitconfig.local` is created during the setup and will be automatically
-included after the configurations from `~/.gitconfig`, thus, allowing
-amends or overwrites to the existing configuration.
+If `~/.extra` exists, it will be sourced along with the other files. You can use this to add a few custom commands without the need to fork this entire repository, or to add commands you don’t want to commit to a public repository.
+
+You could also use `~/.extra` to override settings, functions and aliases from my dotfiles repository. It’s probably better to [fork this repository](https://github.com/adsric/dotfiles/fork) instead, though.
+
+
+#### Extend Git
+
+If `~/.gitconfig.local` exists it will be automatically included after
+the configurations from `~/.gitconfig`, thus, allowing amends or
+overwrites to the existing configuration.
 
 (Note: use to store sensitive information such as the `git` user credentials
 , etc...)
 
-Below is a simple example of a `~/.gitconfig.local` file:
+My `~/.gitconfig.local` looks something like this:
 
 ```
 [commit]
@@ -82,24 +78,5 @@ Below is a simple example of a `~/.gitconfig.local` file:
 	name = yourname
 	email = email@example.com
 	signingkey = XXXXXXXX
-
-```
-
-#### Extend (ssh)
-
-I log in and out of a half dozen remote or local servers on a daily
-basis. So to make remembering all of the various usernames and
-addresses I let a `~/.ssh/config` file do it all.
-
-(Note: this file stores sensitive information and so is not included)
-
-Below is a simple example of a `~/.ssh/config` file:
-
-```
-Host example
-	HostName example.com
-	Port 22
-	User exampleuser
-	IdentityFile ~/.ssh/{{key}}
 
 ```

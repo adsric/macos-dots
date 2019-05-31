@@ -2,7 +2,7 @@
 
 # ------------------------------------------------------------------------------
 
-__color_support() {
+prompt_color_support() {
 
 	if infocmp xterm-256color &> /dev/null; then
 		export TERM="xterm-256color"
@@ -12,7 +12,8 @@ __color_support() {
 
 # ------------------------------------------------------------------------------
 
-__git_prompt() {
+set_git_prompt() {
+
 	local branchName="";
 	local git_arrows=""
 	local change_summary=""
@@ -98,16 +99,18 @@ __git_prompt() {
 	else
 		return;
 	fi
+
 }
 
 # ------------------------------------------------------------------------------
 
-__prompt_command() {
+set_prompt_command() {
+
 	local LAST_EXIT=$?
 
 	PS1="\n";
 	PS1+="\[\033[01;34m\]\w\[\033[00m\]";
-	PS1+="\$(__git_prompt)\033[0m";
+	PS1+="\$(set_git_prompt)\033[0m";
 	PS1+="\n";
 
 	if [ $LAST_EXIT -eq 0 ]; then
@@ -127,25 +130,15 @@ __prompt_command() {
 
 # ------------------------------------------------------------------------------
 
-__set_prompt() {
+setup_prompt() {
 
-	export PROMPT_COMMAND=__prompt_command  # Func to gen PS1 after CMDs
+	export PROMPT_COMMAND=set_prompt_command  # Func to gen PS1 after CMDs
 
 }
 
 # ------------------------------------------------------------------------------
 
-main() {
-	__color_support
-	__set_prompt
-}
-
-main
-
-# ------------------------------------------------------------------------------
-
-# Cleanup.
-
-unset -f __color_support
-unset -f __set_prompt
-unset -f main
+prompt_color_support
+setup_prompt
+unset -f prompt_color_support
+unset -f setup_prompt

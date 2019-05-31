@@ -48,6 +48,20 @@ o() {
 
 # ------------------------------------------------------------------------------
 
+# Vim with no arguments (opens the current directory in Vim),
+# otherwise opens the given argument.
+
+v() {
+	if [ $# -eq 0 ]; then
+		vim .;
+	else
+		vim "$@";
+	fi
+}
+
+
+# ------------------------------------------------------------------------------
+
 # Lock screen.
 
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
