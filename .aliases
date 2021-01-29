@@ -79,39 +79,6 @@ alias brewu="brew update \
 				&& brew upgrade --all \
 				&& brew cleanup"
 
-
-# ------------------------------------------------------------------------------
-
-# Docker commands
-
-alias doup="docker-compose build && docker-compose up -d --remove-orphans"
-alias dodown="docker-compose stop"
-alias doreload="dodown && doup"
-alias dologs="docker-compose logs"
-alias doall="docker-compose down && docker-compose rm && docker-compose build --no-cache --force-rm && docker-compose up -d"
-alias dops="docker ps"
-
-
-# Run a shell on the specified container
-
-doshell() {
-	docker exec -t -i $1 /bin/bash
-}
-
-
-# Run for help on the commands
-
-dohelp() {
-	echo ''
-	echo -e "Docker commands."
-	echo ''
-	echo -e "  doup:     Build and Up the current Docker compose."
-	echo -e "  dodown:   Down the current Docker compose."
-	echo -e "  doreload: Down and up the current Docker compose."
-	echo -e "  doshell:  Open shell on specified container."
-	echo -e "  dologs:   Start the Logging system for the current Docker compose."
-}
-
 # ------------------------------------------------------------------------------
 
 # Clear DNS cache.
