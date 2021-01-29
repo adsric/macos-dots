@@ -1,6 +1,6 @@
-# macOS dots
+# .files
 
-These are my .files that I maintain for my environment.
+My .files that I maintain for my macOS environment. (It requires at least macOS 11.1)
 For any private configurations I use `.extra` described in the [`Extend`](#extend) section.
 
 ## Install
