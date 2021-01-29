@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
 # ---------------------------------------------------------------------------------------
 
@@ -9,7 +9,6 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-
 # ------------------------------------------------------------------------------
 
 alias ..="cd .."
@@ -17,20 +16,18 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias cd..="cd .."
 
-
 # ------------------------------------------------------------------------------
 
-alias c="clear"
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias l='ls -lFh'
-alias la='ls -lAh'
+alias c='clear'
+alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
+alias l="nocorrect ls -lFh"
+alias lsa="nocorrect ls -lAh"
 alias lssh='egrep "Host\ .*" ~/.ssh/config | cut -f2 -d " "'
 alias duh='du -hs'
 alias tree="find . | sed 's/[^/]*\//|   /g;s/| *\([^| ]\)/+--- \1/'"
 alias :q="exit"
 alias q="exit"
 alias rm="rm -rf --"
-
 
 # ------------------------------------------------------------------------------
 
@@ -45,40 +42,6 @@ o() {
 	fi
 }
 
-
-# ------------------------------------------------------------------------------
-
-# Vim with no arguments (opens the current directory in Vim),
-# otherwise opens the given argument.
-
-v() {
-	if [ $# -eq 0 ]; then
-		vim .;
-	else
-		vim "$@";
-	fi
-}
-
-
-# ------------------------------------------------------------------------------
-
-# Lock screen.
-
-alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
-
-
-# ------------------------------------------------------------------------------
-
-# Shorter commands for `Homebrew`.
-
-alias brewd="brew doctor"
-alias brewi="brew install"
-alias brewr="brew uninstall"
-alias brews="brew search"
-alias brewu="brew update \
-				&& brew upgrade --all \
-				&& brew cleanup"
-
 # ------------------------------------------------------------------------------
 
 # Clear DNS cache.
@@ -86,35 +49,11 @@ alias brewu="brew update \
 alias clear-dns-cache="sudo dscacheutil -flushcache; \
 						sudo killall -HUP mDNSResponder"
 
-
-# ------------------------------------------------------------------------------
-
-# Empty the trash, the main HDD and on all mounted volumes,
-# and clear Apple’s system logs to improve shell startup speed.
-
-alias empty-trash="sudo rm -frv /Volumes/*/.Trashes; \
-					sudo rm -frv ~/.Trash; \
-					sudo rm -frv /private/var/log/asl/*.asl; \
-					sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
-
-
 # ------------------------------------------------------------------------------
 
 # Edit the hosts.
 
 alias edit-hosts="sudo code /etc/hosts"
-
-
-# ------------------------------------------------------------------------------
-
-# Hide/Show desktop icons.
-
-alias hide-desktop-icons="defaults write com.apple.finder CreateDesktop -bool false \
-							&& killall Finder"
-
-alias show-desktop-icons="defaults write com.apple.finder CreateDesktop -bool true \
-							&& killall Finder"
-
 
 # ------------------------------------------------------------------------------
 
@@ -126,13 +65,11 @@ alias hide-hidden-files="defaults write com.apple.finder AppleShowAllFiles -bool
 alias show-hidden-files="defaults write com.apple.finder AppleShowAllFiles -bool true \
 							&& killall Finder"
 
-
 # ------------------------------------------------------------------------------
 
 # Get local IP.
 
 alias local-ip="ipconfig getifaddr en1"
-
 
 # ------------------------------------------------------------------------------
 
@@ -140,7 +77,6 @@ alias local-ip="ipconfig getifaddr en1"
 # Usage: `merge-pdf -o output.pdf input{1,2,3}.pdf`
 
 alias merge-pdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
-
 
 # ------------------------------------------------------------------------------
 

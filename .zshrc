@@ -12,7 +12,7 @@ export PATH="$HOME/.bin:$PATH"
 # * ~/.extra can be used for other settings you don’t want to commit.
 
 [[ -f .path ]] && source .path
-[[ -f .aliase ]] && source .aliases
+[[ -f .aliases ]] && source .aliases
 [[ -f .functions ]] && source .functions
 
 # ---------------------------------------------------------------------
