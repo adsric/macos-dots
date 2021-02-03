@@ -11,15 +11,15 @@ export PATH="$HOME/.bin:$PATH"
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
 
-[[ -f .path ]] && source .path
-[[ -f .aliases ]] && source .aliases
-[[ -f .functions ]] && source .functions
+[[ -f ~/.path ]] && source ~/.path
+[[ -f ~/.aliases ]] && source ~/.aliases
+[[ -f ~/.functions ]] && source ~/.functions
 
 # ---------------------------------------------------------------------
 
 # PROMPT
 
-[[ -f .git-prompt.sh ]] && source .git-prompt.sh
+[[ -f ~/.git-prompt.sh ]] && source ~/.git-prompt.sh
 
 PROMPT='%F{6}%m %F{13}${PWD/#$HOME/~}%F{5}$(git_super_status)%F{gray} → '
 
